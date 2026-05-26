@@ -6,10 +6,13 @@
     <title>KIMGACKCHI - Melon Soda & Pixel Desktop</title>
     <!-- 구글 폰트: 도트 전용 폰트 및 모던 레트로 타이포 -->
     <link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&family=Outfit:wght@400;700;900&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
-    <!-- FontAwesome 아이콘 (일부 탐색기 인터페이스용 보조) -->
+    <!-- FontAwesome 아이콘 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
+        /* ==========================================
+           1. Muted Pastel Y2K & Melon Soda Color Palette
+           ========================================== */
         :root {
             --bg-vanilla: #FFFDF0;       /* 포근하고 부드러운 밀크 바닐라 우유색 */
             --melon-soda: #7BEDC3;       /* 청량하고 톡 쏘는 탄산 멜론 그린 */
@@ -164,7 +167,7 @@
             flex-direction: column;
             overflow: hidden;
             border-radius: 12px;
-            transition: opacity 0.2s, transform 0.2s;
+            transition: opacity 0.2s, transform 0.1s;
         }
 
         /* 상단 타이틀바 (체리 핑크 믹스) */
@@ -733,6 +736,147 @@
         }
         .playing-drive { animation: synthDrive 1s linear infinite; }
         .playing-flicker { animation: neonFlicker 3s linear infinite; }
+
+        /* ==========================================
+           6. NEW! NEW DESIGN SUGGESTIONS
+           ========================================== */
+        /* Winamp Style Music Widget */
+        .music-widget {
+            width: 220px;
+            background: var(--bg-vanilla);
+            border: 3px solid var(--retro-dark);
+            box-shadow: 4px 4px 0px var(--melon-deep);
+            border-radius: 8px;
+            padding: 8px;
+            position: absolute;
+            left: 20px;
+            bottom: 80px;
+            z-index: 45;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .music-title {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.5rem;
+            background: var(--retro-dark);
+            color: var(--melon-soda);
+            padding: 4px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: clip;
+            text-align: center;
+        }
+
+        .music-visualizer {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 2px;
+            height: 24px;
+            background: rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--retro-dark);
+            padding: 2px;
+        }
+
+        .vis-bar {
+            width: 4px;
+            background: var(--cherry-red);
+            height: 10%;
+            transition: height 0.15s ease;
+        }
+
+        .music-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .music-btn {
+            background: var(--custard-cream);
+            border: 2px solid var(--retro-dark);
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.5rem;
+            padding: 2px 6px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .music-btn:active {
+            transform: translate(1px, 1px);
+        }
+
+        /* Retro Desktop Mascot Bunny */
+        .pixel-mascot {
+            position: absolute;
+            right: 40px;
+            bottom: 75px;
+            z-index: 40;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .mascot-bubble {
+            background: white;
+            border: 3px solid var(--retro-dark);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            position: relative;
+            margin-bottom: 8px;
+            box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1);
+            max-width: 180px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s, transform 0.3s;
+            pointer-events: none;
+        }
+
+        .mascot-bubble.active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .mascot-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 8px 8px 0;
+            border-style: solid;
+            border-color: white transparent;
+            display: block;
+            width: 0;
+        }
+
+        .mascot-bubble::before {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 10px 10px 0;
+            border-style: solid;
+            border-color: var(--retro-dark) transparent;
+            display: block;
+            width: 0;
+            z-index: -1;
+        }
+
+        .mascot-sprite {
+            width: 48px;
+            height: 48px;
+            image-rendering: pixelated;
+            animation: bounceRabbit 1.5s ease-in-out infinite;
+        }
     </style>
 </head>
 <body>
@@ -753,7 +897,7 @@
             <svg class="pixel-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
                 <!-- Outer outline -->
                 <path d="M8 2h8v2H8V2zm-2 2h2v2H6V4zm12 0h2v2h-2V4zm-4 4h4v2h-4V8zm-6 2h2v10H8V10zm10 0h2v10h-2V10zm-6 10h4v2h-4v-2z" fill="var(--retro-dark)"/>
-                <!-- Front face and top face blocks (Pixel styled) -->
+                <!-- Front face and top face blocks -->
                 <rect x="8" y="4" width="8" height="6" fill="var(--melon-soda)" />
                 <rect x="6" y="10" width="12" height="10" fill="var(--custard-cream)" />
                 <rect x="10" y="12" width="4" height="4" fill="var(--cherry-red)" />
@@ -828,7 +972,7 @@
         <!-- ==========================================
            기본 오픈되어 있는 프로필 텍스트 파일 창
            ========================================== -->
-        <div class="window profile-window" id="profileWindow">
+        <div class="window profile-window" id="profileWindow" style="top: 15%; left: 35%;">
             <div class="window-header">
                 <div class="window-title">
                     <i class="fa-solid fa-file-lines"></i> PROFILE.TXT
@@ -843,14 +987,10 @@
                         <!-- 8-bit 커스텀 도트 스마일 아바타 -->
                         <svg width="64" height="64" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" style="image-rendering: pixelated;">
                             <rect width="16" height="16" fill="var(--custard-cream)"/>
-                            <!-- Face boundary -->
                             <path d="M4 1h8v1H4V1zm-2 2h2v1H2V3zm10 0h2v1h-2V3zm-11 3h1v4H1V6zm14 0h1v4h-1V6zm-13 5h2v1H2v-1zm10 0h2v1h-2v-1zm-9 2h8v1H5v-1z" fill="var(--retro-dark)"/>
-                            <!-- Eyes -->
                             <rect x="4" y="6" width="2" height="2" fill="var(--cherry-red)"/>
                             <rect x="10" y="6" width="2" height="2" fill="var(--cherry-red)"/>
-                            <!-- Mouth -->
                             <path d="M4 11h8v1H4v-1zm1 1h6v1H5v-1z" fill="var(--retro-dark)"/>
-                            <!-- Blush -->
                             <rect x="3" y="8" width="1" height="1" fill="var(--melon-soda)"/>
                             <rect x="12" y="8" width="1" height="1" fill="var(--melon-soda)"/>
                         </svg>
@@ -876,13 +1016,52 @@
             </div>
         </div>
 
+        <!-- NEW! Winamp Mini Tape Player Widget -->
+        <div class="music-widget" id="musicPlayer">
+            <div class="music-title">MELON_RADIO.WAV</div>
+            <div class="music-visualizer" id="visualizer">
+                <div class="vis-bar"></div>
+                <div class="vis-bar"></div>
+                <div class="vis-bar"></div>
+                <div class="vis-bar"></div>
+                <div class="vis-bar"></div>
+                <div class="vis-bar"></div>
+                <div class="vis-bar"></div>
+                <div class="vis-bar"></div>
+                <div class="vis-bar"></div>
+                <div class="vis-bar"></div>
+            </div>
+            <div class="music-controls">
+                <button class="music-btn" onclick="playSfx('click'); handleMuteToggle()" id="muteBtn">PLAY 📻</button>
+                <div style="font-family:'Press Start 2P'; font-size:0.5rem; color:var(--retro-dark);">VOL: 80%</div>
+            </div>
+        </div>
+
+        <!-- NEW! Desktop Mascot Pixel Bunny -->
+        <div class="pixel-mascot" onclick="clickMascot()">
+            <div class="mascot-bubble" id="mascotBubble">안녕하세요 각치님!</div>
+            <!-- Custom pixel bunny mascot SVG -->
+            <svg class="mascot-sprite" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+                <rect x="4" y="0" width="2" height="4" fill="var(--retro-dark)"/>
+                <rect x="10" y="0" width="2" height="4" fill="var(--retro-dark)"/>
+                <rect x="5" y="1" width="1" height="3" fill="var(--cherry-red)"/>
+                <rect x="11" y="1" width="1" height="3" fill="var(--cherry-red)"/>
+                <rect x="3" y="4" width="10" height="8" fill="var(--custard-cream)" stroke="var(--retro-dark)" stroke-width="1"/>
+                <rect x="5" y="6" width="2" height="2" fill="var(--retro-dark)"/>
+                <rect x="9" y="6" width="2" height="2" fill="var(--retro-dark)"/>
+                <rect x="7" y="8" width="2" height="1" fill="var(--cherry-red)"/>
+                <rect x="4" y="12" width="2" height="2" fill="var(--retro-dark)"/>
+                <rect x="10" y="12" width="2" height="2" fill="var(--retro-dark)"/>
+            </svg>
+        </div>
+
     </main>
 
     <!-- ==========================================
-       6. 가상 파일 탐색기 및 멀티미디어 뷰어 팝업창 (Modal)
+       6. 가상 파일 탐색기 및 멀티미디어 팝업창 (Modal)
        ========================================== -->
     <div class="viewer-overlay" id="viewerOverlay" onclick="closePreviewExplorer(event)">
-        <div class="viewer-window" onclick="event.stopPropagation()">
+        <div class="viewer-window window" id="explorerWindow" onclick="event.stopPropagation()" style="width:100%; max-width:840px; top: 10%; left: 10%;">
             <div class="viewer-header" id="viewerHeaderColor">
                 <div class="window-title">
                     <i class="fa-solid fa-desktop"></i> <span id="windowDisplayTitle">EXPLORER_VIEWER.EXE</span>
@@ -1022,12 +1201,190 @@
             if (show) {
                 profile.style.display = 'flex';
                 profile.style.opacity = '1';
-                profile.style.transform = 'translate(-50%, -50%) scale(1)';
+                profile.style.transform = 'scale(1)';
+                focusWindow(profile);
             } else {
                 profile.style.display = 'none';
             }
         }
 
+        // 4. NEW! Window Draggable Logic (vanilla js)
+        let highestZ = 100;
+        function focusWindow(win) {
+            highestZ++;
+            win.style.zIndex = highestZ;
+        }
+
+        function makeDraggable(windowEl) {
+            const header = windowEl.querySelector('.window-header');
+            if (!header) return;
+
+            let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+
+            header.onmousedown = dragMouseDown;
+            header.ontouchstart = dragTouchStart;
+
+            function dragMouseDown(e) {
+                e = e || window.event;
+                e.preventDefault();
+                focusWindow(windowEl);
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                document.onmousemove = elementDrag;
+            }
+
+            function dragTouchStart(e) {
+                focusWindow(windowEl);
+                const touch = e.touches[0];
+                pos3 = touch.clientX;
+                pos4 = touch.clientY;
+                document.ontouchend = closeDragElement;
+                document.ontouchmove = elementTouchDrag;
+            }
+
+            function elementDrag(e) {
+                e = e || window.event;
+                e.preventDefault();
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                
+                // transform 대신 top/left 수동 설정
+                windowEl.style.transform = "none";
+                windowEl.style.top = (windowEl.offsetTop - pos2) + "px";
+                windowEl.style.left = (windowEl.offsetLeft - pos1) + "px";
+            }
+
+            function elementTouchDrag(e) {
+                const touch = e.touches[0];
+                pos1 = pos3 - touch.clientX;
+                pos2 = pos4 - touch.clientY;
+                pos3 = touch.clientX;
+                pos4 = touch.clientY;
+                
+                windowEl.style.transform = "none";
+                windowEl.style.top = (windowEl.offsetTop - pos2) + "px";
+                windowEl.style.left = (windowEl.offsetLeft - pos1) + "px";
+            }
+
+            function closeDragElement() {
+                document.onmouseup = null;
+                document.onmousemove = null;
+                document.ontouchend = null;
+                document.ontouchmove = null;
+            }
+
+            // 창 자체 클릭 시에도 앞으로 가져오기
+            windowEl.addEventListener('mousedown', () => focusWindow(windowEl));
+            windowEl.addEventListener('touchstart', () => focusWindow(windowEl));
+        }
+
+        // 드래그 기능 할당
+        window.onload = function() {
+            makeDraggable(document.getElementById('profileWindow'));
+            makeDraggable(document.getElementById('explorerWindow'));
+            makeDraggable(document.getElementById('musicPlayer'));
+        }
+
+        // 5. NEW! Winamp-style Visualizer Loop
+        let isMusicPlaying = false;
+        let visTimer = null;
+        let synthesizerLoop = null;
+
+        function handleMuteToggle() {
+            const btn = document.getElementById('muteBtn');
+            isMusicPlaying = !isMusicPlaying;
+
+            if (isMusicPlaying) {
+                btn.innerText = "MUTE 🔈";
+                btn.style.backgroundColor = "var(--melon-soda)";
+                
+                // 가상 이퀄라이저 점핑 애니메이션 가동
+                visTimer = setInterval(() => {
+                    const bars = document.querySelectorAll('.vis-bar');
+                    bars.forEach(bar => {
+                        const height = Math.floor(Math.random() * 90) + 10;
+                        bar.style.height = height + '%';
+                    });
+                }, 120);
+
+                // 리얼 8비트 백그라운드 멜로디 루프 개시
+                startSynthesizerLoop();
+            } else {
+                btn.innerText = "PLAY 📻";
+                btn.style.backgroundColor = "var(--custard-cream)";
+                clearInterval(visTimer);
+                
+                const bars = document.querySelectorAll('.vis-bar');
+                bars.forEach(bar => bar.style.height = '10%');
+
+                stopSynthesizerLoop();
+            }
+        }
+
+        // 브라우저 8비트 사운드 루프 플레이어
+        function startSynthesizerLoop() {
+            let noteIndex = 0;
+            const melody = [261.63, 293.66, 329.63, 349.23, 392.00, 349.23, 329.63, 293.66]; // Do-Re-Mi-Fa-Sol-Fa-Mi-Re
+            
+            synthesizerLoop = setInterval(() => {
+                if (!isMusicPlaying) return;
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(melody[noteIndex], audioCtx.currentTime);
+                
+                gain.connect(audioCtx.destination);
+                osc.connect(gain);
+                
+                gain.gain.setValueAtTime(0.012, audioCtx.currentTime); // 매우 조용하고 은은하게 재생
+                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.35);
+                
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.4);
+                
+                noteIndex = (noteIndex + 1) % melody.length;
+            }, 400);
+        }
+
+        function stopSynthesizerLoop() {
+            if (synthesizerLoop) {
+                clearInterval(synthesizerLoop);
+                synthesizerLoop = null;
+            }
+        }
+
+        // 6. NEW! Mascot Interact Speech Array
+        const mascotDialogs = [
+            "오늘도 멜론 소다 한 잔 어때요? 🍹",
+            "바탕화면의 파일들을 클릭해 보세요!",
+            "KIMGACKCHI님의 작업물은 최고예요! ✨",
+            "창의 윗부분을 잡고 이리저리 흔들 수 있답니다!",
+            "소리를 켜고 버튼을 눌러보세요! 👾",
+            "시티팝 라디오를 재생해 보셨나요? 📻"
+        ];
+
+        function clickMascot() {
+            playSfx('click');
+            const bubble = document.getElementById('mascotBubble');
+            const randomMsg = mascotDialogs[Math.floor(Math.random() * mascotDialogs.length)];
+            
+            bubble.innerText = randomMsg;
+            bubble.classList.add('active');
+
+            // 3.5초 뒤 말풍선 자동 페이드아웃
+            setTimeout(() => {
+                bubble.classList.remove('active');
+            }, 3500);
+        }
+
+
+        // ==========================================
+        // 7. PORTFOLIO DATASET SECTION
+        // ==========================================
         const portfolioData = {
             '3D_ART.EXE': [
                 {
@@ -1035,7 +1392,7 @@
                     title: '멜론 소다 카세트 디바이스',
                     tag: '3D MODELING',
                     desc: '80년대 워크맨 감성을 상큼한 멜론 그린과 체리 핑크 컬러웨이로 복각한 3D 로우폴리 카세트테이프 그래픽 렌더링입니다. 투명 플레이트 질감과 미세한 픽셀 디테일이 살아있습니다.',
-                    realUrl: '', 
+                    realUrl: '', // 📌 [실제 연결 주소]: 여기에 내 깃허브 이미지(예: './images/my_3d_tape.png')를 넣으면 가상 SVG 대신 진짜 내 그림이 나타나요!
                     svgId: 'svg-3d-01'
                 },
                 {
@@ -1043,7 +1400,7 @@
                     title: '레트로 게임 캐비닛 피규어',
                     tag: '3D CONSTRUCT',
                     desc: '일본 아케이드 오락실의 황금기를 수놓았던 90년대 게임 캐비닛 모듈입니다. 바닐라 크림 컬러의 스킨을 씌운 고품질의 3D 픽셀아트워크입니다.',
-                    realUrl: '',
+                    realUrl: '', // 📌 [실제 연결 주소]: 여기에 내 이미지 파일 주소를 적어보세요!
                     svgId: 'svg-3d-02'
                 },
                 {
@@ -1061,7 +1418,7 @@
                     title: '미드나잇 하이웨이 그리드',
                     tag: 'MOTION GRAPHICS',
                     desc: '끝없이 펼쳐진 네온 라인 그리드 도로 위를 노을을 향해 달려 나가는 무한 루프 모션 그래픽입니다. [PLAY] 버튼을 클릭해 밤거리의 가속 무빙을 실시간 제어할 수 있습니다.',
-                    realUrl: '',
+                    realUrl: '', // 📌 [실제 비디오 연결]: MP4 동영상 파일(예: './my_video.mp4')을 넣으면 자동으로 영상 플레이어로 변환됩니다.
                     playable: true,
                     svgId: 'svg-motion-01'
                 },
@@ -1081,7 +1438,7 @@
                     title: '황혼의 핑크 스포츠카 드라이브',
                     tag: 'ANIMATION / GIF',
                     desc: '지평선 뒤로 가라앉는 커다란 오렌지색 인공 태양을 정면으로 맞서며 질주하는 80s 스포츠카 애니메이션 루프입니다. [PLAY]를 누르면 역동적인 가속 휠 애니메이션이 펼쳐집니다.',
-                    realUrl: '',
+                    realUrl: '', // 📌 [실제 움짤(GIF) 연결]: GIF 파일(예: './car_run.gif')을 여기에 바로 교체해 넣을 수 있어요!
                     playable: true,
                     svgId: 'svg-anime-01'
                 },
@@ -1101,7 +1458,7 @@
                     title: '오후 5시의 시티 라디오 테라스',
                     tag: 'ILLUSTRATION',
                     desc: '보라색으로 물들어가는 하늘과 가로등 불빛이 하나둘 켜지는 바깥 도시 풍경이 한눈에 보이는 조용한 다락방 테라스의 픽셀 아트 일러스트레이션입니다.',
-                    realUrl: '',
+                    realUrl: '', // 📌 [실제 일러스트 연결]: 일러스트레이션 이미지 주소를 여기에 입력해 보세요.
                     svgId: 'svg-illust-01'
                 },
                 {
@@ -1145,6 +1502,7 @@
 
             const windowDisplayTitle = document.getElementById('windowDisplayTitle');
             const headerColor = document.getElementById('viewerHeaderColor');
+            const explorerWin = document.getElementById('explorerWindow');
             
             windowDisplayTitle.innerText = categoryName;
 
@@ -1163,8 +1521,10 @@
             // 첫 번째 디폴트 아이템 상세 표시
             selectExplorerItem(0);
 
-            // 최종 모달 활성화
+            // 최종 모달 및 윈도우 활성화
             document.getElementById('viewerOverlay').classList.add('active');
+            explorerWin.style.display = 'flex';
+            focusWindow(explorerWin);
         }
 
         // 좌측 파일 탐색 목록 생성
