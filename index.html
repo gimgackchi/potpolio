@@ -1,1 +1,998 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KIMGACKCHI - Y2K Digital Portfolio</title>
+    <!-- 구글 폰트: 클래식 도트 폰트 및 모던 레트로 라운드 폰트 -->
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome 아이콘 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* ==========================================
+           1. 고채도 키치(Kitsch) & 하이틴(High Teen) 컬러 정의
+           ========================================== */
+        :root {
+            --bg-color: #ff85be;       /* 러블리 버블검 핫핑크 */
+            --neon-pink: #ff007f;      /* 비비드 키치 핑크 */
+            --neon-cyan: #00f3ff;      /* 일렉트릭 사이버 사이언 블루 */
+            --neon-yellow: #fffb00;    /* 하이틴 스마일 옐로우 */
+            --neon-purple: #b624ff;    /* 펑키한 퍼플 */
+            --neon-lime: #39ff14;      /* 톡 쏘는 탄산 라임 그린 */
+            --dark: #000000;           /* 선명하고 쨍한 리얼 블랙 */
+            --window-bg: #ffffff;      /* 순백의 다이어리 속지 화이트 */
+            --border-width: 4px;
+        }
 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            /* Y2K 핑크 요술봉 느낌의 커스텀 포인터 */
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%23ff007f"><rect x="2" y="2" width="4" height="4" fill="white"/><rect x="6" y="6" width="4" height="4" fill="white"/><rect x="10" y="10" width="4" height="4" fill="white"/><rect x="14" y="14" width="4" height="4" fill="white"/><rect x="3" y="3" width="2" height="2"/><rect x="7" y="7" width="2" height="2"/><rect x="11" y="11" width="2" height="2"/><rect x="15" y="15" width="2" height="2"/></svg>'), auto;
+        }
+
+        @keyframes glitter {
+            0%, 100% { filter: drop-shadow(0 0 2px var(--neon-cyan)); }
+            50% { filter: drop-shadow(0 0 8px var(--neon-pink)) contrast(1.2); }
+        }
+
+        body {
+            background-color: var(--bg-color);
+            /* 키치한 고대비 격자무늬 패턴 */
+            background-image: 
+                linear-gradient(rgba(255, 0, 127, 0.15) 2px, transparent 2px),
+                linear-gradient(90deg, rgba(255, 0, 127, 0.15) 2px, transparent 2px);
+            background-size: 20px 20px;
+            font-family: 'Outfit', 'Apple SD Gothic Neo', sans-serif;
+            color: var(--dark);
+            padding: 24px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* CRT 모니터 오버레이 */
+        .crt-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(255, 0, 127, 0.04) 50%);
+            background-size: 100% 4px;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        .crt-overlay.disabled {
+            opacity: 0;
+        }
+
+        /* 스티커 폭탄 장식들 (하이틴 다꾸 감성) */
+        .highteen-sticker {
+            position: absolute;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.7rem;
+            padding: 8px 12px;
+            border: 3px solid var(--dark);
+            box-shadow: 4px 4px 0px var(--dark);
+            z-index: 5;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        /* ==========================================
+           2. 윈도우 UI 및 헤더 레이아웃 (High-Teen OS)
+           ========================================== */
+        header {
+            width: 100%;
+            max-width: 1000px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            background: var(--neon-yellow);
+            border: var(--border-width) solid var(--dark);
+            padding: 14px 24px;
+            box-shadow: 8px 8px 0px var(--dark);
+            transform: rotate(-1deg);
+            position: relative;
+        }
+
+        header h1 {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 1.2rem;
+            color: var(--dark);
+            text-shadow: 3px 3px 0px var(--neon-pink);
+            letter-spacing: -1px;
+            animation: glitter 2s infinite;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        /* 톡 쏘는 복고 스타일 버튼 */
+        .retro-btn {
+            background: var(--neon-cyan);
+            color: var(--dark);
+            border: 3px solid var(--dark);
+            padding: 10px 18px;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.7rem;
+            font-weight: bold;
+            box-shadow: 4px 4px 0px var(--dark);
+            transition: transform 0.05s, box-shadow 0.05s;
+        }
+
+        .retro-btn:active {
+            transform: translate(4px, 4px);
+            box-shadow: 0px 0px 0px var(--dark);
+        }
+
+        /* 윈도우 본체 */
+        .window {
+            background-color: var(--window-bg);
+            border: var(--border-width) solid var(--dark);
+            box-shadow: 10px 10px 0px var(--dark);
+            width: 100%;
+            max-width: 1000px;
+            margin-bottom: 35px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* 네온 핑크 이중 윈도우 바 */
+        .window-header {
+            background: repeating-linear-gradient(
+                45deg,
+                var(--neon-pink),
+                var(--neon-pink) 10px,
+                #ff4ca3 10px,
+                #ff4ca3 20px
+            );
+            color: var(--dark);
+            border-bottom: var(--border-width) solid var(--dark);
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .window-title {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.8rem;
+            color: white;
+            text-shadow: 3px 3px 0px var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .window-controls {
+            display: flex;
+            gap: 6px;
+        }
+
+        .win-ctrl {
+            width: 22px;
+            height: 22px;
+            background: var(--neon-yellow);
+            border: 2.5px solid var(--dark);
+            box-shadow: 2px 2px 0px var(--dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 11px;
+            font-weight: bold;
+            color: var(--dark);
+        }
+
+        /* ==========================================
+           3. 자기소개 섹션 (KIMGACKCHI)
+           ========================================== */
+        .welcome-section {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 30px;
+            padding: 32px;
+            background: linear-gradient(to bottom right, #fff, #ffe3f0);
+        }
+
+        @media (max-width: 768px) {
+            .welcome-section {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+        }
+
+        /* 요란하고 힙한 아바타 프레임 */
+        .welcome-avatar-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--neon-cyan);
+            border: var(--border-width) solid var(--dark);
+            padding: 30px;
+            box-shadow: inset 5px 5px 0px rgba(255, 255, 255, 0.5);
+            position: relative;
+        }
+
+        .avatar-frame {
+            border: var(--border-width) solid var(--dark);
+            background: white;
+            width: 190px;
+            height: 190px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 8px 8px 0px var(--dark);
+            margin-bottom: 20px;
+            background-image: 
+                linear-gradient(45deg, var(--neon-pink) 25%, transparent 25%), 
+                linear-gradient(-45deg, var(--neon-pink) 25%, transparent 25%), 
+                linear-gradient(45deg, transparent 75%, var(--neon-pink) 75%), 
+                linear-gradient(-45deg, transparent 75%, var(--neon-pink) 75%);
+            background-size: 16px 16px;
+        }
+
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            image-rendering: pixelated;
+        }
+
+        /* 팝 스타 스티커 뱃지 */
+        .sticker-badge {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            background: var(--neon-yellow);
+            color: var(--dark);
+            border: 3px solid var(--dark);
+            padding: 8px 16px;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.7rem;
+            transform: rotate(8deg);
+            box-shadow: 4px 4px 0px var(--dark);
+            font-weight: 900;
+        }
+
+        .welcome-text-col {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .brand-name {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 900;
+            font-size: 4rem;
+            line-height: 0.95;
+            color: var(--dark);
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            margin-bottom: 15px;
+        }
+
+        .brand-name span {
+            color: var(--neon-yellow);
+            text-shadow: 4px 4px 0px var(--neon-pink);
+            -webkit-text-stroke: 2px var(--dark);
+        }
+
+        .brand-sub {
+            font-family: 'VT323', monospace;
+            font-size: 2.2rem;
+            color: var(--neon-pink);
+            margin-bottom: 18px;
+            font-weight: bold;
+            text-shadow: 1px 1px 0px var(--neon-cyan);
+        }
+
+        .brand-desc {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--dark);
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        /* 키치&팝 인스타그램 및 이메일 연결 버튼 */
+        .contact-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 900;
+            font-size: 1rem;
+            border: 3.5px solid var(--dark);
+            padding: 12px 22px;
+            box-shadow: 6px 6px 0px var(--dark);
+            transition: transform 0.05s, box-shadow 0.05s;
+        }
+
+        .contact-link.email { background: var(--neon-yellow); }
+        .contact-link.instagram { background: var(--neon-pink); color: white; }
+
+        .contact-link:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 9px 9px 0px var(--dark);
+        }
+
+        .contact-link:active {
+            transform: translate(6px, 6px);
+            box-shadow: 0px 0px 0px var(--dark);
+        }
+
+        /* ==========================================
+           4. 포트폴리오 아카이브 탭 (고대비 카툰 스타일)
+           ========================================== */
+        .portfolio-tabs {
+            display: flex;
+            border-bottom: var(--border-width) solid var(--dark);
+            background: var(--neon-purple);
+        }
+
+        .tab-btn {
+            flex: 1;
+            background: var(--neon-purple);
+            border: none;
+            border-right: var(--border-width) solid var(--dark);
+            padding: 18px 10px;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.65rem;
+            color: white;
+            text-shadow: 2px 2px 0px var(--dark);
+            text-align: center;
+            cursor: pointer;
+            outline: none;
+            transition: background-color 0.1s, color 0.1s;
+        }
+
+        .tab-btn:last-child {
+            border-right: none;
+        }
+
+        .tab-btn.active {
+            background: var(--window-bg);
+            color: var(--neon-pink);
+            text-shadow: none;
+            border-bottom: none;
+            font-weight: 900;
+        }
+
+        .tab-btn:hover:not(.active) {
+            background: var(--neon-yellow);
+            color: var(--dark);
+        }
+
+        .portfolio-content {
+            padding: 30px;
+            background: #fffdf5;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .portfolio-card {
+            background: white;
+            border: 4px solid var(--dark);
+            box-shadow: 6px 6px 0px var(--dark);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.15s, box-shadow 0.15s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-6px) rotate(1deg);
+            box-shadow: 10px 10px 0px var(--neon-pink);
+        }
+
+        /* 픽셀 도트 질감이 가미된 아이콘 홀더 */
+        .icon-placeholder {
+            width: 88px;
+            height: 88px;
+            background: #fff;
+            border: 3.5px dashed var(--neon-pink);
+            border-radius: 6px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 18px;
+            color: var(--neon-cyan);
+            font-size: 2.2rem;
+            position: relative;
+            background-image: radial-gradient(var(--bg-color) 15%, transparent 15%);
+            background-size: 10px 10px;
+        }
+
+        .icon-placeholder i {
+            filter: drop-shadow(3px 3px 0px var(--dark));
+        }
+
+        .portfolio-card h3 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 900;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .portfolio-card p {
+            font-size: 0.95rem;
+            color: #1a1a1a;
+            line-height: 1.5;
+            margin-bottom: 18px;
+            font-weight: 500;
+        }
+
+        /* 카드 팝업 태그 */
+        .card-tag {
+            background: var(--neon-yellow);
+            color: var(--dark);
+            border: 3px solid var(--dark);
+            padding: 6px 12px;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.6rem;
+            box-shadow: 2px 2px 0px var(--dark);
+        }
+
+        /* ==========================================
+           5. 인터랙티브 컴포넌트 (Chiptune Sound & High-Teen Pixel Art Canvas)
+           ========================================== */
+        .widgets-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 30px;
+            width: 100%;
+            max-width: 1000px;
+            margin-bottom: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .widgets-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 사운드 보드 */
+        .sound-board {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 24px;
+            background: #fff;
+        }
+
+        .sound-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .sound-card-btn {
+            background: white;
+            border: 3.5px solid var(--dark);
+            box-shadow: 5px 5px 0px var(--dark);
+            padding: 18px;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.6rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            color: var(--dark);
+            transition: transform 0.05s, box-shadow 0.05s;
+        }
+
+        .sound-card-btn i {
+            font-size: 1.6rem;
+            color: var(--neon-pink);
+            filter: drop-shadow(2px 2px 0px var(--neon-yellow));
+        }
+
+        .sound-card-btn:hover {
+            background: var(--neon-cyan);
+            transform: translate(-3px, -3px);
+            box-shadow: 8px 8px 0px var(--dark);
+        }
+
+        .sound-card-btn:active {
+            transform: translate(5px, 5px);
+            box-shadow: 0px 0px 0px var(--dark);
+        }
+
+        /* 픽셀 스케치 패드 */
+        .draw-board {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #fffdfc;
+        }
+
+        .draw-container {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        @media (max-width: 500px) {
+            .draw-container {
+                flex-direction: column;
+            }
+        }
+
+        .pixel-grid {
+            display: grid;
+            grid-template-columns: repeat(16, 1fr);
+            grid-template-rows: repeat(16, 1fr);
+            width: 256px;
+            height: 256px;
+            background: white;
+            border: 4px solid var(--dark);
+            box-shadow: 6px 6px 0px var(--dark);
+        }
+
+        .pixel {
+            border: 1px solid #f2f2f2;
+            background-color: white;
+            transition: background-color 0.05s;
+        }
+
+        .palette-toolbox {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .color-swatch {
+            width: 34px;
+            height: 34px;
+            border: 3.5px solid var(--dark);
+            box-shadow: 3px 3px 0px var(--dark);
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .color-swatch.selected {
+            outline: 3px solid var(--neon-pink);
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        /* ==========================================
+           6. 푸터 (Retro Ribbon)
+           ========================================== */
+        footer {
+            margin-top: auto;
+            text-align: center;
+            padding: 30px;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.65rem;
+            color: var(--dark);
+            width: 100%;
+            border-top: var(--border-width) dashed var(--dark);
+            background: var(--neon-yellow);
+            box-shadow: 0px -6px 0px var(--dark);
+        }
+
+        footer p {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CRT 오버레이 레이어 -->
+    <div class="crt-overlay" id="crtOverlay"></div>
+
+    <!-- 하이틴 데코레이션 스티커들 -->
+    <div class="highteen-sticker" style="top: 140px; left: 5%; background: var(--neon-pink); color: white; transform: rotate(-15deg);">💖 HYPE!</div>
+    <div class="highteen-sticker" style="top: 450px; right: 4%; background: var(--neon-cyan); transform: rotate(10deg);">✨ CUTE</div>
+    <div class="highteen-sticker" style="bottom: 40px; left: 2%; background: var(--neon-yellow); transform: rotate(-8deg);">🌈 RETRO_XOXO</div>
+
+    <!-- 헤더 -->
+    <header>
+        <h1>👾 GACKCHI_POP_V2.00</h1>
+        <div class="header-buttons">
+            <button class="retro-btn" onclick="toggleCRT()" style="background: var(--neon-pink); color: white;">CRT ON/OFF</button>
+            <button class="retro-btn" onclick="playRetroSound('coin')">PING!</button>
+        </div>
+    </header>
+
+    <!-- 홈/자기소개 윈도우 -->
+    <main class="window" id="welcomeWindow">
+        <div class="window-header">
+            <div class="window-title">
+                <i class="fa-solid fa-heart"></i> GACKCHI_DIARY.EXE
+            </div>
+            <div class="window-controls">
+                <div class="win-ctrl">_</div>
+                <div class="win-ctrl">[]</div>
+                <div class="win-ctrl" style="background: var(--neon-pink); color: white;">X</div>
+            </div>
+        </div>
+        <div class="welcome-section">
+            <div class="welcome-avatar-col">
+                <div class="sticker-badge" style="background: var(--neon-lime);">BEST!</div>
+                <div class="avatar-frame">
+                    <!-- Y2K 스타일 아바타 로드 -->
+                    <img src="http://googleusercontent.com/image_collection/image_retrieval/12458371462055500420_0" alt="KIMGACKCHI Pixel Art" class="avatar-img">
+                </div>
+                <span style="font-family:'Press Start 2P'; font-size:0.6rem; color:var(--dark); font-weight: bold; background: white; padding: 2px 6px; border: 2px solid #000;">CHIP_01.ROM</span>
+            </div>
+            <div class="welcome-text-col">
+                <h2 class="brand-name">KIM<span>GACKCHI</span></h2>
+                <div class="brand-sub">> Digital Space Explorer & Cartoon Designer</div>
+                <p class="brand-desc">
+                    안녕하세요! <strong>KIMGACKCHI(김각치)</strong>입니다. 2000년대 고유의 키치하고 에너제틱한 하이틴 Y2K 감성에서 영감을 얻어, 톡 쏘는 고채도의 그래픽과 개성 강한 캐릭터 일러스트를 창조합니다. 마음에 드는 항목의 아이콘을 교체하고 슬롯을 직접 커스텀하며 저의 세상을 탐험해 보세요!
+                </p>
+                
+                <!-- 연락처 버튼 그룹 -->
+                <div class="contact-group">
+                    <a href="mailto:lstush0924@naver.com" class="contact-link email" onclick="playRetroSound('coin')">
+                        <i class="fa-solid fa-envelope"></i> lstush0924@naver.com
+                    </a>
+                    <a href="https://instagram.com/kimgackchi_design" target="_blank" class="contact-link instagram" onclick="playRetroSound('jump')">
+                        <i class="fa-brands fa-instagram"></i> @kimgackchi_design
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 포트폴리오 갤러리 윈도우 -->
+    <section class="window" id="portfolioWindow">
+        <div class="window-header" style="background-color: var(--neon-purple);">
+            <div class="window-title">
+                <i class="fa-solid fa-folder-open"></i> PORTFOLIO_ARCHIVE
+            </div>
+            <div class="window-controls">
+                <div class="win-ctrl">_</div>
+                <div class="win-ctrl">[]</div>
+                <div class="win-ctrl" style="background: var(--neon-cyan); color: black;">X</div>
+            </div>
+        </div>
+
+        <!-- 탭 네비게이션 -->
+        <div class="portfolio-tabs">
+            <button class="tab-btn active" onclick="switchTab('all', this)">[ ALL ]</button>
+            <button class="tab-btn" onclick="switchTab('character', this)">[ 👾 TOY ]</button>
+            <button class="tab-btn" onclick="switchTab('brand', this)">[ 🎨 LOGO ]</button>
+            <button class="tab-btn" onclick="switchTab('pixel', this)">[ 🌟 PIXEL ]</button>
+            <button class="tab-btn" onclick="switchTab('zine', this)">[ 📖 ZINE ]</button>
+        </div>
+
+        <!-- 포트폴리오 그리드 -->
+        <div class="portfolio-content">
+            <div class="portfolio-grid" id="portfolioGrid">
+                
+                <!-- 아이템 1 -->
+                <div class="portfolio-card" data-category="character">
+                    <div class="icon-placeholder" style="color: var(--neon-pink);">
+                        <i class="fa-solid fa-ghost"></i>
+                    </div>
+                    <h3>토이&캐릭터 디자인</h3>
+                    <p>커스텀 카툰 캐릭터 및 픽셀 몬스터 모델링 항목입니다.</p>
+                    <span class="card-tag" style="background: var(--neon-lime);">CHARACTER</span>
+                </div>
+
+                <!-- 아이템 2 -->
+                <div class="portfolio-card" data-category="brand">
+                    <div class="icon-placeholder" style="color: var(--neon-purple);">
+                        <i class="fa-solid fa-palette"></i>
+                    </div>
+                    <h3>브랜드 아이덴티티</h3>
+                    <p>Y2K 비비드 팝 무드의 벡터 그래픽 브랜드 로고 항목입니다.</p>
+                    <span class="card-tag" style="background: var(--neon-pink); color: white;">BRAND</span>
+                </div>
+
+                <!-- 아이템 3 -->
+                <div class="portfolio-card" data-category="pixel">
+                    <div class="icon-placeholder" style="color: var(--neon-cyan);">
+                        <i class="fa-solid fa-gamepad"></i>
+                    </div>
+                    <h3>도트/픽셀 일러스트</h3>
+                    <p>8-bit 픽셀 타이포그래피와 레트로 도트 일러스트 항목입니다.</p>
+                    <span class="card-tag" style="background: var(--neon-yellow);">PIXEL ART</span>
+                </div>
+
+                <!-- 아이템 4 -->
+                <div class="portfolio-card" data-category="zine">
+                    <div class="icon-placeholder" style="color: var(--neon-yellow);">
+                        <i class="fa-solid fa-book-open"></i>
+                    </div>
+                    <h3>레트로 진&편집 디자인</h3>
+                    <p>오프라인 인쇄 질감을 살린 90년대 무드 서적 레이아웃 아카이브입니다.</p>
+                    <span class="card-tag" style="background: var(--neon-cyan);">ZINE & PRINT</span>
+                </div>
+
+                <!-- 아이템 5 -->
+                <div class="portfolio-card" data-category="character">
+                    <div class="icon-placeholder" style="color: var(--neon-pink);">
+                        <i class="fa-solid fa-mask"></i>
+                    </div>
+                    <h3>레트로 피규어 렌더링</h3>
+                    <p>장난감 패키지 스타일의 3D 그래픽 렌더링 폴더 항목입니다.</p>
+                    <span class="card-tag" style="background: var(--neon-lime);">CHARACTER</span>
+                </div>
+
+                <!-- 아이템 6 -->
+                <div class="portfolio-card" data-category="pixel">
+                    <div class="icon-placeholder" style="color: var(--neon-cyan);">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <h3>Y2K 모션 픽셀</h3>
+                    <p>반짝이는 네온 스파클과 스프라이트 시트 애니메이션 항목입니다.</p>
+                    <span class="card-tag" style="background: var(--neon-yellow);">PIXEL ART</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 하단 인터랙티브 존 -->
+    <section class="widgets-wrapper">
+        
+        <!-- 사운드 보드 -->
+        <div class="window sound-board">
+            <div class="window-header" style="background: var(--neon-pink);">
+                <div class="window-title" style="color: white;">
+                    <i class="fa-solid fa-music"></i> CHIPTUNE_BOX
+                </div>
+            </div>
+            <div style="padding: 20px;">
+                <p style="font-size:0.9rem; margin-bottom: 8px; font-weight: 900;">🔊 실시간 8비트 사운드 제너레이터</p>
+                <p style="font-size:0.8rem; color:#444; margin-bottom: 16px; font-weight: 500;">Web Audio API를 이용해 인공적인 파형을 즉석에서 주파수로 출력합니다.</p>
+                
+                <div class="sound-grid">
+                    <button class="sound-card-btn" onclick="playRetroSound('coin')">
+                        <i class="fa-solid fa-coins"></i>
+                        <span>COIN SFX</span>
+                    </button>
+                    <button class="sound-card-btn" onclick="playRetroSound('laser')">
+                        <i class="fa-solid fa-bolt"></i>
+                        <span>LASER SFX</span>
+                    </button>
+                    <button class="sound-card-btn" onclick="playRetroSound('jump')">
+                        <i class="fa-solid fa-arrows-up-to-line"></i>
+                        <span>JUMP SFX</span>
+                    </button>
+                    <button class="sound-card-btn" onclick="playRetroSound('synth')">
+                        <i class="fa-solid fa-music"></i>
+                        <span>MELODY BEEP</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 픽셀 스케치 패드 (키치 팔레트 탑재) -->
+        <div class="window draw-board">
+            <div class="window-header" style="background: var(--neon-cyan);">
+                <div class="window-title" style="color: var(--dark); text-shadow: none;">
+                    <i class="fa-solid fa-pen-nib"></i> PIXEL_SKETCHPAD.EXE
+                </div>
+            </div>
+            <div class="draw-container">
+                <div class="pixel-grid" id="pixelGrid">
+                    <!-- JS로 16x16 픽셀 동적 생성 -->
+                </div>
+                <div class="palette-toolbox">
+                    <div class="color-palette" id="colorPalette">
+                        <!-- 동적 팔레트 컬러 스와치 -->
+                    </div>
+                    <button class="retro-btn" onclick="clearGrid()" style="width: 100%; font-size: 0.6rem; background: var(--neon-pink); color: white;">RESET</button>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- 푸터 -->
+    <footer>
+        <p>© 2026 KIMGACKCHI_POP_V2.00 CO.</p>
+        <p>MADE WITH GEMINI VIBE CODING & KITSCH HIGH-TEEN NOSTALGIA</p>
+    </footer>
+
+    <!-- 자바스크립트 핸들링 -->
+    <script>
+        // ==========================================
+        // 1. CRT 오버레이 토글
+        // ==========================================
+        function toggleCRT() {
+            const overlay = document.getElementById('crtOverlay');
+            overlay.classList.toggle('disabled');
+        }
+
+        // ==========================================
+        // 2. Chiptune 오디오 합성 모듈
+        // ==========================================
+        let audioCtx;
+        function getAudioContext() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            return audioCtx;
+        }
+
+        function playRetroSound(type) {
+            try {
+                const ctx = getAudioContext();
+                if (ctx.state === 'suspended') ctx.resume();
+
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+
+                const now = ctx.currentTime;
+
+                if (type === 'coin') {
+                    osc.type = 'square';
+                    osc.frequency.setValueAtTime(587.33, now); // D5
+                    osc.frequency.setValueAtTime(880, now + 0.1); // A5
+                    gain.gain.setValueAtTime(0.06, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.35);
+                    osc.start(now);
+                    osc.stop(now + 0.35);
+                } else if (type === 'laser') {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(900, now);
+                    osc.frequency.exponentialRampToValueAtTime(60, now + 0.25);
+                    gain.gain.setValueAtTime(0.06, now);
+                    gain.gain.linearRampToValueAtTime(0.01, now + 0.25);
+                    osc.start(now);
+                    osc.stop(now + 0.25);
+                } else if (type === 'jump') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(140, now);
+                    osc.frequency.exponentialRampToValueAtTime(650, now + 0.18);
+                    gain.gain.setValueAtTime(0.1, now);
+                    gain.gain.linearRampToValueAtTime(0.01, now + 0.18);
+                    osc.start(now);
+                    osc.stop(now + 0.18);
+                } else if (type === 'synth') {
+                    osc.type = 'sine';
+                    const notes = [293.66, 349.23, 440.00, 587.33]; // D F A D
+                    notes.forEach((freq, idx) => {
+                        osc.frequency.setValueAtTime(freq, now + idx * 0.1);
+                    });
+                    gain.gain.setValueAtTime(0.08, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.45);
+                    osc.start(now);
+                    osc.stop(now + 0.45);
+                }
+            } catch(e) {
+                console.log("Audio API not active/supported", e);
+            }
+        }
+
+        // ==========================================
+        // 3. 포트폴리오 탭 네비게이션
+        // ==========================================
+        function switchTab(category, btnElement) {
+            playRetroSound('coin');
+
+            // 탭 활성화 변경
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
+
+            // 카드 필터링
+            const cards = document.querySelectorAll('.portfolio-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // ==========================================
+        // 4. 16x16 픽셀 드로잉 보드 구현 (키치 고채도 컬러 세팅)
+        // ==========================================
+        const colors = [
+            '#ffffff', // 지우개용 화이트
+            '#000000', // 리얼 블랙
+            '#ff007f', // 네온 핑크
+            '#00f3ff', // 사이언 블루
+            '#fffb00', // 일렉트릭 옐로우
+            '#39ff14', // 라임 그린
+            '#b624ff', // 펑키 퍼플
+            '#ff5e00'  // 아케이드 오렌지
+        ];
+
+        let selectedColor = '#ff007f'; // 기본 네온 핑크 선택
+        let isDrawing = false;
+
+        const gridContainer = document.getElementById('pixelGrid');
+        const paletteContainer = document.getElementById('colorPalette');
+
+        // 드래그 앤 드로우 감지용 마우스 트리거
+        document.body.onmousedown = () => { isDrawing = true; };
+        document.body.onmouseup = () => { isDrawing = false; };
+
+        // grid 생성
+        for (let i = 0; i < 256; i++) {
+            const pixel = document.createElement('div');
+            pixel.className = 'pixel';
+            
+            // 드래그하면서 픽셀 칠하기
+            pixel.addEventListener('mouseover', () => {
+                if (isDrawing) {
+                    pixel.style.backgroundColor = selectedColor;
+                    pixel.style.borderColor = selectedColor === '#ffffff' ? '#f2f2f2' : selectedColor;
+                }
+            });
+            // 단독 클릭하여 칠하기
+            pixel.addEventListener('mousedown', () => {
+                pixel.style.backgroundColor = selectedColor;
+                pixel.style.borderColor = selectedColor === '#ffffff' ? '#f2f2f2' : selectedColor;
+                playRetroSound('jump');
+            });
+            gridContainer.appendChild(pixel);
+        }
+
+        // 키치 컬러 스와치 팔레트 생성
+        colors.forEach((color, idx) => {
+            const swatch = document.createElement('div');
+            swatch.className = 'color-swatch';
+            swatch.style.backgroundColor = color;
+            if (color === selectedColor) swatch.classList.add('selected');
+            
+            swatch.addEventListener('click', () => {
+                selectedColor = color;
+                document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('selected'));
+                swatch.classList.add('selected');
+                playRetroSound('coin');
+            });
+            paletteContainer.appendChild(swatch);
+        });
+
+        // 보드 리셋
+        function clearGrid() {
+            document.querySelectorAll('.pixel').forEach(pixel => {
+                pixel.style.backgroundColor = '#ffffff';
+                pixel.style.borderColor = '#f2f2f2';
+            });
+            playRetroSound('laser');
+        }
+    </script>
+</body>
+</html>
