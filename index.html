@@ -379,10 +379,10 @@
             background-color: var(--bg-vanilla);
             border: var(--border-width) solid var(--retro-dark);
             box-shadow: 12px 12px 0px var(--custard-cream);
-            width: 100%;
-            max-width: 840px; 
-            height: 90%;
-            max-height: 580px;
+            width: 95%; 
+            max-width: 680px; /* 기존 840px에서 화면에 쏙 들어오게 축소 */
+            height: 85vh;
+            max-height: 480px; /* 기존 580px에서 모니터를 넘어가지 않도록 높이 감소 */
             display: flex;
             flex-direction: column;
             overflow: hidden;
@@ -498,7 +498,7 @@
 
         .viewer-img-container {
             width: 100%;
-            height: 250px;
+            height: 200px; /* 기존 250px에서 모달 내부 스크롤 방지를 위해 200px로 최적화 */
             background: var(--bg-vanilla);
             border: 3px solid var(--retro-dark);
             box-shadow: 5px 5px 0px var(--custard-cream);
@@ -970,9 +970,9 @@
         </div>
 
         <!-- ==========================================
-           기본 오픈되어 있는 프로필 텍스트 파일 창
+           기본 오픈되어 있는 프로필 텍스트 파일 창 (수정: 처음 접속시 숨겨져 있도록 display: none 설정)
            ========================================== -->
-        <div class="window profile-window" id="profileWindow" style="top: 15%; left: 35%;">
+        <div class="window profile-window" id="profileWindow" style="display: none;">
             <div class="window-header">
                 <div class="window-title">
                     <i class="fa-solid fa-file-lines"></i> PROFILE.TXT
@@ -1061,7 +1061,8 @@
        6. 가상 파일 탐색기 및 멀티미디어 팝업창 (Modal)
        ========================================== -->
     <div class="viewer-overlay" id="viewerOverlay" onclick="closePreviewExplorer(event)">
-        <div class="viewer-window window" id="explorerWindow" onclick="event.stopPropagation()" style="width:100%; max-width:840px; top: 10%; left: 10%;">
+        <!-- 📌 불필요한 고정 마진 대신, 유연하고 정렬된 스타일 구조로 개편 -->
+        <div class="viewer-window window" id="explorerWindow" onclick="event.stopPropagation()" style="display: none; width: 95%; max-width: 680px;">
             <div class="viewer-header" id="viewerHeaderColor">
                 <div class="window-title">
                     <i class="fa-solid fa-desktop"></i> <span id="windowDisplayTitle">EXPLORER_VIEWER.EXE</span>
@@ -1195,13 +1196,16 @@
             overlay.classList.toggle('disabled');
         }
 
-        // 3. 프로필 정보 텍스트 창 ON/OFF
+        // 3. 프로필 정보 텍스트 창 ON/OFF (수정: START 클릭시 무조건 화면 정중앙에 정렬되도록 리셋하는 로직)
         function toggleProfileWindow(show) {
             const profile = document.getElementById('profileWindow');
             if (show) {
                 profile.style.display = 'flex';
                 profile.style.opacity = '1';
-                profile.style.transform = 'scale(1)';
+                // 화면 정중앙에 배치하기 위해 수치 리셋
+                profile.style.top = '50%';
+                profile.style.left = '50%';
+                profile.style.transform = 'translate(-50%, -50%)';
                 focusWindow(profile);
             } else {
                 profile.style.display = 'none';
@@ -1524,6 +1528,12 @@
             // 최종 모달 및 윈도우 활성화
             document.getElementById('viewerOverlay').classList.add('active');
             explorerWin.style.display = 'flex';
+            
+            // 📌 창을 켤 때 스크린 정중앙(50%, 50%)에 딱 붙도록 위치 수치 강제 초기화
+            explorerWin.style.top = '50%';
+            explorerWin.style.left = '50%';
+            explorerWin.style.transform = 'translate(-50%, -50%)';
+            
             focusWindow(explorerWin);
         }
 
