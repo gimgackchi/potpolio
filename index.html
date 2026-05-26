@@ -3,25 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KIMGACKCHI - Y2K Digital Portfolio</title>
-    <!-- 구글 폰트: 클래식 도트 폰트 및 모던 레트로 라운드 폰트 -->
-    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
-    <!-- FontAwesome 아이콘 -->
+    <title>KIMGACKCHI - Melon Soda & Pixel Desktop</title>
+    <!-- 구글 폰트: 도트 전용 폰트 및 모던 레트로 타이포 -->
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&family=Outfit:wght@400;700;900&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome 아이콘 (일부 탐색기 인터페이스용 보조) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
-        /* ==========================================
-           1. 고채도 키치(Kitsch) & 하이틴(High Teen) 컬러 정의
-           ========================================== */
         :root {
-            --bg-color: #ff85be;       /* 러블리 버블검 핫핑크 */
-            --neon-pink: #ff007f;      /* 비비드 키치 핑크 */
-            --neon-cyan: #00f3ff;      /* 일렉트릭 사이버 사이언 블루 */
-            --neon-yellow: #fffb00;    /* 하이틴 스마일 옐로우 */
-            --neon-purple: #b624ff;    /* 펑키한 퍼플 */
-            --neon-lime: #39ff14;      /* 톡 쏘는 탄산 라임 그린 */
-            --dark: #000000;           /* 선명하고 쨍한 리얼 블랙 */
-            --window-bg: #ffffff;      /* 순백의 다이어리 속지 화이트 */
+            --bg-vanilla: #FFFDF0;       /* 포근하고 부드러운 밀크 바닐라 우유색 */
+            --melon-soda: #7BEDC3;       /* 청량하고 톡 쏘는 탄산 멜론 그린 */
+            --melon-deep: #4ECB9B;       /* 깊이감을 더해줄 진한 멜론 시럽 색 */
+            --custard-cream: #FFEAA7;    /* 달콤하고 고소한 커스터드 옐로우 */
+            --cherry-red: #FF6B8B;       /* 멜론 소다 위 데코 체리의 체리 핑크 */
+            --cream-light: #FFF9E6;      /* 아주 밝은 파스텔 크림 */
+            --retro-dark: #2F3640;       /* 또렷한 외곽선과 가독성을 위한 빈티지 차콜 */
             --border-width: 4px;
         }
 
@@ -29,42 +25,37 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            /* Y2K 핑크 요술봉 느낌의 커스텀 포인터 */
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%23ff007f"><rect x="2" y="2" width="4" height="4" fill="white"/><rect x="6" y="6" width="4" height="4" fill="white"/><rect x="10" y="10" width="4" height="4" fill="white"/><rect x="14" y="14" width="4" height="4" fill="white"/><rect x="3" y="3" width="2" height="2"/><rect x="7" y="7" width="2" height="2"/><rect x="11" y="11" width="2" height="2"/><rect x="15" y="15" width="2" height="2"/></svg>'), auto;
-        }
-
-        @keyframes glitter {
-            0%, 100% { filter: drop-shadow(0 0 2px var(--neon-cyan)); }
-            50% { filter: drop-shadow(0 0 8px var(--neon-pink)) contrast(1.2); }
+            user-select: none;
+            /* Y2K 감성의 커스텀 도트 마우스 커서 */
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%23FF6B8B" shape-rendering="crispEdges"><rect x="2" y="2" width="4" height="4" fill="%237BEDC3"/><rect x="6" y="6" width="4" height="4" fill="%237BEDC3"/><rect x="10" y="10" width="4" height="4" fill="white"/><rect x="14" y="14" width="4" height="4" fill="white"/><rect x="3" y="3" width="2" height="2"/><rect x="7" y="7" width="2" height="2"/><rect x="11" y="11" width="2" height="2"/><rect x="15" y="15" width="2" height="2"/></svg>'), auto;
         }
 
         body {
-            background-color: var(--bg-color);
-            /* 키치한 고대비 격자무늬 패턴 */
+            background-color: var(--bg-vanilla);
+            /* 아기자기한 레트로 도트 격자 무늬 배경 */
             background-image: 
-                linear-gradient(rgba(255, 0, 127, 0.15) 2px, transparent 2px),
-                linear-gradient(90deg, rgba(255, 0, 127, 0.15) 2px, transparent 2px);
-            background-size: 20px 20px;
-            font-family: 'Outfit', 'Apple SD Gothic Neo', sans-serif;
-            color: var(--dark);
-            padding: 24px;
-            min-height: 100vh;
+                linear-gradient(rgba(123, 237, 195, 0.15) 2px, transparent 2px),
+                linear-gradient(90deg, rgba(123, 237, 195, 0.15) 2px, transparent 2px);
+            background-size: 32px 32px;
+            font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+            color: var(--retro-dark);
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            position: relative;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            overflow-x: hidden;
-            position: relative;
         }
 
-        /* CRT 모니터 오버레이 */
+        /* CRT 브라운관 화면 특유의 레트로 질감 레이어 */
         .crt-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(255, 0, 127, 0.04) 50%);
+            background: linear-gradient(rgba(47, 54, 64, 0) 50%, rgba(123, 237, 195, 0.08) 50%);
             background-size: 100% 4px;
             z-index: 9999;
             pointer-events: none;
-            opacity: 0.8;
+            opacity: 0.9;
             transition: opacity 0.3s;
         }
         
@@ -72,105 +63,133 @@
             opacity: 0;
         }
 
-        /* 스티커 폭탄 장식들 (하이틴 다꾸 감성) */
-        .highteen-sticker {
-            position: absolute;
+        /* ==========================================
+           2. Centered Desktop Layout (중앙 정렬 레이아웃)
+           ========================================== */
+        .desktop-area {
+            flex: 1;
+            position: relative;
+            padding: 40px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+            gap: 28px;
+            z-index: 10;
+        }
+
+        @media (max-width: 768px) {
+            .desktop-area {
+                flex-direction: row;
+                justify-content: center;
+                align-content: center;
+                padding: 16px;
+                gap: 16px;
+            }
+        }
+
+        /* 바탕화면 아이콘 콘셉트 */
+        .desktop-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 115px;
+            height: 120px;
+            border-radius: 12px;
+            border: 3px solid transparent;
+            transition: all 0.15s ease;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+        }
+
+        .desktop-icon:hover {
+            background: var(--custard-cream);
+            border-color: var(--melon-deep);
+            transform: translateY(-4px);
+            box-shadow: 4px 8px 0px rgba(78, 203, 155, 0.25);
+        }
+
+        .desktop-icon:active {
+            background: var(--melon-soda);
+            border-color: var(--retro-dark);
+            transform: translateY(1px);
+            box-shadow: 0px 0px 0px transparent;
+        }
+
+        /* 픽셀 아트 SVG 최적화 */
+        .pixel-icon-svg {
+            width: 56px;
+            height: 56px;
+            image-rendering: pixelated;
+            filter: drop-shadow(3px 3px 0px rgba(47, 54, 64, 0.2));
+            margin-bottom: 8px;
+            transition: transform 0.2s;
+        }
+
+        .desktop-icon:hover .pixel-icon-svg {
+            transform: scale(1.1) rotate(4deg);
+        }
+
+        .desktop-icon-label {
             font-family: 'Press Start 2P', monospace;
-            font-size: 0.7rem;
-            padding: 8px 12px;
-            border: 3px solid var(--dark);
-            box-shadow: 4px 4px 0px var(--dark);
-            z-index: 5;
-            user-select: none;
-            pointer-events: none;
+            font-size: 0.55rem;
+            color: var(--retro-dark);
+            background-color: var(--bg-vanilla);
+            padding: 4px 8px;
+            border: 2px solid var(--retro-dark);
+            border-radius: 6px;
+            box-shadow: 2px 2px 0px var(--melon-deep);
+            max-width: 105px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
         /* ==========================================
-           2. 윈도우 UI 및 헤더 레이아웃 (High-Teen OS)
+           3. Windows UI (Melon-Vanilla Custom)
            ========================================== */
-        header {
-            width: 100%;
-            max-width: 1000px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            background: var(--neon-yellow);
-            border: var(--border-width) solid var(--dark);
-            padding: 14px 24px;
-            box-shadow: 8px 8px 0px var(--dark);
-            transform: rotate(-1deg);
-            position: relative;
-        }
-
-        header h1 {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 1.2rem;
-            color: var(--dark);
-            text-shadow: 3px 3px 0px var(--neon-pink);
-            letter-spacing: -1px;
-            animation: glitter 2s infinite;
-        }
-
-        .header-buttons {
-            display: flex;
-            gap: 12px;
-        }
-
-        /* 톡 쏘는 복고 스타일 버튼 */
-        .retro-btn {
-            background: var(--neon-cyan);
-            color: var(--dark);
-            border: 3px solid var(--dark);
-            padding: 10px 18px;
-            font-family: 'Press Start 2P', monospace;
-            font-size: 0.7rem;
-            font-weight: bold;
-            box-shadow: 4px 4px 0px var(--dark);
-            transition: transform 0.05s, box-shadow 0.05s;
-        }
-
-        .retro-btn:active {
-            transform: translate(4px, 4px);
-            box-shadow: 0px 0px 0px var(--dark);
-        }
-
-        /* 윈도우 본체 */
         .window {
-            background-color: var(--window-bg);
-            border: var(--border-width) solid var(--dark);
-            box-shadow: 10px 10px 0px var(--dark);
-            width: 100%;
-            max-width: 1000px;
-            margin-bottom: 35px;
-            overflow: hidden;
+            background-color: var(--bg-vanilla);
+            border: var(--border-width) solid var(--retro-dark);
+            box-shadow: 8px 8px 0px var(--melon-deep);
+            position: absolute;
+            z-index: 50;
             display: flex;
             flex-direction: column;
-            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            transition: opacity 0.2s, transform 0.2s;
         }
 
-        /* 네온 핑크 이중 윈도우 바 */
+        /* 상단 타이틀바 (체리 핑크 믹스) */
         .window-header {
             background: repeating-linear-gradient(
                 45deg,
-                var(--neon-pink),
-                var(--neon-pink) 10px,
-                #ff4ca3 10px,
-                #ff4ca3 20px
+                var(--melon-soda),
+                var(--melon-soda) 10px,
+                var(--melon-deep) 10px,
+                var(--melon-deep) 20px
             );
-            color: var(--dark);
-            border-bottom: var(--border-width) solid var(--dark);
-            padding: 12px 16px;
+            color: var(--retro-dark);
+            border-bottom: var(--border-width) solid var(--retro-dark);
+            padding: 10px 14px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            cursor: move;
         }
 
         .window-title {
             font-family: 'Press Start 2P', monospace;
-            font-size: 0.8rem;
-            color: white;
-            text-shadow: 3px 3px 0px var(--dark);
+            font-size: 0.65rem;
+            color: var(--retro-dark);
+            text-shadow: 1px 1px 0px var(--bg-vanilla);
             display: flex;
             align-items: center;
             gap: 8px;
@@ -184,65 +203,80 @@
         .win-ctrl {
             width: 22px;
             height: 22px;
-            background: var(--neon-yellow);
-            border: 2.5px solid var(--dark);
-            box-shadow: 2px 2px 0px var(--dark);
+            background: var(--custard-cream);
+            border: 2px solid var(--retro-dark);
+            box-shadow: 2px 2px 0px var(--cherry-red);
             display: flex;
             justify-content: center;
             align-items: center;
             font-size: 11px;
             font-weight: bold;
-            color: var(--dark);
+            color: var(--retro-dark);
+            cursor: pointer;
+            border-radius: 4px;
         }
 
-        /* ==========================================
-           3. 자기소개 섹션 (KIMGACKCHI)
-           ========================================== */
-        .welcome-section {
-            display: grid;
-            grid-template-columns: 1fr 1.3fr;
-            gap: 30px;
-            padding: 32px;
-            background: linear-gradient(to bottom right, #fff, #ffe3f0);
+        .win-ctrl:active {
+            transform: translate(1px, 1px);
+            box-shadow: 0px 0px 0px transparent;
+        }
+
+        /* 프로필 기본 창 정의 */
+        .profile-window {
+            width: 100%;
+            max-width: 480px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%); /* 화면 중심 */
+            border-color: var(--retro-dark);
+            box-shadow: 10px 10px 0px var(--custard-cream);
         }
 
         @media (max-width: 768px) {
-            .welcome-section {
-                grid-template-columns: 1fr;
-                padding: 20px;
+            .profile-window {
+                position: relative;
+                left: auto;
+                top: auto;
+                transform: none;
+                max-width: 100%;
+                margin-top: 20px;
+                box-shadow: 6px 6px 0px var(--custard-cream);
             }
         }
 
-        /* 요란하고 힙한 아바타 프레임 */
-        .welcome-avatar-col {
+        .profile-content {
+            padding: 24px;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: var(--neon-cyan);
-            border: var(--border-width) solid var(--dark);
-            padding: 30px;
-            box-shadow: inset 5px 5px 0px rgba(255, 255, 255, 0.5);
-            position: relative;
+            gap: 16px;
+            background: rgba(255, 255, 255, 0.75);
         }
 
-        .avatar-frame {
-            border: var(--border-width) solid var(--dark);
-            background: white;
-            width: 190px;
-            height: 190px;
+        .profile-top {
+            display: flex;
+            gap: 18px;
+            align-items: center;
+        }
+
+        @media (max-width: 480px) {
+            .profile-top {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        .avatar-box {
+            border: var(--border-width) solid var(--retro-dark);
+            background: var(--custard-cream);
+            width: 95px;
+            height: 95px;
+            box-shadow: 5px 5px 0px var(--melon-soda);
+            border-radius: 8px;
             overflow: hidden;
             display: flex;
-            justify-content: center;
             align-items: center;
-            box-shadow: 8px 8px 0px var(--dark);
-            margin-bottom: 20px;
-            background-image: 
-                linear-gradient(45deg, var(--neon-pink) 25%, transparent 25%), 
-                linear-gradient(-45deg, var(--neon-pink) 25%, transparent 25%), 
-                linear-gradient(45deg, transparent 75%, var(--neon-pink) 75%), 
-                linear-gradient(-45deg, transparent 75%, var(--neon-pink) 75%);
-            background-size: 16px 16px;
+            justify-content: center;
+            flex-shrink: 0;
         }
 
         .avatar-img {
@@ -252,746 +286,1252 @@
             image-rendering: pixelated;
         }
 
-        /* 팝 스타 스티커 뱃지 */
-        .sticker-badge {
-            position: absolute;
-            top: -15px;
-            right: -15px;
-            background: var(--neon-yellow);
-            color: var(--dark);
-            border: 3px solid var(--dark);
-            padding: 8px 16px;
-            font-family: 'Press Start 2P', monospace;
-            font-size: 0.7rem;
-            transform: rotate(8deg);
-            box-shadow: 4px 4px 0px var(--dark);
-            font-weight: 900;
-        }
-
-        .welcome-text-col {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
         .brand-name {
-            font-family: 'Outfit', sans-serif;
             font-weight: 900;
-            font-size: 4rem;
-            line-height: 0.95;
-            color: var(--dark);
-            text-transform: uppercase;
-            letter-spacing: -2px;
-            margin-bottom: 15px;
+            font-size: 2.1rem;
+            color: var(--retro-dark);
+            letter-spacing: -1px;
+            line-height: 1.1;
         }
 
         .brand-name span {
-            color: var(--neon-yellow);
-            text-shadow: 4px 4px 0px var(--neon-pink);
-            -webkit-text-stroke: 2px var(--dark);
+            color: var(--cherry-red);
+            text-shadow: 2px 2px 0px var(--custard-cream);
         }
 
         .brand-sub {
             font-family: 'VT323', monospace;
-            font-size: 2.2rem;
-            color: var(--neon-pink);
-            margin-bottom: 18px;
-            font-weight: bold;
-            text-shadow: 1px 1px 0px var(--neon-cyan);
+            font-size: 1.5rem;
+            color: var(--melon-deep);
+            margin-top: 4px;
+            letter-spacing: 1px;
         }
 
         .brand-desc {
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             line-height: 1.6;
-            color: var(--dark);
-            margin-bottom: 25px;
-            font-weight: 600;
+            color: var(--retro-dark);
+            font-weight: 500;
         }
 
-        /* 키치&팝 인스타그램 및 이메일 연결 버튼 */
         .contact-group {
             display: flex;
+            gap: 10px;
             flex-wrap: wrap;
-            gap: 15px;
         }
 
         .contact-link {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             text-decoration: none;
-            color: var(--dark);
-            font-weight: 900;
-            font-size: 1rem;
-            border: 3.5px solid var(--dark);
-            padding: 12px 22px;
-            box-shadow: 6px 6px 0px var(--dark);
+            color: var(--retro-dark);
+            font-weight: 700;
+            font-size: 0.75rem;
+            border: 3px solid var(--retro-dark);
+            padding: 8px 14px;
+            border-radius: 8px;
+            box-shadow: 3px 3px 0px var(--cherry-red);
             transition: transform 0.05s, box-shadow 0.05s;
         }
 
-        .contact-link.email { background: var(--neon-yellow); }
-        .contact-link.instagram { background: var(--neon-pink); color: white; }
+        .contact-link.email { background: var(--cream-light); }
+        .contact-link.instagram { background: var(--custard-cream); box-shadow: 3px 3px 0px var(--melon-soda); }
 
         .contact-link:hover {
-            transform: translate(-3px, -3px);
-            box-shadow: 9px 9px 0px var(--dark);
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0px var(--retro-dark);
+            color: var(--melon-deep);
         }
 
         .contact-link:active {
-            transform: translate(6px, 6px);
-            box-shadow: 0px 0px 0px var(--dark);
+            transform: translate(3px, 3px);
+            box-shadow: 0px 0px 0px transparent;
         }
 
         /* ==========================================
-           4. 포트폴리오 아카이브 탭 (고대비 카툰 스타일)
+           4. 파일 탐색기 & 멀티미디어 플레이어 모달
            ========================================== */
-        .portfolio-tabs {
-            display: flex;
-            border-bottom: var(--border-width) solid var(--dark);
-            background: var(--neon-purple);
-        }
-
-        .tab-btn {
-            flex: 1;
-            background: var(--neon-purple);
-            border: none;
-            border-right: var(--border-width) solid var(--dark);
-            padding: 18px 10px;
-            font-family: 'Press Start 2P', monospace;
-            font-size: 0.65rem;
-            color: white;
-            text-shadow: 2px 2px 0px var(--dark);
-            text-align: center;
-            cursor: pointer;
-            outline: none;
-            transition: background-color 0.1s, color 0.1s;
-        }
-
-        .tab-btn:last-child {
-            border-right: none;
-        }
-
-        .tab-btn.active {
-            background: var(--window-bg);
-            color: var(--neon-pink);
-            text-shadow: none;
-            border-bottom: none;
-            font-weight: 900;
-        }
-
-        .tab-btn:hover:not(.active) {
-            background: var(--neon-yellow);
-            color: var(--dark);
-        }
-
-        .portfolio-content {
-            padding: 30px;
-            background: #fffdf5;
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .portfolio-card {
-            background: white;
-            border: 4px solid var(--dark);
-            box-shadow: 6px 6px 0px var(--dark);
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            transition: transform 0.15s, box-shadow 0.15s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .portfolio-card:hover {
-            transform: translateY(-6px) rotate(1deg);
-            box-shadow: 10px 10px 0px var(--neon-pink);
-        }
-
-        /* 픽셀 도트 질감이 가미된 아이콘 홀더 */
-        .icon-placeholder {
-            width: 88px;
-            height: 88px;
-            background: #fff;
-            border: 3.5px dashed var(--neon-pink);
-            border-radius: 6px;
+        .viewer-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(47, 54, 64, 0.4);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 18px;
-            color: var(--neon-cyan);
-            font-size: 2.2rem;
-            position: relative;
-            background-image: radial-gradient(var(--bg-color) 15%, transparent 15%);
-            background-size: 10px 10px;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
         }
 
-        .icon-placeholder i {
-            filter: drop-shadow(3px 3px 0px var(--dark));
+        .viewer-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
         }
 
-        .portfolio-card h3 {
-            font-family: 'Outfit', sans-serif;
-            font-weight: 900;
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            color: var(--dark);
-        }
-
-        .portfolio-card p {
-            font-size: 0.95rem;
-            color: #1a1a1a;
-            line-height: 1.5;
-            margin-bottom: 18px;
-            font-weight: 500;
-        }
-
-        /* 카드 팝업 태그 */
-        .card-tag {
-            background: var(--neon-yellow);
-            color: var(--dark);
-            border: 3px solid var(--dark);
-            padding: 6px 12px;
-            font-family: 'Press Start 2P', monospace;
-            font-size: 0.6rem;
-            box-shadow: 2px 2px 0px var(--dark);
-        }
-
-        /* ==========================================
-           5. 인터랙티브 컴포넌트 (Chiptune Sound & High-Teen Pixel Art Canvas)
-           ========================================== */
-        .widgets-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 30px;
+        .viewer-window {
+            background-color: var(--bg-vanilla);
+            border: var(--border-width) solid var(--retro-dark);
+            box-shadow: 12px 12px 0px var(--custard-cream);
             width: 100%;
-            max-width: 1000px;
-            margin-bottom: 50px;
+            max-width: 840px; 
+            height: 90%;
+            max-height: 580px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border-radius: 16px;
+            transform: scale(0.95);
+            transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .viewer-overlay.active .viewer-window {
+            transform: scale(1);
+        }
+
+        .viewer-header {
+            background: var(--custard-cream);
+            color: var(--retro-dark);
+            border-bottom: var(--border-width) solid var(--retro-dark);
+            padding: 10px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* 탐색기 내부 레이아웃 */
+        .viewer-body {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+            background: var(--cream-light);
         }
 
         @media (max-width: 768px) {
-            .widgets-wrapper {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* 사운드 보드 */
-        .sound-board {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 24px;
-            background: #fff;
-        }
-
-        .sound-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .sound-card-btn {
-            background: white;
-            border: 3.5px solid var(--dark);
-            box-shadow: 5px 5px 0px var(--dark);
-            padding: 18px;
-            font-family: 'Press Start 2P', monospace;
-            font-size: 0.6rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            color: var(--dark);
-            transition: transform 0.05s, box-shadow 0.05s;
-        }
-
-        .sound-card-btn i {
-            font-size: 1.6rem;
-            color: var(--neon-pink);
-            filter: drop-shadow(2px 2px 0px var(--neon-yellow));
-        }
-
-        .sound-card-btn:hover {
-            background: var(--neon-cyan);
-            transform: translate(-3px, -3px);
-            box-shadow: 8px 8px 0px var(--dark);
-        }
-
-        .sound-card-btn:active {
-            transform: translate(5px, 5px);
-            box-shadow: 0px 0px 0px var(--dark);
-        }
-
-        /* 픽셀 스케치 패드 */
-        .draw-board {
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background: #fffdfc;
-        }
-
-        .draw-container {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-            margin-top: 15px;
-            width: 100%;
-        }
-
-        @media (max-width: 500px) {
-            .draw-container {
+            .viewer-body {
                 flex-direction: column;
             }
         }
 
-        .pixel-grid {
-            display: grid;
-            grid-template-columns: repeat(16, 1fr);
-            grid-template-rows: repeat(16, 1fr);
-            width: 256px;
-            height: 256px;
-            background: white;
-            border: 4px solid var(--dark);
-            box-shadow: 6px 6px 0px var(--dark);
-        }
-
-        .pixel {
-            border: 1px solid #f2f2f2;
-            background-color: white;
-            transition: background-color 0.05s;
-        }
-
-        .palette-toolbox {
+        /* 탐색기 사이드바 */
+        .explorer-sidebar {
+            width: 240px;
+            background-color: var(--bg-vanilla);
+            border-right: var(--border-width) solid var(--retro-dark);
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            overflow-y: auto;
+        }
+
+        @media (max-width: 768px) {
+            .explorer-sidebar {
+                width: 100%;
+                height: 120px;
+                border-right: none;
+                border-bottom: var(--border-width) solid var(--retro-dark);
+            }
+        }
+
+        .explorer-header {
+            padding: 10px 12px;
+            background: rgba(123, 237, 195, 0.2);
+            border-bottom: 2px solid var(--retro-dark);
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.5rem;
+            color: var(--retro-dark);
+            display: flex;
             align-items: center;
+            gap: 6px;
         }
 
-        .color-palette {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
+        .explorer-list {
+            list-style: none;
+            padding: 4px;
         }
 
-        .color-swatch {
-            width: 34px;
-            height: 34px;
-            border: 3.5px solid var(--dark);
-            box-shadow: 3px 3px 0px var(--dark);
-            border-radius: 3px;
+        .explorer-item {
+            padding: 8px 12px;
+            margin: 4px;
+            border-radius: 6px;
+            border: 2px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
             cursor: pointer;
+            font-weight: bold;
+            font-size: 0.85rem;
+            color: var(--retro-dark);
+            transition: all 0.1s ease;
         }
 
-        .color-swatch.selected {
-            outline: 3px solid var(--neon-pink);
-            transform: scale(1.15) rotate(5deg);
+        .explorer-item:hover {
+            background: rgba(123, 237, 195, 0.2);
+            border-color: var(--melon-deep);
+        }
+
+        .explorer-item.active {
+            background: var(--melon-soda);
+            border-color: var(--retro-dark);
+            font-weight: 900;
+        }
+
+        .explorer-item-icon {
+            font-size: 1.1rem;
+        }
+
+        /* 상세 패널 */
+        .preview-panel {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            align-items: center;
+            background: rgba(255,255,255,0.4);
+        }
+
+        .viewer-img-container {
+            width: 100%;
+            height: 250px;
+            background: var(--bg-vanilla);
+            border: 3px solid var(--retro-dark);
+            box-shadow: 5px 5px 0px var(--custard-cream);
+            margin-bottom: 16px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .viewer-svg {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .viewer-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* 플레이어 제어 바 */
+        .media-controls-bar {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-vanilla);
+            border: 3px solid var(--retro-dark);
+            box-shadow: 3px 3px 0 var(--custard-cream);
+            padding: 6px 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-radius: 8px;
+            z-index: 10;
+        }
+
+        .media-btn {
+            background: var(--cherry-red);
+            border: 2px solid var(--retro-dark);
+            padding: 4px 10px;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.5rem;
+            cursor: pointer;
+            border-radius: 4px;
+            box-shadow: 1.5px 1.5px 0 var(--retro-dark);
+            color: white;
+        }
+
+        .media-btn:active {
+            transform: translate(1px, 1px);
+            box-shadow: 0px 0px 0px transparent;
+        }
+
+        .media-status {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.5rem;
+            color: var(--melon-deep);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .viewer-title {
+            font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+            font-weight: 900;
+            font-size: 1.35rem;
+            margin-bottom: 6px;
+            color: var(--retro-dark);
+            text-align: center;
+        }
+
+        .viewer-tag {
+            background: var(--custard-cream);
+            color: var(--retro-dark);
+            border: 2px solid var(--retro-dark);
+            padding: 4px 10px;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.5rem;
+            margin-bottom: 8px;
+            border-radius: 4px;
+        }
+
+        .viewer-desc {
+            font-size: 0.85rem;
+            color: var(--retro-dark);
+            line-height: 1.6;
+            text-align: center;
+            font-weight: 500;
+            margin-bottom: 16px;
+            max-height: 100px;
+            overflow-y: auto;
+        }
+
+        .retro-btn {
+            background: var(--custard-cream);
+            color: var(--retro-dark);
+            border: 3px solid var(--retro-dark);
+            padding: 8px 20px;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.55rem;
+            font-weight: bold;
+            border-radius: 8px;
+            box-shadow: 3px 3px 0px var(--retro-dark);
+            transition: transform 0.05s, box-shadow 0.05s;
+        }
+
+        .retro-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px transparent;
         }
 
         /* ==========================================
-           6. 푸터 (Retro Ribbon)
+           5. Bottom OS Taskbar
            ========================================== */
-        footer {
-            margin-top: auto;
-            text-align: center;
-            padding: 30px;
-            font-family: 'Press Start 2P', monospace;
-            font-size: 0.65rem;
-            color: var(--dark);
-            width: 100%;
-            border-top: var(--border-width) dashed var(--dark);
-            background: var(--neon-yellow);
-            box-shadow: 0px -6px 0px var(--dark);
+        .taskbar {
+            height: 48px;
+            background: var(--custard-cream);
+            border-top: var(--border-width) solid var(--retro-dark);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            z-index: 999;
+            box-shadow: 0px -4px 0px rgba(0,0,0,0.05);
         }
 
-        footer p {
-            margin-bottom: 8px;
+        .taskbar-left {
+            display: flex;
+            gap: 10px;
+            align-items: center;
         }
+
+        .start-btn {
+            background: var(--melon-soda);
+            color: var(--retro-dark);
+            border: 3px solid var(--retro-dark);
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.6rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 2.5px 2.5px 0px var(--retro-dark);
+        }
+
+        .start-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px transparent;
+        }
+
+        .taskbar-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .crt-toggle-btn {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.5rem;
+            background: var(--bg-vanilla);
+            border: 2px solid var(--retro-dark);
+            color: var(--retro-dark);
+            padding: 4px 8px;
+            box-shadow: 2px 2px 0px var(--cherry-red);
+        }
+
+        .system-tray {
+            background: var(--bg-vanilla);
+            border: 3px solid var(--retro-dark);
+            padding: 4px 10px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.55rem;
+            font-weight: bold;
+            color: var(--retro-dark);
+        }
+
+        /* 데코레이션 하이틴/시티팝 스티커 */
+        .highteen-sticker {
+            position: absolute;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.55rem;
+            padding: 6px 12px;
+            border: 3px solid var(--retro-dark);
+            box-shadow: 4px 4px 0px var(--retro-dark);
+            border-radius: 6px;
+            z-index: 5;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        /* 애니메이션 키프레임들 */
+        @keyframes orbitRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes bounceRabbit {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(0.95); }
+        }
+        @keyframes pulseStar {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.25); opacity: 1; }
+        }
+        @keyframes rotate3DHeart {
+            0% { transform: rotateY(0deg) rotateX(10deg); }
+            100% { transform: rotateY(360deg) rotateX(10deg); }
+        }
+        @keyframes synthDrive {
+            0% { stroke-dashoffset: 0; }
+            100% { stroke-dashoffset: -40; }
+        }
+        @keyframes neonFlicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+            20%, 24%, 55% { opacity: 0.5; }
+        }
+
+        .playing-orbit { animation: orbitRotate 6s linear infinite; }
+        .playing-bounce { animation: bounceRabbit 1s ease-in-out infinite; }
+        .playing-star { animation: pulseStar 1.2s ease-in-out infinite; }
+        .playing-3dheart { 
+            animation: rotate3DHeart 4s linear infinite; 
+            transform-style: preserve-3d;
+            perspective: 800px;
+        }
+        .playing-drive { animation: synthDrive 1s linear infinite; }
+        .playing-flicker { animation: neonFlicker 3s linear infinite; }
     </style>
 </head>
 <body>
 
-    <!-- CRT 오버레이 레이어 -->
+    <!-- CRT 모니터 비주얼 오버레이 -->
     <div class="crt-overlay" id="crtOverlay"></div>
 
-    <!-- 하이틴 데코레이션 스티커들 -->
-    <div class="highteen-sticker" style="top: 140px; left: 5%; background: var(--neon-pink); color: white; transform: rotate(-15deg);">💖 HYPE!</div>
-    <div class="highteen-sticker" style="top: 450px; right: 4%; background: var(--neon-cyan); transform: rotate(10deg);">✨ CUTE</div>
-    <div class="highteen-sticker" style="bottom: 40px; left: 2%; background: var(--neon-yellow); transform: rotate(-8deg);">🌈 RETRO_XOXO</div>
+    <!-- 시티팝 감성의 데코레이션 스티커 -->
+    <div class="highteen-sticker" style="top: 30px; right: 10%; background: var(--cherry-red); color: white; transform: rotate(6deg); border-color: var(--retro-dark);">🎵 MELON_FM</div>
+    <div class="highteen-sticker" style="bottom: 80px; left: 10%; background: var(--custard-cream); color: var(--retro-dark); transform: rotate(-7deg); border-color: var(--retro-dark);">📟 SODA_OS</div>
 
-    <!-- 헤더 -->
-    <header>
-        <h1>👾 GACKCHI_POP_V2.00</h1>
-        <div class="header-buttons">
-            <button class="retro-btn" onclick="toggleCRT()" style="background: var(--neon-pink); color: white;">CRT ON/OFF</button>
-            <button class="retro-btn" onclick="playRetroSound('coin')">PING!</button>
+    <!-- 메인 OS 데스크톱 에어리어 (중앙 배치) -->
+    <main class="desktop-area">
+        
+        <!-- 1. 3D_ART.EXE 아이콘 -->
+        <div class="desktop-icon" onclick="playSfx('open'); openPreviewExplorer('3D_ART.EXE')">
+            <!-- 8-bit 픽셀 큐브 아이콘 -->
+            <svg class="pixel-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+                <!-- Outer outline -->
+                <path d="M8 2h8v2H8V2zm-2 2h2v2H6V4zm12 0h2v2h-2V4zm-4 4h4v2h-4V8zm-6 2h2v10H8V10zm10 0h2v10h-2V10zm-6 10h4v2h-4v-2z" fill="var(--retro-dark)"/>
+                <!-- Front face and top face blocks (Pixel styled) -->
+                <rect x="8" y="4" width="8" height="6" fill="var(--melon-soda)" />
+                <rect x="6" y="10" width="12" height="10" fill="var(--custard-cream)" />
+                <rect x="10" y="12" width="4" height="4" fill="var(--cherry-red)" />
+                <rect x="4" y="10" width="2" height="10" fill="var(--retro-dark)" />
+                <rect x="18" y="10" width="2" height="10" fill="var(--retro-dark)" />
+                <rect x="6" y="20" width="12" height="2" fill="var(--retro-dark)" />
+            </svg>
+            <div class="desktop-icon-label">3D_ART.EXE</div>
         </div>
-    </header>
 
-    <!-- 홈/자기소개 윈도우 -->
-    <main class="window" id="welcomeWindow">
-        <div class="window-header">
-            <div class="window-title">
-                <i class="fa-solid fa-heart"></i> GACKCHI_DIARY.EXE
-            </div>
-            <div class="window-controls">
-                <div class="win-ctrl">_</div>
-                <div class="win-ctrl">[]</div>
-                <div class="win-ctrl" style="background: var(--neon-pink); color: white;">X</div>
-            </div>
+        <!-- 2. MOTION.EXE 아이콘 -->
+        <div class="desktop-icon" onclick="playSfx('open'); openPreviewExplorer('MOTION.EXE')">
+            <!-- 8-bit 픽셀 다이내믹 화살표/시디 아이콘 -->
+            <svg class="pixel-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+                <rect x="6" y="2" width="12" height="20" fill="var(--custard-cream)" stroke="var(--retro-dark)" stroke-width="2"/>
+                <rect x="8" y="4" width="8" height="16" fill="var(--melon-soda)"/>
+                <!-- Center spindle (CD hole) -->
+                <rect x="11" y="11" width="2" height="2" fill="var(--cherry-red)" stroke="var(--retro-dark)" stroke-width="1"/>
+                <path d="M4 8h2v8H4V8zm14 0h2v8h-2V8z" fill="var(--retro-dark)"/>
+            </svg>
+            <div class="desktop-icon-label">MOTION.EXE</div>
         </div>
-        <div class="welcome-section">
-            <div class="welcome-avatar-col">
-                <div class="sticker-badge" style="background: var(--neon-lime);">BEST!</div>
-                <div class="avatar-frame">
-                    <!-- Y2K 스타일 아바타 로드 -->
-                    <img src="http://googleusercontent.com/image_collection/image_retrieval/12458371462055500420_0" alt="KIMGACKCHI Pixel Art" class="avatar-img">
+
+        <!-- 3. ANIMATION.EXE 아이콘 -->
+        <div class="desktop-icon" onclick="playSfx('open'); openPreviewExplorer('ANIMATION.EXE')">
+            <!-- 8-bit 영화 필름 픽셀 아이콘 -->
+            <svg class="pixel-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+                <rect x="2" y="4" width="20" height="16" fill="var(--melon-soda)" stroke="var(--retro-dark)" stroke-width="2"/>
+                <!-- Film strip holes -->
+                <rect x="4" y="6" width="2" height="2" fill="var(--retro-dark)"/>
+                <rect x="10" y="6" width="2" height="2" fill="var(--retro-dark)"/>
+                <rect x="16" y="6" width="2" height="2" fill="var(--retro-dark)"/>
+                <rect x="4" y="16" width="2" height="2" fill="var(--retro-dark)"/>
+                <rect x="10" y="16" width="2" height="2" fill="var(--retro-dark)"/>
+                <rect x="16" y="16" width="2" height="2" fill="var(--retro-dark)"/>
+                <!-- Running retro star -->
+                <rect x="11" y="10" width="3" height="3" fill="var(--cherry-red)"/>
+            </svg>
+            <div class="desktop-icon-label">ANIME.EXE</div>
+        </div>
+
+        <!-- 4. ILLUST.EXE 아이콘 -->
+        <div class="desktop-icon" onclick="playSfx('open'); openPreviewExplorer('ILLUST.EXE')">
+            <!-- 8-bit 팔레트 픽셀 아이콘 -->
+            <svg class="pixel-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+                <path d="M6 4h12v2H6V4zm-2 2h2v12H4V6zm14 0h2v8h-2V6zm-2 12H6v2h10v-2zm-6-6h2v2h-2v-2zm4-4h2v2h-2V8z" fill="var(--retro-dark)"/>
+                <rect x="6" y="6" width="12" height="12" fill="var(--custard-cream)"/>
+                <!-- Color dots -->
+                <rect x="8" y="8" width="2" height="2" fill="var(--cherry-red)"/>
+                <rect x="12" y="8" width="2" height="2" fill="var(--melon-soda)"/>
+                <rect x="8" y="12" width="2" height="2" fill="#92A8D1"/>
+            </svg>
+            <div class="desktop-icon-label">ILLUST.EXE</div>
+        </div>
+
+        <!-- 5. 개인 소설 아이콘 -->
+        <div class="desktop-icon" onclick="playSfx('open'); openPreviewExplorer('NOVEL.TXT')">
+            <!-- 8-bit 픽셀 플로피디스크 아이콘 -->
+            <svg class="pixel-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+                <rect x="3" y="3" width="18" height="18" fill="var(--cherry-red)" stroke="var(--retro-dark)" stroke-width="2"/>
+                <!-- Disk slider -->
+                <rect x="7" y="3" width="10" height="6" fill="var(--bg-vanilla)" stroke="var(--retro-dark)" stroke-width="2"/>
+                <rect x="13" y="4" width="2" height="4" fill="var(--retro-dark)"/>
+                <!-- Disk label -->
+                <rect x="6" y="12" width="12" height="9" fill="var(--custard-cream)" stroke="var(--retro-dark)" stroke-width="2"/>
+                <line x1="8" y1="15" x2="16" y2="15" stroke="var(--retro-dark)" stroke-width="2"/>
+                <line x1="8" y1="18" x2="14" y2="18" stroke="var(--retro-dark)" stroke-width="2"/>
+            </svg>
+            <div class="desktop-icon-label">NOVEL.TXT</div>
+        </div>
+
+        <!-- ==========================================
+           기본 오픈되어 있는 프로필 텍스트 파일 창
+           ========================================== -->
+        <div class="window profile-window" id="profileWindow">
+            <div class="window-header">
+                <div class="window-title">
+                    <i class="fa-solid fa-file-lines"></i> PROFILE.TXT
                 </div>
-                <span style="font-family:'Press Start 2P'; font-size:0.6rem; color:var(--dark); font-weight: bold; background: white; padding: 2px 6px; border: 2px solid #000;">CHIP_01.ROM</span>
+                <div class="window-controls">
+                    <div class="win-ctrl" onclick="playSfx('close'); toggleProfileWindow(false)">X</div>
+                </div>
             </div>
-            <div class="welcome-text-col">
-                <h2 class="brand-name">KIM<span>GACKCHI</span></h2>
-                <div class="brand-sub">> Digital Space Explorer & Cartoon Designer</div>
+            <div class="profile-content">
+                <div class="profile-top">
+                    <div class="avatar-box">
+                        <!-- 8-bit 커스텀 도트 스마일 아바타 -->
+                        <svg width="64" height="64" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" style="image-rendering: pixelated;">
+                            <rect width="16" height="16" fill="var(--custard-cream)"/>
+                            <!-- Face boundary -->
+                            <path d="M4 1h8v1H4V1zm-2 2h2v1H2V3zm10 0h2v1h-2V3zm-11 3h1v4H1V6zm14 0h1v4h-1V6zm-13 5h2v1H2v-1zm10 0h2v1h-2v-1zm-9 2h8v1H5v-1z" fill="var(--retro-dark)"/>
+                            <!-- Eyes -->
+                            <rect x="4" y="6" width="2" height="2" fill="var(--cherry-red)"/>
+                            <rect x="10" y="6" width="2" height="2" fill="var(--cherry-red)"/>
+                            <!-- Mouth -->
+                            <path d="M4 11h8v1H4v-1zm1 1h6v1H5v-1z" fill="var(--retro-dark)"/>
+                            <!-- Blush -->
+                            <rect x="3" y="8" width="1" height="1" fill="var(--melon-soda)"/>
+                            <rect x="12" y="8" width="1" height="1" fill="var(--melon-soda)"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="brand-name">KIM<span>GACKCHI</span></h2>
+                        <p class="brand-sub">> Melon Soda & Pixel Synth</p>
+                    </div>
+                </div>
                 <p class="brand-desc">
-                    안녕하세요! <strong>KIMGACKCHI(김각치)</strong>입니다. 2000년대 고유의 키치하고 에너제틱한 하이틴 Y2K 감성에서 영감을 얻어, 톡 쏘는 고채도의 그래픽과 개성 강한 캐릭터 일러스트를 창조합니다. 마음에 드는 항목의 아이콘을 교체하고 슬롯을 직접 커스텀하며 저의 세상을 탐험해 보세요!
+                    안녕하세요! <strong>KIMGACKCHI(김각치)</strong>입니다. 1980년대~2000년대 특유의 아기자기한 일본 픽셀 게임 UI와 멜론 소다 한 모금의 청량함을 담은 비주얼 크리에이터입니다.<br><br>
+                    바탕화면 중앙의 다양한 <strong>프로그램(.EXE, .TXT) 파일 아이콘</strong>을 클릭하시면 각각 3D 아트, 모션그래픽, 애니메이션, 일러스트, 그리고 오리지널 픽셀 노벨의 세계관을 귀여운 8비트 효과음과 함께 감상하실 수 있습니다!
                 </p>
-                
                 <!-- 연락처 버튼 그룹 -->
                 <div class="contact-group">
-                    <a href="mailto:lstush0924@naver.com" class="contact-link email" onclick="playRetroSound('coin')">
+                    <a href="mailto:lstush0924@naver.com" class="contact-link email">
                         <i class="fa-solid fa-envelope"></i> lstush0924@naver.com
                     </a>
-                    <a href="https://instagram.com/kimgackchi_design" target="_blank" class="contact-link instagram" onclick="playRetroSound('jump')">
+                    <a href="https://instagram.com/kimgackchi_design" target="_blank" class="contact-link instagram">
                         <i class="fa-brands fa-instagram"></i> @kimgackchi_design
                     </a>
                 </div>
             </div>
         </div>
+
     </main>
 
-    <!-- 포트폴리오 갤러리 윈도우 -->
-    <section class="window" id="portfolioWindow">
-        <div class="window-header" style="background-color: var(--neon-purple);">
-            <div class="window-title">
-                <i class="fa-solid fa-folder-open"></i> PORTFOLIO_ARCHIVE
+    <!-- ==========================================
+       6. 가상 파일 탐색기 및 멀티미디어 뷰어 팝업창 (Modal)
+       ========================================== -->
+    <div class="viewer-overlay" id="viewerOverlay" onclick="closePreviewExplorer(event)">
+        <div class="viewer-window" onclick="event.stopPropagation()">
+            <div class="viewer-header" id="viewerHeaderColor">
+                <div class="window-title">
+                    <i class="fa-solid fa-desktop"></i> <span id="windowDisplayTitle">EXPLORER_VIEWER.EXE</span>
+                </div>
+                <div class="window-controls">
+                    <div class="win-ctrl" onclick="closePreviewExplorer(null)">X</div>
+                </div>
             </div>
-            <div class="window-controls">
-                <div class="win-ctrl">_</div>
-                <div class="win-ctrl">[]</div>
-                <div class="win-ctrl" style="background: var(--neon-cyan); color: black;">X</div>
-            </div>
-        </div>
-
-        <!-- 탭 네비게이션 -->
-        <div class="portfolio-tabs">
-            <button class="tab-btn active" onclick="switchTab('all', this)">[ ALL ]</button>
-            <button class="tab-btn" onclick="switchTab('character', this)">[ 👾 TOY ]</button>
-            <button class="tab-btn" onclick="switchTab('brand', this)">[ 🎨 LOGO ]</button>
-            <button class="tab-btn" onclick="switchTab('pixel', this)">[ 🌟 PIXEL ]</button>
-            <button class="tab-btn" onclick="switchTab('zine', this)">[ 📖 ZINE ]</button>
-        </div>
-
-        <!-- 포트폴리오 그리드 -->
-        <div class="portfolio-content">
-            <div class="portfolio-grid" id="portfolioGrid">
-                
-                <!-- 아이템 1 -->
-                <div class="portfolio-card" data-category="character">
-                    <div class="icon-placeholder" style="color: var(--neon-pink);">
-                        <i class="fa-solid fa-ghost"></i>
+            
+            <div class="viewer-body">
+                <!-- 좌측 파일 탐색 목록 -->
+                <nav class="explorer-sidebar">
+                    <div class="explorer-header">
+                        <i class="fa-regular fa-folder-open"></i> FILES_TREE
                     </div>
-                    <h3>토이&캐릭터 디자인</h3>
-                    <p>커스텀 카툰 캐릭터 및 픽셀 몬스터 모델링 항목입니다.</p>
-                    <span class="card-tag" style="background: var(--neon-lime);">CHARACTER</span>
-                </div>
+                    <ul class="explorer-list" id="explorerList">
+                        <!-- 자바스크립트로 파일 리스트가 동적 생성됩니다. -->
+                    </ul>
+                </nav>
 
-                <!-- 아이템 2 -->
-                <div class="portfolio-card" data-category="brand">
-                    <div class="icon-placeholder" style="color: var(--neon-purple);">
-                        <i class="fa-solid fa-palette"></i>
+                <!-- 우측 포트폴리오 세부 패널 -->
+                <section class="preview-panel">
+                    <div class="viewer-img-container" id="viewerImgContainer">
+                        <!-- 이미지/동영상/플레이어 인터랙티브 SVG 등 동적 바인딩 -->
                     </div>
-                    <h3>브랜드 아이덴티티</h3>
-                    <p>Y2K 비비드 팝 무드의 벡터 그래픽 브랜드 로고 항목입니다.</p>
-                    <span class="card-tag" style="background: var(--neon-pink); color: white;">BRAND</span>
-                </div>
-
-                <!-- 아이템 3 -->
-                <div class="portfolio-card" data-category="pixel">
-                    <div class="icon-placeholder" style="color: var(--neon-cyan);">
-                        <i class="fa-solid fa-gamepad"></i>
-                    </div>
-                    <h3>도트/픽셀 일러스트</h3>
-                    <p>8-bit 픽셀 타이포그래피와 레트로 도트 일러스트 항목입니다.</p>
-                    <span class="card-tag" style="background: var(--neon-yellow);">PIXEL ART</span>
-                </div>
-
-                <!-- 아이템 4 -->
-                <div class="portfolio-card" data-category="zine">
-                    <div class="icon-placeholder" style="color: var(--neon-yellow);">
-                        <i class="fa-solid fa-book-open"></i>
-                    </div>
-                    <h3>레트로 진&편집 디자인</h3>
-                    <p>오프라인 인쇄 질감을 살린 90년대 무드 서적 레이아웃 아카이브입니다.</p>
-                    <span class="card-tag" style="background: var(--neon-cyan);">ZINE & PRINT</span>
-                </div>
-
-                <!-- 아이템 5 -->
-                <div class="portfolio-card" data-category="character">
-                    <div class="icon-placeholder" style="color: var(--neon-pink);">
-                        <i class="fa-solid fa-mask"></i>
-                    </div>
-                    <h3>레트로 피규어 렌더링</h3>
-                    <p>장난감 패키지 스타일의 3D 그래픽 렌더링 폴더 항목입니다.</p>
-                    <span class="card-tag" style="background: var(--neon-lime);">CHARACTER</span>
-                </div>
-
-                <!-- 아이템 6 -->
-                <div class="portfolio-card" data-category="pixel">
-                    <div class="icon-placeholder" style="color: var(--neon-cyan);">
-                        <i class="fa-solid fa-wand-magic-sparkles"></i>
-                    </div>
-                    <h3>Y2K 모션 픽셀</h3>
-                    <p>반짝이는 네온 스파클과 스프라이트 시트 애니메이션 항목입니다.</p>
-                    <span class="card-tag" style="background: var(--neon-yellow);">PIXEL ART</span>
-                </div>
-
+                    <h3 class="viewer-title" id="viewerTitle">작품 제목</h3>
+                    <span class="viewer-tag" id="viewerTag">CATEGORY</span>
+                    <p class="viewer-desc" id="viewerDesc">작품 상세 설명글이 들어갈 공간입니다.</p>
+                    <button class="retro-btn" onclick="closePreviewExplorer(null)">CLOSE FILE</button>
+                </section>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- 하단 인터랙티브 존 -->
-    <section class="widgets-wrapper">
-        
-        <!-- 사운드 보드 -->
-        <div class="window sound-board">
-            <div class="window-header" style="background: var(--neon-pink);">
-                <div class="window-title" style="color: white;">
-                    <i class="fa-solid fa-music"></i> CHIPTUNE_BOX
-                </div>
-            </div>
-            <div style="padding: 20px;">
-                <p style="font-size:0.9rem; margin-bottom: 8px; font-weight: 900;">🔊 실시간 8비트 사운드 제너레이터</p>
-                <p style="font-size:0.8rem; color:#444; margin-bottom: 16px; font-weight: 500;">Web Audio API를 이용해 인공적인 파형을 즉석에서 주파수로 출력합니다.</p>
-                
-                <div class="sound-grid">
-                    <button class="sound-card-btn" onclick="playRetroSound('coin')">
-                        <i class="fa-solid fa-coins"></i>
-                        <span>COIN SFX</span>
-                    </button>
-                    <button class="sound-card-btn" onclick="playRetroSound('laser')">
-                        <i class="fa-solid fa-bolt"></i>
-                        <span>LASER SFX</span>
-                    </button>
-                    <button class="sound-card-btn" onclick="playRetroSound('jump')">
-                        <i class="fa-solid fa-arrows-up-to-line"></i>
-                        <span>JUMP SFX</span>
-                    </button>
-                    <button class="sound-card-btn" onclick="playRetroSound('synth')">
-                        <i class="fa-solid fa-music"></i>
-                        <span>MELODY BEEP</span>
-                    </button>
-                </div>
+    <!-- ==========================================
+       7. OS 하단 작업 표시줄 (Taskbar)
+       ========================================== -->
+    <footer class="taskbar">
+        <div class="taskbar-left">
+            <button class="start-btn" onclick="playSfx('open'); toggleProfileWindow(true)">
+                <i class="fa-solid fa-heart" style="color: var(--cherry-red); filter: drop-shadow(1px 1px 0 var(--retro-dark))"></i> START
+            </button>
+        </div>
+        <div class="taskbar-right">
+            <button class="retro-btn crt-toggle-btn" onclick="playSfx('click'); toggleCRT()">CRT ON/OFF</button>
+            <div class="system-tray">
+                <i class="fa-solid fa-clock"></i>
+                <span id="systemClock">12:00 PM</span>
             </div>
         </div>
-
-        <!-- 픽셀 스케치 패드 (키치 팔레트 탑재) -->
-        <div class="window draw-board">
-            <div class="window-header" style="background: var(--neon-cyan);">
-                <div class="window-title" style="color: var(--dark); text-shadow: none;">
-                    <i class="fa-solid fa-pen-nib"></i> PIXEL_SKETCHPAD.EXE
-                </div>
-            </div>
-            <div class="draw-container">
-                <div class="pixel-grid" id="pixelGrid">
-                    <!-- JS로 16x16 픽셀 동적 생성 -->
-                </div>
-                <div class="palette-toolbox">
-                    <div class="color-palette" id="colorPalette">
-                        <!-- 동적 팔레트 컬러 스와치 -->
-                    </div>
-                    <button class="retro-btn" onclick="clearGrid()" style="width: 100%; font-size: 0.6rem; background: var(--neon-pink); color: white;">RESET</button>
-                </div>
-            </div>
-        </div>
-
-    </section>
-
-    <!-- 푸터 -->
-    <footer>
-        <p>© 2026 KIMGACKCHI_POP_V2.00 CO.</p>
-        <p>MADE WITH GEMINI VIBE CODING & KITSCH HIGH-TEEN NOSTALGIA</p>
     </footer>
 
-    <!-- 자바스크립트 핸들링 -->
+    <!-- 자바스크립트 인터랙션 및 포트폴리오 데이터셋 스크립트 -->
     <script>
-        // ==========================================
-        // 1. CRT 오버레이 토글
-        // ==========================================
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playSfx(type) {
+            // 브라우저 자동 재생 정책 해제 대응
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            if (type === 'click') {
+                // 작고 명쾌한 레트로 아케이드 코인/선택음
+                osc.type = 'square';
+                osc.frequency.setValueAtTime(880, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(330, audioCtx.currentTime + 0.1);
+                gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.1);
+            } else if (type === 'open') {
+                // 패미컴 스타일 레트로 도롱롱 상승 이펙트
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(440, audioCtx.currentTime);
+                osc.frequency.setValueAtTime(554, audioCtx.currentTime + 0.05);
+                osc.frequency.setValueAtTime(659, audioCtx.currentTime + 0.10);
+                osc.frequency.setValueAtTime(880, audioCtx.currentTime + 0.15);
+                gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.04, audioCtx.currentTime + 0.15);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.25);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.25);
+            } else if (type === 'close') {
+                // 레트로 차임 하강 멜로디
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(784, audioCtx.currentTime);
+                osc.frequency.setValueAtTime(587, audioCtx.currentTime + 0.08);
+                osc.frequency.setValueAtTime(392, audioCtx.currentTime + 0.16);
+                gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.24);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.24);
+            } else if (type === 'play') {
+                // 신스 스파크 아케이드 파워업 레트로 사운드
+                osc.type = 'square';
+                osc.frequency.setValueAtTime(300, audioCtx.currentTime);
+                osc.frequency.linearRampToValueAtTime(900, audioCtx.currentTime + 0.2);
+                gain.gain.setValueAtTime(0.03, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.2);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.2);
+            }
+        }
+
+        // 1. 작업표시줄 실시간 시계 연동
+        function updateClock() {
+            const clockElement = document.getElementById('systemClock');
+            const now = new Date();
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            
+            hours = hours % 12;
+            hours = hours ? hours : 12; 
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            
+            clockElement.innerText = `${hours}:${minutes} ${ampm}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // 2. CRT 모니터 노이즈 오버레이 ON/OFF
         function toggleCRT() {
             const overlay = document.getElementById('crtOverlay');
             overlay.classList.toggle('disabled');
         }
 
-        // ==========================================
-        // 2. Chiptune 오디오 합성 모듈
-        // ==========================================
-        let audioCtx;
-        function getAudioContext() {
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        // 3. 프로필 정보 텍스트 창 ON/OFF
+        function toggleProfileWindow(show) {
+            const profile = document.getElementById('profileWindow');
+            if (show) {
+                profile.style.display = 'flex';
+                profile.style.opacity = '1';
+                profile.style.transform = 'translate(-50%, -50%) scale(1)';
+            } else {
+                profile.style.display = 'none';
             }
-            return audioCtx;
         }
 
-        function playRetroSound(type) {
-            try {
-                const ctx = getAudioContext();
-                if (ctx.state === 'suspended') ctx.resume();
-
-                const osc = ctx.createOscillator();
-                const gain = ctx.createGain();
-                osc.connect(gain);
-                gain.connect(ctx.destination);
-
-                const now = ctx.currentTime;
-
-                if (type === 'coin') {
-                    osc.type = 'square';
-                    osc.frequency.setValueAtTime(587.33, now); // D5
-                    osc.frequency.setValueAtTime(880, now + 0.1); // A5
-                    gain.gain.setValueAtTime(0.06, now);
-                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.35);
-                    osc.start(now);
-                    osc.stop(now + 0.35);
-                } else if (type === 'laser') {
-                    osc.type = 'sawtooth';
-                    osc.frequency.setValueAtTime(900, now);
-                    osc.frequency.exponentialRampToValueAtTime(60, now + 0.25);
-                    gain.gain.setValueAtTime(0.06, now);
-                    gain.gain.linearRampToValueAtTime(0.01, now + 0.25);
-                    osc.start(now);
-                    osc.stop(now + 0.25);
-                } else if (type === 'jump') {
-                    osc.type = 'triangle';
-                    osc.frequency.setValueAtTime(140, now);
-                    osc.frequency.exponentialRampToValueAtTime(650, now + 0.18);
-                    gain.gain.setValueAtTime(0.1, now);
-                    gain.gain.linearRampToValueAtTime(0.01, now + 0.18);
-                    osc.start(now);
-                    osc.stop(now + 0.18);
-                } else if (type === 'synth') {
-                    osc.type = 'sine';
-                    const notes = [293.66, 349.23, 440.00, 587.33]; // D F A D
-                    notes.forEach((freq, idx) => {
-                        osc.frequency.setValueAtTime(freq, now + idx * 0.1);
-                    });
-                    gain.gain.setValueAtTime(0.08, now);
-                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.45);
-                    osc.start(now);
-                    osc.stop(now + 0.45);
+        const portfolioData = {
+            '3D_ART.EXE': [
+                {
+                    id: '3d_01',
+                    title: '멜론 소다 카세트 디바이스',
+                    tag: '3D MODELING',
+                    desc: '80년대 워크맨 감성을 상큼한 멜론 그린과 체리 핑크 컬러웨이로 복각한 3D 로우폴리 카세트테이프 그래픽 렌더링입니다. 투명 플레이트 질감과 미세한 픽셀 디테일이 살아있습니다.',
+                    realUrl: '', 
+                    svgId: 'svg-3d-01'
+                },
+                {
+                    id: '3d_02',
+                    title: '레트로 게임 캐비닛 피규어',
+                    tag: '3D CONSTRUCT',
+                    desc: '일본 아케이드 오락실의 황금기를 수놓았던 90년대 게임 캐비닛 모듈입니다. 바닐라 크림 컬러의 스킨을 씌운 고품질의 3D 픽셀아트워크입니다.',
+                    realUrl: '',
+                    svgId: 'svg-3d-02'
+                },
+                {
+                    id: '3d_03',
+                    title: '바닐라 해변 야자수 3D',
+                    tag: '3D SCENE',
+                    desc: '시티팝 앨범 아트워크의 감초 역할을 담당하는 가로등 빛 아래 고요한 픽셀 야자수와 멜론 소다빛 해변의 3D 지오메트리 미니 피규어 모델입니다.',
+                    realUrl: '',
+                    svgId: 'svg-3d-03'
                 }
-            } catch(e) {
-                console.log("Audio API not active/supported", e);
+            ],
+            'MOTION.EXE': [
+                {
+                    id: 'motion_01',
+                    title: '미드나잇 하이웨이 그리드',
+                    tag: 'MOTION GRAPHICS',
+                    desc: '끝없이 펼쳐진 네온 라인 그리드 도로 위를 노을을 향해 달려 나가는 무한 루프 모션 그래픽입니다. [PLAY] 버튼을 클릭해 밤거리의 가속 무빙을 실시간 제어할 수 있습니다.',
+                    realUrl: '',
+                    playable: true,
+                    svgId: 'svg-motion-01'
+                },
+                {
+                    id: 'motion_02',
+                    title: '스피닝 레트로 바이닐 턴테이블',
+                    tag: 'MOTION COMPONENT',
+                    desc: 'LP 턴테이블 위에서 영롱하게 돌아가며 무지개빛 네온 반사광을 반짝이는 80년대 레코드 바이닐 루핑 기계 무션입니다.',
+                    realUrl: '',
+                    playable: true,
+                    svgId: 'svg-motion-02'
+                }
+            ],
+            'ANIMATION.EXE': [
+                {
+                    id: 'anime_01',
+                    title: '황혼의 핑크 스포츠카 드라이브',
+                    tag: 'ANIMATION / GIF',
+                    desc: '지평선 뒤로 가라앉는 커다란 오렌지색 인공 태양을 정면으로 맞서며 질주하는 80s 스포츠카 애니메이션 루프입니다. [PLAY]를 누르면 역동적인 가속 휠 애니메이션이 펼쳐집니다.',
+                    realUrl: '',
+                    playable: true,
+                    svgId: 'svg-anime-01'
+                },
+                {
+                    id: 'anime_02',
+                    title: '도쿄 밤하늘 시티 스파클 효과',
+                    tag: 'PIXEL EFFECT',
+                    desc: '도쿄 타워 실루엣 위로 은은하게 점멸하며 흩뿌려지는 시티팝 고유의 낭만적인 밤하늘 아날로그 필터용 스파클 펄스 이펙트입니다.',
+                    realUrl: '',
+                    playable: true,
+                    svgId: 'svg-anime-02'
+                }
+            ],
+            'ILLUST.EXE': [
+                {
+                    id: 'illust_01',
+                    title: '오후 5시의 시티 라디오 테라스',
+                    tag: 'ILLUSTRATION',
+                    desc: '보라색으로 물들어가는 하늘과 가로등 불빛이 하나둘 켜지는 바깥 도시 풍경이 한눈에 보이는 조용한 다락방 테라스의 픽셀 아트 일러스트레이션입니다.',
+                    realUrl: '',
+                    svgId: 'svg-illust-01'
+                },
+                {
+                    id: 'illust_02',
+                    title: '헤드폰과 네온 멜론 소다',
+                    tag: 'ILLUSTRATION',
+                    desc: '테이블 위에 올려진 카세트 플레이어와 레트로 도트 디자인이 그려진 청량한 탄산 음료수 컵, 은은하게 반짝이는 헤드폰을 아날로그 질감으로 정밀 묘사한 삽화입니다.',
+                    realUrl: '',
+                    svgId: 'svg-illust-02'
+                }
+            ],
+            'NOVEL.TXT': [
+                {
+                    id: 'novel_01',
+                    title: '유성 라디오 - 밤바람의 주파수: Ch.1',
+                    tag: 'PERSONAL NOVEL',
+                    desc: '"라디오 볼륨을 올리자 새벽 주파수 너머로 그리운 그 시절의 신디사이저 멜로디가 쏟아져 내렸다. 새벽 2시의 라디오 DJ는 언제나 비밀스러운 미소로 도쿄의 잠 못 이루는 밤을 어루만져 주곤 했다." 시티팝 낭만 비주얼 소설의 인트로입니다.',
+                    realUrl: '',
+                    svgId: 'svg-novel-01'
+                },
+                {
+                    id: 'novel_02',
+                    title: '자정의 크루즈 윙 - 터미널 타워: Ch.2',
+                    tag: 'PERSONAL NOVEL',
+                    desc: '"터미널의 불빛들이 바다 너머로 부서질 때, 스포츠카 창문을 내리자 시원한 바닷바람이 멜론 소다 향 가득한 머리칼을 쓸어 넘겼다. 이 밤이 영원히 끝나지 않을 것만 같은 질주가 시작되었다."',
+                    realUrl: '',
+                    svgId: 'svg-novel-02'
+                }
+            ]
+        };
+
+        let currentCategory = '';
+        let currentItemIndex = 0;
+        let isMediaPlaying = false;
+
+        // 6. 파일 탐색기 및 팝업 제어
+        function openPreviewExplorer(categoryName) {
+            currentCategory = categoryName;
+            currentItemIndex = 0;
+            isMediaPlaying = false; 
+
+            const windowDisplayTitle = document.getElementById('windowDisplayTitle');
+            const headerColor = document.getElementById('viewerHeaderColor');
+            
+            windowDisplayTitle.innerText = categoryName;
+
+            // 멜론 & 바닐라 배색 스와이프
+            if (categoryName === '3D_ART.EXE' || categoryName === 'ANIMATION.EXE' || categoryName === 'NOVEL.TXT') {
+                headerColor.style.backgroundColor = 'var(--custard-cream)';
+                headerColor.style.borderBottomColor = 'var(--retro-dark)';
+            } else {
+                headerColor.style.backgroundColor = 'var(--melon-soda)';
+                headerColor.style.borderBottomColor = 'var(--retro-dark)';
             }
+
+            // 가상 좌측 파일 트리 렌더링
+            renderExplorerList();
+
+            // 첫 번째 디폴트 아이템 상세 표시
+            selectExplorerItem(0);
+
+            // 최종 모달 활성화
+            document.getElementById('viewerOverlay').classList.add('active');
         }
 
-        // ==========================================
-        // 3. 포트폴리오 탭 네비게이션
-        // ==========================================
-        function switchTab(category, btnElement) {
-            playRetroSound('coin');
+        // 좌측 파일 탐색 목록 생성
+        function renderExplorerList() {
+            const listContainer = document.getElementById('explorerList');
+            listContainer.innerHTML = '';
 
-            // 탭 활성화 변경
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            btnElement.classList.add('active');
+            const items = portfolioData[currentCategory] || [];
+            
+            items.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.className = `explorer-item ${index === currentItemIndex ? 'active' : ''}`;
+                li.onclick = () => { playSfx('click'); selectExplorerItem(index); };
 
-            // 카드 필터링
-            const cards = document.querySelectorAll('.portfolio-card');
-            cards.forEach(card => {
-                if (category === 'all' || card.getAttribute('data-category') === category) {
-                    card.style.display = 'flex';
+                let iconHtml = '<i class="fa-regular fa-file"></i>';
+                if (currentCategory === '3D_ART.EXE') iconHtml = '<i class="fa-solid fa-cube explorer-item-icon"></i>';
+                if (currentCategory === 'MOTION.EXE') iconHtml = '<i class="fa-solid fa-circle-nodes explorer-item-icon"></i>';
+                if (currentCategory === 'ANIMATION.EXE') iconHtml = '<i class="fa-solid fa-film explorer-item-icon"></i>';
+                if (currentCategory === 'ILLUST.EXE') iconHtml = '<i class="fa-solid fa-image explorer-item-icon"></i>';
+                if (currentCategory === 'NOVEL.TXT') iconHtml = '<i class="fa-regular fa-file-lines explorer-item-icon"></i>';
+
+                li.innerHTML = `
+                    ${iconHtml}
+                    <span>PROJ_0${index + 1}</span>
+                `;
+                listContainer.appendChild(li);
+            });
+        }
+
+        function selectExplorerItem(index) {
+            currentItemIndex = index;
+            isMediaPlaying = false; 
+
+            const listItems = document.querySelectorAll('.explorer-item');
+            listItems.forEach((li, i) => {
+                if (i === index) li.classList.add('active');
+                else li.classList.remove('active');
+            });
+
+            const items = portfolioData[currentCategory] || [];
+            const item = items[index];
+            if (!item) return;
+
+            document.getElementById('viewerTitle').innerText = item.title;
+            document.getElementById('viewerTag').innerText = item.tag;
+            document.getElementById('viewerDesc').innerText = item.desc;
+
+            const imgContainer = document.getElementById('viewerImgContainer');
+            imgContainer.innerHTML = '';
+
+            if (item.realUrl) {
+                if (item.realUrl.endsWith('.mp4')) {
+                    imgContainer.innerHTML = `
+                        <video id="renderingPlayer" src="${item.realUrl}" class="viewer-img" controls loop></video>
+                    `;
                 } else {
-                    card.style.display = 'none';
+                    imgContainer.innerHTML = `
+                        <img src="${item.realUrl}" alt="${item.title}" class="viewer-img">
+                    `;
                 }
-            });
+                return;
+            }
+
+            let mediaHtml = renderVirtualSVG(item.svgId);
+            imgContainer.innerHTML = mediaHtml;
+
+            if (item.playable) {
+                const controlBar = document.createElement('div');
+                controlBar.className = 'media-controls-bar';
+                controlBar.innerHTML = `
+                    <div class="media-status">
+                        <i class="fa-solid fa-compact-disc" id="discIcon" style="font-size: 14px; color: var(--melon-deep)"></i>
+                        <span id="playingStateLabel">STOPPED</span>
+                    </div>
+                    <button class="media-btn" id="playBtn" onclick="playSfx('play'); toggleMediaPlayback()">PLAY ▶</button>
+                `;
+                imgContainer.appendChild(controlBar);
+            }
         }
 
-        // ==========================================
-        // 4. 16x16 픽셀 드로잉 보드 구현 (키치 고채도 컬러 세팅)
-        // ==========================================
-        const colors = [
-            '#ffffff', // 지우개용 화이트
-            '#000000', // 리얼 블랙
-            '#ff007f', // 네온 핑크
-            '#00f3ff', // 사이언 블루
-            '#fffb00', // 일렉트릭 옐로우
-            '#39ff14', // 라임 그린
-            '#b624ff', // 펑키 퍼플
-            '#ff5e00'  // 아케이드 오렌지
-        ];
+        // PLAY/PAUSE 토글 제어
+        function toggleMediaPlayback() {
+            const playBtn = document.getElementById('playBtn');
+            const stateLabel = document.getElementById('playingStateLabel');
+            const discIcon = document.getElementById('discIcon');
+            const animeTarget = document.getElementById('animatedVisualTarget');
+            const animeRoad = document.getElementById('animatedRoadTarget');
 
-        let selectedColor = '#ff007f'; // 기본 네온 핑크 선택
-        let isDrawing = false;
+            isMediaPlaying = !isMediaPlaying;
 
-        const gridContainer = document.getElementById('pixelGrid');
-        const paletteContainer = document.getElementById('colorPalette');
+            if (isMediaPlaying) {
+                playBtn.innerText = 'PAUSE ❚❚';
+                stateLabel.innerText = 'PLAYING';
+                playBtn.style.backgroundColor = 'var(--melon-soda)';
+                playBtn.style.color = 'var(--retro-dark)';
+                discIcon.classList.add('fa-spin');
 
-        // 드래그 앤 드로우 감지용 마우스 트리거
-        document.body.onmousedown = () => { isDrawing = true; };
-        document.body.onmouseup = () => { isDrawing = false; };
-
-        // grid 생성
-        for (let i = 0; i < 256; i++) {
-            const pixel = document.createElement('div');
-            pixel.className = 'pixel';
-            
-            // 드래그하면서 픽셀 칠하기
-            pixel.addEventListener('mouseover', () => {
-                if (isDrawing) {
-                    pixel.style.backgroundColor = selectedColor;
-                    pixel.style.borderColor = selectedColor === '#ffffff' ? '#f2f2f2' : selectedColor;
+                if (animeTarget) {
+                    if (currentCategory === 'MOTION.EXE') {
+                        if (animeTarget.tagName === 'ellipse' || animeTarget.id === 'animatedVisualTarget') {
+                            animeTarget.classList.add('playing-orbit');
+                        }
+                    } else if (currentCategory === 'ANIMATION.EXE') {
+                        animeTarget.classList.add('playing-bounce');
+                    }
                 }
-            });
-            // 단독 클릭하여 칠하기
-            pixel.addEventListener('mousedown', () => {
-                pixel.style.backgroundColor = selectedColor;
-                pixel.style.borderColor = selectedColor === '#ffffff' ? '#f2f2f2' : selectedColor;
-                playRetroSound('jump');
-            });
-            gridContainer.appendChild(pixel);
+                if (animeRoad) {
+                    animeRoad.classList.add('playing-drive');
+                }
+            } else {
+                playBtn.innerText = 'PLAY ▶';
+                stateLabel.innerText = 'STOPPED';
+                playBtn.style.backgroundColor = 'var(--cherry-red)';
+                playBtn.style.color = 'white';
+                discIcon.classList.remove('fa-spin');
+
+                if (animeTarget) {
+                    if (currentCategory === 'MOTION.EXE') {
+                        animeTarget.classList.remove('playing-orbit');
+                    } else if (currentCategory === 'ANIMATION.EXE') {
+                        animeTarget.classList.remove('playing-bounce');
+                    }
+                }
+                if (animeRoad) {
+                    animeRoad.classList.remove('playing-drive');
+                }
+            }
         }
 
-        // 키치 컬러 스와치 팔레트 생성
-        colors.forEach((color, idx) => {
-            const swatch = document.createElement('div');
-            swatch.className = 'color-swatch';
-            swatch.style.backgroundColor = color;
-            if (color === selectedColor) swatch.classList.add('selected');
-            
-            swatch.addEventListener('click', () => {
-                selectedColor = color;
-                document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('selected'));
-                swatch.classList.add('selected');
-                playRetroSound('coin');
-            });
-            paletteContainer.appendChild(swatch);
-        });
+        function renderVirtualSVG(svgId) {
+            // 3D 01 (멜론 소다 카세트 디바이스)
+            if (svgId === 'svg-3d-01') {
+                return `
+                    <svg viewBox="0 0 400 300" class="viewer-svg" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="100%" height="100%" fill="var(--bg-vanilla)" />
+                        <path d="M 0 240 L 400 240 M 0 260 L 400 260 M 0 280 L 400 280" stroke="var(--melon-soda)" opacity="0.4" stroke-width="2" />
+                        
+                        <g transform="translate(130, 60)" class="playing-3dheart">
+                            <rect x="10" y="20" width="140" height="90" rx="8" fill="var(--melon-soda)" stroke="var(--retro-dark)" stroke-width="4" />
+                            <rect x="25" y="32" width="110" height="66" rx="4" fill="var(--bg-vanilla)" stroke="var(--retro-dark)" stroke-width="3" />
+                            <circle cx="55" cy="65" r="14" fill="var(--custard-cream)" stroke="var(--retro-dark)" stroke-width="2" />
+                            <circle cx="105" cy="65" r="14" fill="var(--custard-cream)" stroke="var(--retro-dark)" stroke-width="2" />
+                            <polygon points="45,65 55,55 65,65" fill="var(--cherry-red)" />
+                            <polygon points="95,65 105,55 115,65" fill="var(--cherry-red)" />
+                            <!-- 아날로그 데코 텍스트 -->
+                            <rect x="35" y="10" width="70" height="15" fill="var(--custard-cream)" stroke="var(--retro-dark)" stroke-width="2" />
+                            <text x="70" y="21" font-family="'Press Start 2P'" font-size="5" fill="var(--retro-dark)" text-anchor="middle">MELON_SODA</text>
+                        </g>
+                    </svg>
+                `;
+            }
+            // 3D 02 (레트로 아케이드 게임기)
+            if (svgId === 'svg-3d-02') {
+                return `
+                    <svg viewBox="0 0 400 300" class="viewer-svg" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="100%" height="100%" fill="var(--melon-soda)" />
+                        <g transform="translate(145, 40)">
+                            <!-- 캐비닛 본체 -->
+                            <polygon points="10,10 100,10 90,180 20,180" fill="var(--bg-vanilla)" stroke="var(--retro-dark)" stroke-width="4" />
+                            <!-- 스크린 화면 -->
+                            <polygon points="20,25 90,25 80,110 30,110" fill="var(--retro-dark)" stroke="var(--melon-deep)" stroke-width="3" />
+                            <circle cx="55" cy="65" r="15" fill="var(--cherry-red)" class="playing-star" />
+                            <!-- 컨트롤러 스틱&버튼 -->
+                            <rect x="25" y="125" width="60" height="15" fill="var(--custard-cream)" stroke="var(--retro-dark)" stroke-width="3" />
+                            <circle cx="35" cy="132" r="4" fill="var(--cherry-red)" />
+                            <circle cx="47" cy="132" r="3" fill="var(--melon-soda)" />
+                        </g>
+                    </svg>
+                `;
+            }
+            // 3D 03 (밤하늘 가로등과 야자수)
+            if (svgId === 'svg-3d-03') {
+                return `
+                    <svg viewBox="0 0 400 300" class="viewer-svg" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="100%" height="100%" fill="var(--bg-vanilla)" />
+                        <!-- 석양 그라데이션 원 -->
+                        <circle cx="200" cy="150" r="80" fill="url(#sunsetSun)" />
+                        <defs>
+                            <linearGradient id="sunsetSun" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="var(--cherry-red)" />
+                                <stop offset="100%" stop-color="var(--custard-cream)" />
+                            </linearGradient>
+                        </defs>
+                        <!-- 야자수 가상 픽셀 3D 모델 -->
+                        <g transform="translate(180, 80)">
+                            <!-- 가로등 기둥 -->
+                            <line x1="10" y1="20" x2="10" y2="140" stroke="var(--retro-dark)" stroke-width="5" />
+                            <circle cx="10" cy="15" r="10" fill="var(--custard-cream)" stroke="var(--retro-dark)" stroke-width="2" class="playing-flicker" />
+                            <!-- 가로등 불빛 하이라이트 -->
+                            <polygon points="10,25 -20,135 40,135" fill="var(--custard-cream)" opacity="0.3" />
+                            <!-- 야자수 대나무 도트 실루엣 -->
+                            <path d="M 45,40 C 35,60 30,90 40,140" stroke="var(--retro-dark)" stroke-width="8" fill="none" />
+                            <path d="M 45,40 Q 15,20 0,35 M 45,40 Q 40,10 45,-10 M 45,40 Q 75,20 90,40 M 45,40 Q 65,65 80,85" stroke="var(--melon-soda)" stroke-width="4" fill="none" />
+                        </g>
+                    </svg>
+                `;
+            }
+            // MOTION 01 (미드나잇 하이웨이 그리드)
+            if (svgId === 'svg-motion-01') {
+                return `
+                    <svg viewBox="0 0 400 300" class="viewer-svg" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="100%" height="100%" fill="var(--retro-dark)" />
+                        <circle cx="200" cy="100" r="45" fill="var(--cherry-red)" />
+                        <line x1="0" y1="180" x2="400" y2="180" stroke="var(--melon-soda)" stroke-width="4" />
+                        <!-- 도로 그리드 소실점 모션 -->
+                        <g stroke="var(--melon-soda)" stroke-width="2" opacity="0.7">
+                            <line x1="200" y1="180" x2="0" y2="300" />
+                            <line x1="200" y1="180" x2="80" y2="300" />
+                            <line x1="200" y1="180" x2="160" y2="300" />
+                            <line x1="200" y1="180" x2="240" y2="300" />
+                            <line x1="200" y1="180" x2="320" y2="300" />
+                            <line x1="200" y1="180" x2="400" y2="300" />
+                        </g>
+                        <!-- 횡스크롤 애니메이션용 수평 네온 로드 -->
+                        <path d="M 0,200 L 400,200 M 0,230 L 400,230 M 0,270 L 400,270" stroke="var(--custard-cream)" stroke-width="3" stroke-dasharray="20 20" id="animatedRoadTarget" />
+                        <text x="200" y="50" font-family="'Press Start 2P'" font-size="8" fill="var(--melon-soda)" text-anchor="middle" class="playing-flicker">MELON_DRIVE.AVI</text>
+                    </svg>
+                `;
+            }
+            // MOTION 02 (스피닝 레트로 바이닐 턴테이블)
+            if (svgId === 'svg-motion-02') {
+                return `
+                    <svg viewBox="0 0 400 300" class="viewer-svg" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="100%" height="100%" fill="var(--bg-vanilla)" />
+                        <!-- 턴테이블 플레이어 베이스 -->
+                        <rect x="70" y="40" width="260" height="200" rx="10" fill="var(--retro-dark)" stroke="var(--melon-soda)" stroke-width="5" />
+                        <g id="animatedVisualTarget" transform="translate(175, 140) origin(center)">
+                            <!-- 바이닐 레코드 레코딩 원들 -->
+                            <circle cx="0" cy="0" r="80" fill="var(--melon-deep)" stroke="var(--custard-cream)" stroke-width="3" />
+                            <circle cx="0" cy="0" r="60" fill="var(--retro-dark)" stroke="var(--cherry-red)" stroke-width="1" />
+                            <circle cx="0" cy="0" r="40" fill="var(--bg-vanilla)" opacity="0.4" />
+                            <circle cx="0" cy="0" r="20" fill="var(--custard-cream)" />
+                            <!-- 하이라이트 리플렉션 무늬 -->
+                            <path d="M -75,-25 L 75,25" stroke="#FFF" opacity="0.25" stroke-width="4" />
+                        </g>
+                        <!-- 톤암 가이드 핀 -->
+                        <path d="M 280,70 L 250,140" stroke="var(--melon-soda)" stroke-width="5" stroke-linecap="round" />
+                    </svg>
+                `;
+            }
+            // ANIME 01 (황혼의 핑크 스포츠카 드라이브)
+            if (svgId === 'svg-anime-01') {
+                return `
+                    <svg viewBox="0 0 400 300" class="viewer-svg" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="100%" height="100%" fill="var(--bg-vanilla)" />
+                        <!-- 레트로 수평선 오렌지 노을 -->
+                        <rect x="0" y="100" width="400" height="80" fill="var(--custard-cream)" />
+                        <rect x="0" y="130" width="400" height="50" fill="var(--cherry-red)" />
+                        <!-- 도시 빌딩 네온 실루엣 -->
+                        <rect x="40" y="60" width="40" height="40" fill="var(--retro-dark)" />
+                        <rect x="120" y="40" width="50" height="60" fill="var(--retro-dark)" />
+                        <rect x="230" y="50" width="35" height="50" fill="var(--retro-dark)" />
+                        <!-- 스포츠카 무빙 모션 타겟 -->
+                        <g id="animatedVisualTarget" transform="translate(120, 110)">
+                            <path d="M 10,40 L 40,20 L 110,20 L 140,40 L 150,55 L 0,55 Z" fill="var(--melon-soda)" stroke="var(--retro-dark)" stroke-width="4" />
+                            <rect x="50" y="27" width="50" height="15" fill="var(--custard-cream)" opacity="0.6" />
+                            <!-- 뒷바퀴와 앞바퀴 -->
+                            <circle cx="35" cy="55" r="14" fill="var(--retro-dark)" stroke="var(--custard-cream)" stroke-width="3" />
+                            <circle cx="115" cy="55" r="14" fill="var(--retro-dark)" stroke="var(--custard-cream)" stroke-width="3" />
+                        </g>
+                    </svg>
+                `;
+            }
+            // ANIME 02 (도쿄 밤하늘 시티 스파클 효과)
+            if (svgId === 'svg-anime-02') {
+                return `
+                    <svg viewBox="0 0 400 300" class="viewer-svg" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="100%" height="100%" fill="var(--retro-dark)" />
+                        <!-- 도쿄 타워 실루엣 -->
+                        <polygon points="200,40 180,260 220,260" fill="var(--melon-deep)" stroke="var(--custard-cream)" stroke-width="3" />
+                        <line x1="180" y1="140" x2="220" y2="140" stroke="var(--custard-cream)" stroke-width="3" />
+                        <line x1="190" y1="80" x2="210" y2="80" stroke="var(--custard-cream)" stroke-width="3" />
+                        <!-- 밤하늘 스파클 스타 애니메이션 -->
+                        <g id="animatedVisualTarget" transform="translate(100, 60)">
+                            <polygon points="50,10 58,28 78,30 62,44 68,64 50,52 32,64 38,44 22,30 42,28" fill="var(--custard-cream)" class="playing-star" />
+                        </g>
+                        <g transform="translate(240, 90)">
+                            <polygon points="30,5 35,14 45,15 36,22 39,32 30,26 21,32 24,22 15,15 25,14" fill="var(--melon-soda)" class="playing-star" />
+                        </g>
+                    </svg>
+                `;
+            }
+            // ILLUST 01 (오후 5시의 시티 라디오 테라스)
+            if (svgId === 'svg-illust-01') {
+                return `
+                    <svg viewBox="0 0 400 300" class="viewer-svg" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="100%" height="100%" fill="url(#cityPopGrad)" />
+                        <defs>
+                            <linearGradient id="cityPopGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="var(--bg-vanilla)" />
+                                <stop offset="40%" stop-color="var(--melon-soda)" />
+                                <stop offset="100%" stop-color="var(--custard-cream)" />
+                            </linearGradient>
+                        </defs>
+                        <!-- 노을 구름 실루엣 -->
+                        <path d="M -20,150 Q 50,130 120,150 Q 180,170 250,150 Q 320,130 420,150 L 420,300 L -20,300 Z" fill="var(--melon-deep)" opacity="0.3" />
+                        <!-- 머나먼 빌딩 야경 도트 불빛 -->
+                        <rect x="50" y="180" width="30" height="120" fill="var(--retro-dark)" />
+                        <rect x="58" y="195" width="4" height="6" fill="var(--melon-soda)" class="playing-flicker" />
+                        <rect x="70" y="195" width="4" height="6" fill="var(--custard-cream)" />
+                        
+                        <rect x="280" y="150" width="45" height="150" fill="var(--retro-dark)" />
+                        <!-- 테라스 난간 외곽 프레임 -->
+                        <line x1="0" y1="260" x2="400" y2="260" stroke="var(--retro-dark)" stroke-width="8" />
+                        <line x1="60" y1="260" x2="60" y2="300" stroke="var(--retro-dark)" stroke-width="5" />
+                        <line x1="180" y1="260" x2="180" y2="300" stroke="var(--retro-dark)" stroke-width="5" />
+                    </svg>
+                `;
+            }
+            // ILLUST 02 (헤드폰과 네온 멜론 소다)
+            if (svgId === 'svg-illust-02') {
+                return `
+                    <svg viewBox="0 0 400 300" class="viewer-svg" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="100%" height="100%" fill="var(--bg-vanilla)" />
+                        <rect x="50" y="40" width="300" height="220" rx="10" fill="var(--cream-light)" stroke="var(--retro-dark)" stroke-width="5" />
+                        <!-- 네온 소다 컵 일러스트 -->
+                        <path d="M 120,90 L 130,200 L 190,200 L 200,90 Z" fill="var(--melon-soda)" opacity="0.5" stroke="var(--retro-dark)" stroke-width="3" />
+                        <rect x="135" y="105" width="50" height="80" fill="var(--melon-soda)" opacity="0.8" />
+                        <!-- 아이스 체리 데코 -->
+                        <circle cx="160" cy="110" r="10" fill="var(--cherry-red)" stroke="var(--retro-dark)" stroke-width="2"/>
+                        <!-- 빨대 -->
+                        <line x1="160" y1="110" x2="185" y2="60" stroke="var(--custard-cream)" stroke-width="5" stroke-linecap="round" />
+                    </svg>
+                `;
+            }
+            // NOVEL 01 (유성 라디오 - 밤바람의 주파수)
+            if (svgId === 'svg-novel-01') {
+                return `
+                    <svg viewBox="0 0 400 300" class="viewer-svg" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="100%" height="100%" fill="var(--retro-dark)" />
+                        <!-- 카세트 라디오 오프닝 아트워크 -->
+                        <rect x="140" y="40" width="120" height="90" rx="6" fill="var(--bg-vanilla)" stroke="var(--melon-soda)" stroke-width="4" />
+                        <circle cx="170" cy="85" r="18" fill="var(--cherry-red)" />
+                        <circle cx="230" cy="85" r="18" fill="var(--cherry-red)" />
+                        <!-- 자막 박스 및 소설 구절 -->
+                        <rect x="20" y="160" width="360" height="110" rx="8" fill="var(--bg-vanilla)" stroke="var(--retro-dark)" stroke-width="4" />
+                        <text x="40" y="200" font-family="'Outfit', 'Noto Sans KR'" font-size="11" font-weight="bold" fill="var(--retro-dark)">"라디오 볼륨을 높이자 새벽 주파수 너머로,"</text>
+                        <text x="40" y="228" font-family="'Outfit', 'Noto Sans KR'" font-size="11" font-weight="bold" fill="var(--melon-deep)">"그리운 그 시절의 신디사이저가 쏟아져 내렸다."</text>
+                    </svg>
+                `;
+            }
+            // NOVEL 02 (자정의 크루즈 윙)
+            if (svgId === 'svg-novel-02') {
+                return `
+                    <svg viewBox="0 0 400 300" class="viewer-svg" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="100%" height="100%" fill="var(--bg-vanilla)" />
+                        <!-- 네온 하트 시티 엠블럼 -->
+                        <g transform="translate(150, 40)" class="playing-star">
+                            <path d="M 50,25 C 50,25 35,0 15,0 C -5,0 0,25 15,45 L 50,85 L 85,45 C 100,25 105,0 85,0 C 65,0 50,25 50,25 Z" fill="var(--cherry-red)" stroke="var(--retro-dark)" stroke-width="4" />
+                        </g>
+                        <!-- 자막 텍스트 박스 -->
+                        <rect x="20" y="160" width="360" height="110" rx="8" fill="var(--retro-dark)" stroke="var(--melon-soda)" stroke-width="4" />
+                        <text x="40" y="200" font-family="'Outfit', 'Noto Sans KR'" font-size="11" font-weight="bold" fill="var(--custard-cream)">"터미널의 불빛들이 바다 너머로 부서질 때,"</text>
+                        <text x="40" y="228" font-family="'Outfit', 'Noto Sans KR'" font-size="11" font-weight="bold" fill="var(--cherry-red)">"이 밤이 영원히 끝나지 않을 폭주가 시작되었다."</text>
+                    </svg>
+                `;
+            }
+            return '';
+        }
 
-        // 보드 리셋
-        function clearGrid() {
-            document.querySelectorAll('.pixel').forEach(pixel => {
-                pixel.style.backgroundColor = '#ffffff';
-                pixel.style.borderColor = '#f2f2f2';
-            });
-            playRetroSound('laser');
+        // 7. 모달 팝업 닫기
+        function closePreviewExplorer(event) {
+            if (event === null || event.target === document.getElementById('viewerOverlay') || event.target.tagName === 'BUTTON') {
+                isMediaPlaying = false; 
+                playSfx('close'); 
+                document.getElementById('viewerOverlay').classList.remove('active');
+            }
         }
     </script>
 </body>
