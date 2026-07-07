@@ -1,181 +1,81 @@
-<!-- ... existing code ... -->
-        function clickMascot(msg) {
-            playSfx('click'); const bubble = document.getElementById('mascotBubble');
-            bubble.innerText = typeof msg === 'string' ? msg : "오늘도 멋진 하루 보내세요! ✨";
-            bubble.classList.add('active'); setTimeout(() => { bubble.classList.remove('active'); }, 4000);
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KIMGACKCHI - Melon Soda & Pixel Desktop</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&family=Outfit:wght@400;700;900&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-vanilla: #FFFDF0;       
+            --melon-soda: #7BEDC3;       
+            --melon-deep: #4ECB9B;       
+            --custard-cream: #FFEAA7;    
+            --cherry-red: #FF6B8B;       
+            --cream-light: #FFF9E6;      
+            --retro-dark: #2F3640;       
+            --border-width: 4px;
         }
 
-        // =========================================================
-        // 데이터 연결: 개인 작업 폴더 내용물 수정 및 이미지 호스팅 링크 반영
-        // =========================================================
-        const portfolioData = {
-            'SPRING_SNOW.DIR': [
-                {
-                    id: 'spring_00',
-                    title: '0. 작품소개',
-                    tag: 'POSTER',
-                    desc: '그해 4월에는 봄눈이 온다 공식 웹 포스터입니다.',
-                    // 📌 각치님이 호스팅 사이트에서 따온 직접 주소로 변경 완료!
-                    realUrl: 'https://i.ifh.cc/rhNGoC.jpg'
-                },
-                {
-                    id: 'spring_01',
-                    title: '1. 팝업 동영상',
-                    tag: 'VIDEO / GDRIVE',
-                    desc: '1분 데모 재생 구글 드라이브 연동 영상입니다. 돋보기를 누르면 영상이 재생됩니다.',
-                    iframeUrl: 'https://drive.google.com/file/d/1aYqmRsZ0EymwSAPFzTW7v5kw4m7C3QMr/preview',
-                    limitPlayTime: 60000
-                },
-                {
-                    id: 'spring_02',
-                    title: '2. 키비주얼',
-                    tag: 'GALLERY',
-                    desc: '돋보기를 클릭하시면 4장의 사진을 스크롤하며 모두 감상하실 수 있습니다.',
-                    realUrls: [
-                        './image (12).jpg',
-                        './untitled5.jpg',
-                        './시연.jpg',
-                        './image (19).jpg'
-                    ]
-                },
-                {
-                    id: 'april_02',
-                    title: '3. 스토리보드',
-                    tag: 'STORYBOARD',
-                    desc: '그해 4월에는 봄눈이 온다 프로젝트의 초기 기획 스토리보드 스케치본입니다.',
-                    realUrl: '', 
-                    svgId: 'svg-illust-01' 
-                },
-                {
-                    id: 'april_03',
-                    title: '4. 모델링',
-                    tag: '3D MODELING',
-                    desc: '프로젝트에 사용된 주요 에셋의 3D 모델링 렌더링 샷입니다.',
-                    realUrl: '',
-                    svgId: 'svg-3d-01'
-                }
-            ],
-            'REVENGE_SUN': [ // 2. 복수의 태양은 저물지 않는다
-                {
-                    id: 'revenge_00',
-                    title: '0. 작품소개',
-                    tag: 'INTRODUCTION',
-                    desc: '복수의 태양은 저물지 않는다 프로젝트의 시놉시스와 메인 컨셉 아트입니다.',
-                    realUrl: '', 
-                    svgId: 'svg-anime-01'
-                },
-                {
-                    id: 'revenge_01',
-                    title: '1. 프로젝트 타이틀 시퀀스',
-                    tag: 'MOTION GRAPHICS',
-                    desc: '복수의 태양은 저물지 않는다 프로젝트의 메인 모션그래픽입니다.',
-                    realUrl: '', 
-                    playable: true,
-                    svgId: 'svg-motion-01'
-                },
-                {
-                    id: 'revenge_02',
-                    title: '2. 메인 캐릭터 모델링',
-                    tag: '3D MODELING',
-                    desc: '작품에 등장하는 주요 인물의 3D 캐릭터 모델링입니다.',
-                    realUrl: '', 
-                    svgId: 'svg-3d-02'
-                }
-            ],
-            'PERSONAL_WORK': [ // 3. 개인 작업 (모션그래픽 3종)
-                {
-                    id: 'personal_01',
-                    title: '1. 시카고 모션그래픽',
-                    tag: 'VIDEO / GDRIVE',
-                    desc: '시카고 테마의 모션그래픽 영상입니다. 돋보기를 누르면 1분 데모가 재생됩니다.',
-                    iframeUrl: 'https://drive.google.com/file/d/1cZ9fVWJn0FHuTWTbsN822L2eRKuduDPW/preview',
-                    limitPlayTime: 60000
-                },
-                {
-                    id: 'personal_02',
-                    title: '2. 컴퓨터 모션그래픽',
-                    tag: 'VIDEO / GDRIVE',
-                    desc: '컴퓨터 테마의 모션그래픽 영상입니다. 돋보기를 누르면 1분 데모가 재생됩니다.',
-                    iframeUrl: 'https://drive.google.com/file/d/10G8YbrfrAzfGK-eRW2MYtUJjKw1fnrZW/preview',
-                    limitPlayTime: 60000
-                },
-                {
-                    id: 'personal_03',
-                    title: '3. 콜라쥬 모션그래픽',
-                    tag: 'MOTION GRAPHICS',
-                    desc: '다양한 빈티지 질감과 잡지 스크랩 요소를 믹스매치하여 리듬감 있게 표현한 콜라주 모션입니다.',
-                    realUrl: '',
-                    playable: true,
-                    svgId: 'svg-anime-01'
-                }
-            ]
-        };
-
-        let currentCategory = ''; let currentItemIndex = 0; let isMediaPlaying = false;
-<!-- ... existing code ... -->
-        function selectExplorerItem(index) {
-            currentItemIndex = index; isMediaPlaying = false; 
-            const listItems = document.querySelectorAll('.explorer-item');
-            listItems.forEach((li, i) => { if (i === index) li.classList.add('active'); else li.classList.remove('active'); });
-
-            const items = portfolioData[currentCategory] || []; const item = items[index]; if (!item) return;
-
-            document.getElementById('viewerTitle').innerText = item.title;
-            document.getElementById('viewerTag').innerText = item.tag;
-            document.getElementById('viewerDesc').innerText = item.desc;
-
-            const imgContainer = document.getElementById('viewerImgContainer'); 
-            
-            // 기존에 부여된 링크 모드 클래스 초기화
-            imgContainer.classList.remove('link-mode');
-            imgContainer.innerHTML = '';
-
-            // 📌 1. 구글 드라이브 비디오 연결 시 안내 뷰어 UI
-            if (item.iframeUrl) {
-                imgContainer.innerHTML = `
-                    <div style="width:100%; height:100%; display:flex; flex-direction:column; justify-content:center; align-items:center; background:var(--retro-dark); color:var(--custard-cream); font-family:'Noto Sans KR', sans-serif; font-weight:bold; padding:20px; text-align:center;">
-                        <i class="fa-brands fa-google-drive" style="font-size:2rem; margin-bottom:10px;"></i>
-                        <p>클릭하여 대형 뷰어를 열고 영상을 재생하세요.</p>
-                    </div>
-                `;
-            } 
-            // 2. 다중 이미지(갤러리) 미리보기
-            else if (item.imgUrls && item.imgUrls.length > 0) {
-                imgContainer.innerHTML = `<img src="${item.imgUrls[0]}" alt="${item.title}" class="viewer-img"><div style="position:absolute; top:8px; right:8px; background:var(--retro-dark); color:var(--custard-cream); padding:4px 8px; font-family:'Press Start 2P', monospace; font-size:0.5rem; border-radius:4px; font-weight:bold; box-shadow: 2px 2px 0px var(--melon-deep);">+${item.imgUrls.length} PICS</div>`;
-            } 
-            // 3. 단일 원본 이미지
-            else if (item.realUrl) {
-                if (item.realUrl.endsWith('.mp4')) {
-                    imgContainer.innerHTML = `<video src="${item.realUrl}" class="viewer-img" controls loop></video>`;
-                } else { 
-                    imgContainer.innerHTML = `<img src="${item.realUrl}" alt="${item.title}" class="viewer-img">`; 
-                }
-            } 
-            // 4. 그 외 가상 일러스트(SVG)
-            else {
-                let mediaHtml = renderVirtualSVG(item.svgId); imgContainer.innerHTML = mediaHtml;
-
-                if (item.playable) {
-                    const controlBar = document.createElement('div'); controlBar.className = 'media-controls-bar';
-                    controlBar.innerHTML = `<div class="media-status"><i class="fa-solid fa-compact-disc" id="discIcon" style="font-size: 14px; color: var(--melon-deep)"></i><span id="playingStateLabel">STOPPED</span></div><button class="media-btn" id="playBtn" onclick="playSfx('play'); toggleMediaPlayback()">PLAY ▶</button>`;
-                    imgContainer.appendChild(controlBar);
-                }
-            }
+        * {
+            box-sizing: border-box; margin: 0; padding: 0; user-select: none;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%23FF6B8B" shape-rendering="crispEdges"><rect x="2" y="2" width="4" height="4" fill="%237BEDC3"/><rect x="6" y="6" width="4" height="4" fill="%237BEDC3"/><rect x="10" y="10" width="4" height="4" fill="white"/><rect x="14" y="14" width="4" height="4" fill="white"/><rect x="3" y="3" width="2" height="2"/><rect x="7" y="7" width="2" height="2"/><rect x="11" y="11" width="2" height="2"/><rect x="15" y="15" width="2" height="2"/></svg>'), auto;
         }
 
-        function toggleMediaPlayback() {
-<!-- ... existing code ... -->
-                if (animeRoad) animeRoad.classList.remove('playing-drive');
-            }
+        body {
+            background-color: var(--bg-vanilla);
+            background-image: linear-gradient(rgba(123, 237, 195, 0.15) 2px, transparent 2px), linear-gradient(90deg, rgba(123, 237, 195, 0.15) 2px, transparent 2px);
+            background-size: 32px 32px;
+            font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+            color: var(--retro-dark);
+            height: 100vh; width: 100vw; overflow: hidden; position: relative; display: flex; flex-direction: column;
         }
 
-        // 📌 공통 클릭 핸들러: 돋보기(확대) 팝업 오픈
-        function handleContainerClick(event) {
-            if (event.target.closest('.media-controls-bar') || event.target.closest('.media-btn')) return;
-            playSfx('open'); 
-            openLightbox();
+        .crt-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(47, 54, 64, 0) 50%, rgba(123, 237, 195, 0.08) 50%); background-size: 100% 4px;
+            z-index: 9999; pointer-events: none; opacity: 0.9; transition: opacity 0.3s;
+        }
+        .crt-overlay.disabled { opacity: 0; }
+
+        .desktop-area {
+            flex: 1; position: relative; padding: 40px; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; align-content: center; align-items: center; gap: 28px; z-index: 10;
+        }
+        @media (max-width: 768px) { .desktop-area { flex-direction: row; justify-content: center; align-content: center; padding: 16px; gap: 16px; } }
+
+        .desktop-icon {
+            display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; width: 130px; height: 130px;
+            border-radius: 12px; border: 3px solid transparent; transition: all 0.15s ease; cursor: pointer; background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(2px); box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+        }
+        .desktop-icon:hover { background: var(--custard-cream); border-color: var(--melon-deep); transform: translateY(-4px); box-shadow: 4px 8px 0px rgba(78, 203, 155, 0.25); }
+        .desktop-icon:active { background: var(--melon-soda); border-color: var(--retro-dark); transform: translateY(1px); box-shadow: 0px 0px 0px transparent; }
+
+        .pixel-icon-svg { width: 56px; height: 56px; image-rendering: pixelated; filter: drop-shadow(3px 3px 0px rgba(47, 54, 64, 0.2)); margin-bottom: 8px; transition: transform 0.2s; }
+        .desktop-icon:hover .pixel-icon-svg { transform: scale(1.1) rotate(4deg); }
+
+        .desktop-icon-label {
+            font-family: 'Noto Sans KR', sans-serif; font-weight: 900; font-size: 0.75rem; color: var(--retro-dark);
+            background-color: var(--bg-vanilla); padding: 4px 8px; border: 2px solid var(--retro-dark); border-radius: 6px;
+            box-shadow: 2px 2px 0px var(--melon-deep); max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
         }
 
-        function openLightbox() {
-            const item = portfolioData[currentCategory][currentItemIndex]; if (!item) return;
-<!-- ... existing code ... -->
+        .window {
+            background-color: var(--bg-vanilla); border: var(--border-width) solid var(--retro-dark); box-shadow: 8px 8px 0px var(--melon-deep); position: absolute; z-index: 50; display: flex; flex-direction: column; overflow: hidden; border-radius: 12px; transition: opacity 0.2s, transform 0.1s;
+        }
+        .window-header {
+            background: repeating-linear-gradient(45deg, var(--melon-soda), var(--melon-soda) 10px, var(--melon-deep) 10px, var(--melon-deep) 20px); color: var(--retro-dark); border-bottom: var(--border-width) solid var(--retro-dark); padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; cursor: move;
+        }
+        .window-title { font-family: 'Press Start 2P', monospace; font-size: 0.65rem; color: var(--retro-dark); text-shadow: 1px 1px 0px var(--bg-vanilla); display: flex; align-items: center; gap: 8px; }
+        .window-controls { display: flex; gap: 6px; }
+        .win-ctrl {
+            width: 22px; height: 22px; background: var(--custard-cream); border: 2px solid var(--retro-dark); box-shadow: 2px 2px 0px var(--cherry-red); display: flex; justify-content: center; align-items: center; font-size: 11px; font-weight: bold; color: var(--retro-dark); cursor: pointer; border-radius: 4px;
+        }
+        .win-ctrl:active { transform: translate(1px, 1px); box-shadow: 0px 0px 0px transparent; }
+
+        .profile-window { width: 100%; max-width: 480px; left: 50%; top: 50%; transform: translate(-50%, -50%); border-color: var(--retro-dark); box-shadow: 10px 10px 0px var(--custard-cream); }
+        .profile-content { padding: 24px; display: flex; flex-direction: column; gap: 16px; background: rgba(255, 255, 255, 0.75); }
+        .profile-top { display: flex; gap: 18px; align-items: center; }
+        .avatar-box {
+            border: var(--border-width) solid var(--retro-dark); background: var(--custard-cream); width: 95px; height: 95px; box-shadow: 5px 5px 0px var(--
