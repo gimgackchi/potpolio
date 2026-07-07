@@ -947,7 +947,7 @@
                 </div>
                 <div class="window-controls"><div class="win-ctrl" onclick="closeLightbox(null)">X</div></div>
             </div>
-            <div class="window-body" id="lightboxBody" style="background: var(--retro-dark); display: flex; justify-content: center; align-items: center; padding: 20px; overflow: hidden; min-height: 280px; max-height: 70vh;">
+            <div class="window-body" id="lightboxBody" style="background: var(--retro-dark); display: flex; justify-content: center; align-items: center; padding: 20px; overflow-y: auto; overflow-x: hidden; min-height: 280px; max-height: 70vh;">
                 <!-- 이미지/동영상/구글드라이브 iframe 영역 -->
             </div>
         </div>
@@ -1075,6 +1075,13 @@
         const portfolioData = {
             'APRIL_SNOW': [ // 1. 그해 4월에는 봄눈이 온다
                 {
+                    id: 'april_00',
+                    title: '0. 작품소개',
+                    tag: 'INTRODUCTION',
+                    desc: '그해 4월에는 봄눈이 온다 프로젝트의 공식 포스터 및 개요입니다.',
+                    realUrl: '그4봄웹용포스터_최종.jpg'
+                },
+                {
                     id: 'april_01',
                     title: '1. 팝업 동영상',
                     tag: 'VIDEO / GDRIVE',
@@ -1086,9 +1093,13 @@
                     id: 'april_keyvisual',
                     title: '2. 키비주얼',
                     tag: 'KEY VISUAL',
-                    desc: '그해 4월에는 봄눈이 온다 프로젝트의 메인 키비주얼 아트워크입니다. 프로젝트의 전반적인 분위기와 테마를 담고 있습니다.',
-                    realUrl: '', 
-                    svgId: 'svg-anime-01' 
+                    desc: '작품의 핵심적인 분위기와 다양한 시점을 담아낸 키비주얼 이미지 갤러리입니다. 돋보기를 클릭해 원본 크기로 열어 여러 장의 사진을 스크롤하며 감상하세요!',
+                    imgUrls: [
+                        'image (12).jpg',
+                        'untitled5.jpg',
+                        '시연.jpg',
+                        'image (19).jpg'
+                    ]
                 },
                 {
                     id: 'april_02',
@@ -1109,8 +1120,16 @@
             ],
             'REVENGE_SUN': [ // 2. 복수의 태양은 저물지 않는다
                 {
+                    id: 'revenge_00',
+                    title: '0. 작품소개',
+                    tag: 'INTRODUCTION',
+                    desc: '복수의 태양은 저물지 않는다 프로젝트의 시놉시스와 메인 컨셉 아트입니다.',
+                    realUrl: '', 
+                    svgId: 'svg-anime-01'
+                },
+                {
                     id: 'revenge_01',
-                    title: '프로젝트 타이틀 시퀀스',
+                    title: '1. 프로젝트 타이틀 시퀀스',
                     tag: 'MOTION GRAPHICS',
                     desc: '복수의 태양은 저물지 않는다 프로젝트의 메인 모션그래픽입니다.',
                     realUrl: '', 
@@ -1119,7 +1138,7 @@
                 },
                 {
                     id: 'revenge_02',
-                    title: '메인 캐릭터 모델링',
+                    title: '2. 메인 캐릭터 모델링',
                     tag: '3D MODELING',
                     desc: '작품에 등장하는 주요 인물의 3D 캐릭터 모델링입니다.',
                     realUrl: '', 
@@ -1202,8 +1221,9 @@
                 if (item.tag.includes('MOTION')) iconHtml = '<i class="fa-solid fa-circle-nodes"></i>';
                 if (item.tag.includes('ANIMATION')) iconHtml = '<i class="fa-solid fa-film"></i>';
                 if (item.tag.includes('KEY VISUAL')) iconHtml = '<i class="fa-solid fa-image"></i>';
+                if (item.tag.includes('INTRODUCTION')) iconHtml = '<i class="fa-solid fa-book-open"></i>';
 
-                li.innerHTML = `${iconHtml} <span style="font-size: 0.75rem;">${item.title.split(' ')[0]}..</span>`; // 긴 제목 처리
+                li.innerHTML = `${iconHtml} <span style="font-size: 0.75rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px;">${item.title}</span>`;
                 listContainer.appendChild(li);
             });
         }
@@ -1220,6 +1240,12 @@
             document.getElementById('viewerDesc').innerText = item.desc;
 
             const imgContainer = document.getElementById('viewerImgContainer'); imgContainer.innerHTML = '';
+
+            // 여러 장의 이미지가 있는 갤러리 팩 (키비주얼용)
+            if (item.imgUrls && item.imgUrls.length > 0) {
+                imgContainer.innerHTML = `<img src="${item.imgUrls[0]}" alt="${item.title}" class="viewer-img"><div style="position:absolute; top:8px; right:8px; background:var(--retro-dark); color:var(--custard-cream); padding:4px 8px; font-family:'Press Start 2P', monospace; font-size:0.5rem; border-radius:4px; font-weight:bold; box-shadow: 2px 2px 0px var(--melon-deep);">+${item.imgUrls.length} PICS</div>`;
+                return;
+            }
 
             // 탐색기 소형 뷰어에서는 iframe이 로드되지 않도록 안내 메시지 표시
             if (item.iframeUrl) {
@@ -1270,6 +1296,7 @@
 
             // 구글 드라이브 iframe 대형 뷰어 렌더링 및 1분 타이머 작동
             if (item.iframeUrl) {
+                lightboxBody.style.flexDirection = 'row'; lightboxBody.style.justifyContent = 'center';
                 lightboxBody.innerHTML = `<iframe src="${item.iframeUrl}" style="width: 100%; height: 65vh; border: var(--border-width) solid var(--bg-vanilla); border-radius: 8px;" allow="autoplay" allowfullscreen></iframe>`;
                 
                 // 1분(60초) 재생 리미트 타이머 세팅
@@ -1281,13 +1308,19 @@
                         clickMascot("⏰ 1분 재생 시간이 종료되었습니다!"); // 알림 발생
                     }, item.limitPlayTime);
                 }
+            } else if (item.imgUrls) {
+                // 여러 장의 사진을 세로로 스크롤하며 볼 수 있는 모드
+                lightboxBody.style.flexDirection = 'column'; lightboxBody.style.justifyContent = 'flex-start';
+                lightboxBody.innerHTML = item.imgUrls.map((url, i) => `<img src="${url}" style="max-width: 100%; height: auto; object-fit: contain; border: var(--border-width) solid var(--retro-dark); border-radius: 8px; margin-bottom: 24px; box-shadow: 4px 4px 0px var(--custard-cream);" alt="${item.title} ${i+1}" />`).join('');
             } else if (item.realUrl) {
+                lightboxBody.style.flexDirection = 'row'; lightboxBody.style.justifyContent = 'center';
                 if (item.realUrl.endsWith('.mp4')) {
                     lightboxBody.innerHTML = `<video src="${item.realUrl}" style="max-width: 100%; max-height: 60vh; object-fit: contain; border: var(--border-width) solid var(--retro-dark); border-radius: 8px;" controls autoplay loop></video>`;
                 } else {
                     lightboxBody.innerHTML = `<img src="${item.realUrl}" style="max-width: 100%; max-height: 60vh; object-fit: contain; border: var(--border-width) solid var(--retro-dark); border-radius: 8px;" alt="${item.title}" />`;
                 }
             } else {
+                lightboxBody.style.flexDirection = 'row'; lightboxBody.style.justifyContent = 'center';
                 let mediaHtml = renderVirtualSVG(item.svgId);
                 lightboxBody.innerHTML = `<div style="width: 100%; max-width: 580px; aspect-ratio: 4/3; background: var(--bg-vanilla); border: var(--border-width) solid var(--retro-dark); border-radius: 12px; overflow: hidden; display: flex; align-items: center; justify-content: center; box-shadow: 6px 6px 0px var(--custard-cream);">${mediaHtml}</div>`;
                 if (isMediaPlaying) {
