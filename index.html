@@ -3,533 +3,381 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KIMGACKCHI - Analog & Little Forest</title>
-    <!-- 아날로그, 유화, 80년대 감성을 위한 폰트 설정 (고운 돋움, 노토 세리프) -->
-    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Noto+Serif+KR:wght@400;600;900&family=Outfit:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>KIMGACKCHI - 1980 Vintage Archive</title>
+    <!-- 일본 빈티지, 타이프라이터, 손글씨 감성을 위한 폰트 -->
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Serif+KR:wght@400;600;900&family=Special+Elite&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
-        /* ==========================================
-           1. Analog & Little Forest Color Palette
-           ========================================== */
         :root {
-            --bg-paper: #F2EFE9;         /* 빛바랜 캔버스/종이 질감의 웜 화이트 */
-            --wood-dark: #4A3C31;        /* 깊고 따뜻한 고목나무 브라운 */
-            --wood-light: #C2B28F;       /* 부드러운 베이지/카키 브라운 */
-            --forest-green: #6B705C;     /* 차분하고 빛바랜 올리브 숲 색 */
-            --sunlight: #D4A373;         /* 따뜻한 늦은 오후의 노을빛 오렌지 */
-            --faded-blue: #A5B4B6;       /* 80년대 필름 사진 속 탁한 하늘색 */
-            --border-width: 2px;         /* 얇고 정갈한 선 */
+            --bg-paper: #E6E2D6;      /* 낡은 종이/벽지 색상 */
+            --folder-manila: #D1BFAe; /* 마닐라 파일철 색상 */
+            --folder-dark: #A89B8C;
+            --ink-black: #2C2C2A;     /* 빛바랜 먹물색 */
+            --ink-red: #A33A36;       /* 도장 잉크 빨간색 */
+            --tape-color: rgba(220, 214, 192, 0.6); /* 반투명 마스킹 테이프 */
+            --memo-yellow: #F4EFC6;   /* 포스트잇/누런 메모지 */
+            --border-thin: 1px solid #999;
         }
 
-        * {
-            box-sizing: border-box; margin: 0; padding: 0; user-select: none;
-            cursor: auto; /* 아날로그 감성에 맞춰 기본 커서로 복구 (원하시면 변경 가능) */
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
 
         body {
             background-color: var(--bg-paper);
-            font-family: 'Gowun Dodum', 'Noto Serif KR', serif;
-            color: var(--wood-dark);
-            height: 100vh; width: 100vw; overflow: hidden; position: relative; display: flex; flex-direction: column;
+            /* 거친 종이 질감 패턴 (CSS 그라디언트 활용) */
+            background-image: 
+                radial-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
+                radial-gradient(rgba(0,0,0,0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            font-family: 'Noto Serif KR', serif;
+            color: var(--ink-black);
+            height: 100vh; width: 100vw; overflow: hidden; position: relative;
+            display: flex; flex-direction: column;
         }
 
-        /* 🎞️ 아날로그 필름 노이즈(Grain) 텍스처 효과 */
-        .noise-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            opacity: 0.06;
-            z-index: 9999; pointer-events: none;
+        /* 책상 위 널브러진 레이아웃 */
+        .desk-area {
+            flex: 1; position: relative; padding: 40px; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; align-content: center; align-items: center; gap: 60px; z-index: 10;
         }
+        @media (max-width: 768px) { .desk-area { gap: 30px; padding: 20px; flex-direction: column; flex-wrap: nowrap; overflow-y: auto; align-content: flex-start; } }
 
-        .desktop-area {
-            flex: 1; position: relative; padding: 40px; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; align-content: center; align-items: center; gap: 40px; z-index: 10;
+        /* 서류철(마닐라 폴더) 디자인 */
+        .file-folder {
+            position: relative; width: 220px; height: 280px; cursor: pointer; transition: transform 0.3s ease;
         }
-        @media (max-width: 768px) { .desktop-area { gap: 20px; padding: 20px; } }
-
-        /* 폴더 아이콘 스타일링 (도장, 우표 같은 느낌) */
-        .desktop-icon {
-            display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; width: 140px; height: 150px;
-            border-radius: 4px; transition: all 0.3s ease; cursor: pointer; background: transparent;
-        }
-        .desktop-icon:hover { 
-            background: rgba(194, 178, 143, 0.15); 
-            transform: translateY(-5px); 
-        }
-        .desktop-icon:active { transform: translateY(0px); }
-
-        .pixel-icon-svg { 
-            width: 64px; height: 64px; 
-            filter: drop-shadow(2px 4px 6px rgba(74, 60, 49, 0.15)); 
-            margin-bottom: 12px; transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); 
-        }
-        .desktop-icon:hover .pixel-icon-svg { transform: scale(1.05) rotate(2deg); }
-
-        .desktop-icon-label {
-            font-family: 'Gowun Dodum', serif; font-weight: 600; font-size: 0.85rem; color: var(--wood-dark);
-            background-color: rgba(255, 255, 255, 0.6); padding: 6px 10px; border: 1px solid var(--wood-light); border-radius: 2px;
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.05); max-width: 130px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-        }
-
-        /* 윈도우 UI (클래식하고 아날로그적인 액자 느낌) */
-        .window {
-            background-color: var(--bg-paper); border: 1px solid var(--wood-dark); 
-            box-shadow: 4px 6px 20px rgba(74, 60, 49, 0.15); 
-            position: absolute; z-index: 50; display: flex; flex-direction: column; overflow: hidden; border-radius: 4px; transition: opacity 0.3s, transform 0.2s;
-        }
-        .window-header {
-            background: var(--wood-light); color: var(--wood-dark); border-bottom: 1px solid var(--wood-dark); padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; cursor: move;
-        }
-        .window-title { font-family: 'Outfit', 'Noto Serif KR', serif; font-weight: 600; font-size: 0.8rem; color: var(--wood-dark); display: flex; align-items: center; gap: 8px; letter-spacing: 0.5px; }
-        .window-controls { display: flex; gap: 8px; }
-        .win-ctrl {
-            width: 14px; height: 14px; background: var(--bg-paper); border: 1px solid var(--wood-dark); border-radius: 50%;
-            display: flex; justify-content: center; align-items: center; cursor: pointer; transition: background 0.2s;
-        }
-        .win-ctrl:hover { background: var(--sunlight); }
-
-        .profile-window { width: 100%; max-width: 520px; left: 50%; top: 50%; transform: translate(-50%, -50%); }
-        .profile-content { padding: 30px; display: flex; flex-direction: column; gap: 20px; background: rgba(255, 255, 255, 0.5); }
-        .profile-top { display: flex; gap: 24px; align-items: center; }
-        .avatar-box {
-            border: 2px solid var(--wood-dark); background: var(--wood-light); width: 100px; height: 100px; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
-        }
-        .brand-name { font-family: 'Noto Serif KR', serif; font-weight: 900; font-size: 2rem; color: var(--wood-dark); letter-spacing: -0.5px; line-height: 1.2; }
-        .brand-name span { color: var(--forest-green); }
-        .brand-sub { font-family: 'Outfit', sans-serif; font-size: 1.1rem; color: var(--sunlight); margin-top: 4px; font-weight: 500; letter-spacing: 1px; }
-        .brand-desc { font-size: 0.95rem; line-height: 1.8; color: #5a4f45; font-weight: 400; }
-        .contact-group { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 10px; }
-        .contact-link { 
-            display: inline-flex; align-items: center; gap: 8px; text-decoration: none; color: var(--wood-dark); 
-            font-family: 'Outfit', sans-serif; font-weight: 500; font-size: 0.8rem; border: 1px solid var(--wood-dark); padding: 8px 16px; border-radius: 30px; transition: all 0.2s; 
-        }
-        .contact-link:hover { background: var(--wood-dark); color: var(--bg-paper); }
-
-        /* 뷰어 오버레이 및 창 */
-        .viewer-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(74, 60, 49, 0.6); backdrop-filter: blur(5px); z-index: 1000; display: flex; justify-content: center; align-items: center; padding: 20px; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
-        }
-        .viewer-overlay.active { opacity: 1; pointer-events: auto; }
-        .viewer-window { width: 95%; max-width: 860px; height: 85vh; max-height: 650px; transform: scale(0.98); transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); border-radius: 8px; }
-        .viewer-overlay.active .viewer-window { transform: scale(1); }
-        .viewer-body { display: flex; flex: 1; overflow: hidden; background: #FAF8F5; }
-        @media (max-width: 768px) { .viewer-body { flex-direction: column; } }
-
-        .explorer-sidebar { width: 240px; background-color: #F4EFE6; border-right: 1px solid var(--wood-light); display: flex; flex-direction: column; overflow-y: auto; }
-        @media (max-width: 768px) { .explorer-sidebar { width: 100%; height: 150px; border-right: none; border-bottom: 1px solid var(--wood-light); } }
-        .explorer-header { padding: 12px 16px; background: rgba(194, 178, 143, 0.3); border-bottom: 1px solid var(--wood-light); font-family: 'Outfit', sans-serif; font-size: 0.75rem; font-weight: bold; color: var(--wood-dark); display: flex; align-items: center; gap: 8px; letter-spacing: 1px; }
-        .explorer-list { list-style: none; padding: 8px; }
-        .explorer-item { padding: 10px 14px; margin: 4px; border-radius: 4px; display: flex; align-items: center; gap: 12px; cursor: pointer; font-size: 0.9rem; color: var(--wood-dark); transition: background 0.2s; }
-        .explorer-item:hover { background: rgba(212, 163, 115, 0.15); }
-        .explorer-item.active { background: rgba(107, 112, 92, 0.15); font-weight: bold; color: var(--forest-green); border-left: 3px solid var(--forest-green); border-radius: 0 4px 4px 0; }
-
-        .preview-panel { flex: 1; padding: 30px; display: flex; flex-direction: column; overflow-y: auto; align-items: center; }
+        .file-folder:hover { transform: scale(1.05) translateY(-10px); z-index: 20; }
         
-        .viewer-img-container {
-            width: 100%; min-height: 280px; background: #fff; border: 1px solid var(--wood-light); box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 24px; border-radius: 4px; display: flex; justify-content: center; align-items: center; overflow: hidden; position: relative; cursor: zoom-in; padding: 8px;
+        /* 폴더 탭 (인덱스) */
+        .folder-tab {
+            position: absolute; top: -25px; left: 10px; background: var(--folder-manila); padding: 5px 15px; border-radius: 8px 8px 0 0; font-family: 'Special Elite', monospace; font-size: 0.8rem; font-weight: bold; border: var(--border-thin); border-bottom: none; box-shadow: 2px -2px 5px rgba(0,0,0,0.05); z-index: 1;
         }
         
-        .viewer-img-container::after {
-            content: 'CLICK TO ZOOM'; position: absolute; bottom: 12px; right: 12px; background: rgba(255,255,255,0.85); color: var(--wood-dark); font-family: 'Outfit', sans-serif; font-size: 0.65rem; padding: 6px 12px; border-radius: 20px; border: 1px solid var(--wood-light); opacity: 0; transition: opacity 0.3s ease; pointer-events: none; font-weight: bold; backdrop-filter: blur(4px);
+        /* 폴더 몸통 */
+        .folder-body {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--folder-manila); border: var(--border-thin); border-radius: 4px; box-shadow: 5px 10px 15px rgba(0,0,0,0.1); padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 2;
+            background-image: repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(0,0,0,0.03) 20px); /* 줄노트 질감 */
         }
-        .viewer-img-container:hover::after { opacity: 1; }
-
-        /* 🌟 4분할 그리드 뷰어 스타일 */
-        .grid-4-split {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: repeat(2, 1fr);
-            gap: 8px;
-            width: 100%;
-            height: 100%;
-            min-height: 280px;
-        }
-        .grid-item {
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            border-radius: 2px;
-            transition: transform 0.3s;
-        }
-        .grid-item:hover { transform: scale(1.02); z-index: 2; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
-
-        .viewer-svg, .viewer-img { width: 100%; height: 100%; object-fit: contain; }
-
-        .viewer-title { font-family: 'Noto Serif KR', serif; font-weight: 900; font-size: 1.5rem; margin-bottom: 8px; color: var(--wood-dark); text-align: center; }
-        .viewer-tag { background: var(--bg-paper); color: var(--forest-green); border: 1px solid var(--forest-green); padding: 4px 12px; font-family: 'Outfit', sans-serif; font-size: 0.65rem; margin-bottom: 12px; border-radius: 20px; font-weight: 600; letter-spacing: 1px;}
-        .viewer-desc { font-size: 0.95rem; color: #5a4f45; line-height: 1.7; text-align: center; margin-bottom: 24px; padding: 0 10px; font-family: 'Gowun Dodum', serif;}
         
-        .retro-btn { background: var(--bg-paper); color: var(--wood-dark); border: 1px solid var(--wood-dark); padding: 10px 24px; font-family: 'Outfit', sans-serif; font-size: 0.75rem; font-weight: 600; border-radius: 30px; transition: all 0.3s; cursor: pointer; letter-spacing: 1px; }
-        .retro-btn:hover { background: var(--wood-dark); color: var(--bg-paper); }
+        /* 폴더 위 스크랩/스티커 요소 */
+        .folder-body::before {
+            content: ''; position: absolute; top: -10px; right: 20px; width: 40px; height: 15px; background: var(--tape-color); transform: rotate(15deg); box-shadow: 1px 1px 2px rgba(0,0,0,0.1); z-index: 5;
+        }
 
-        /* 대형 라이트박스 팝업 */
-        #lightboxOverlay { z-index: 2000; }
-        #lightboxWindow { width: 90%; max-width: 900px; height: auto; max-height: 90vh; border-radius: 8px; background: var(--bg-paper); }
-        #lightboxHeader { background: var(--wood-light); border-bottom: 1px solid var(--wood-dark); }
-        #lightboxBody { display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 30px; overflow-y: auto; overflow-x: hidden; min-height: 300px; max-height: 75vh; }
+        .folder-stamp {
+            position: absolute; bottom: 20px; right: 15px; color: var(--ink-red); border: 2px solid var(--ink-red); border-radius: 5px; padding: 2px 8px; font-family: 'Special Elite', monospace; font-size: 0.7rem; font-weight: bold; transform: rotate(-10deg); opacity: 0.8;
+        }
 
-        /* 하단 작업 표시줄 (클래식 우드 느낌) */
-        .taskbar { height: 50px; background: #EAE3D5; border-top: 1px solid var(--wood-light); display: flex; align-items: center; justify-content: space-between; padding: 0 20px; z-index: 999; box-shadow: 0px -2px 10px rgba(0,0,0,0.03); }
-        .taskbar-left { display: flex; gap: 12px; align-items: center; }
-        .start-btn { background: transparent; color: var(--wood-dark); border: 1px solid var(--wood-dark); padding: 6px 16px; border-radius: 20px; font-family: 'Outfit', sans-serif; font-size: 0.75rem; font-weight: bold; display: flex; align-items: center; gap: 8px; cursor: pointer; transition: all 0.2s; }
-        .start-btn:hover { background: var(--wood-dark); color: var(--bg-paper); }
-        .taskbar-right { display: flex; align-items: center; gap: 16px; }
-        .system-tray { font-family: 'Outfit', sans-serif; font-size: 0.8rem; font-weight: 500; color: var(--wood-dark); display: flex; align-items: center; gap: 8px; }
+        .folder-title {
+            font-family: 'Noto Serif KR', serif; font-weight: 900; font-size: 1.4rem; text-align: center; line-height: 1.3; color: var(--ink-black); margin-bottom: 15px; word-break: keep-all; text-shadow: 1px 1px 0px rgba(255,255,255,0.5);
+        }
 
-        /* 아날로그 테이프 뮤직 플레이어 */
-        .music-widget { width: 240px; background: #FAF8F5; border: 1px solid var(--wood-light); box-shadow: 4px 4px 15px rgba(0,0,0,0.08); border-radius: 8px; padding: 12px; position: absolute; left: 30px; bottom: 80px; z-index: 45; display: flex; flex-direction: column; gap: 10px; }
-        .music-title { font-family: 'Outfit', sans-serif; font-size: 0.65rem; color: var(--forest-green); text-align: center; font-weight: 600; letter-spacing: 1px; }
-        .tape-deck { display: flex; justify-content: center; align-items: center; gap: 20px; padding: 10px; border: 1px solid var(--wood-light); border-radius: 4px; background: rgba(0,0,0,0.02); }
-        .tape-reel { width: 30px; height: 30px; border: 2px solid var(--wood-dark); border-radius: 50%; position: relative; }
-        .tape-reel::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 10px; height: 10px; background: var(--bg-paper); border: 1px solid var(--wood-dark); border-radius: 50%; }
-        .music-controls { display: flex; justify-content: center; gap: 8px; }
-        .music-btn { background: transparent; border: 1px solid var(--wood-dark); font-family: 'Outfit', sans-serif; font-size: 0.6rem; padding: 4px 12px; cursor: pointer; border-radius: 20px; font-weight: 600; transition: all 0.2s; color: var(--wood-dark); }
-        .music-btn:hover { background: var(--wood-dark); color: white; }
+        .polaroid-deco {
+            width: 120px; height: 120px; background: white; border: 1px solid #ccc; padding: 6px 6px 20px 6px; box-shadow: 2px 4px 8px rgba(0,0,0,0.15); transform: rotate(5deg); display: flex; align-items: center; justify-content: center; overflow: hidden;
+        }
+        .polaroid-deco img { width: 100%; height: 100%; object-fit: cover; filter: sepia(0.3) contrast(1.1); }
 
-        @keyframes reelSpin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        .spin-anim { animation: reelSpin 3s linear infinite; }
+        /* 스크랩북 (뷰어 모달) */
+        .scrapbook-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(3px); z-index: 1000; display: flex; justify-content: center; align-items: center; padding: 20px; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+        }
+        .scrapbook-overlay.active { opacity: 1; pointer-events: auto; }
         
-        .mascot-bird { position: absolute; right: 40px; bottom: 70px; z-index: 40; font-size: 2.5rem; color: var(--sunlight); cursor: pointer; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1)); transition: transform 0.3s; }
-        .mascot-bird:hover { transform: scale(1.1) rotate(-5deg); }
-        .mascot-bubble { background: rgba(255,255,255,0.9); border: 1px solid var(--wood-light); padding: 10px 16px; border-radius: 20px; font-size: 0.85rem; position: relative; margin-bottom: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: center; opacity: 0; transform: translateY(10px); transition: all 0.3s; pointer-events: none; font-weight: 500; color: var(--wood-dark); }
-        .mascot-bubble.active { opacity: 1; transform: translateY(0); }
-        .mascot-bubble::after { content: ''; position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%) rotate(45deg); width: 12px; height: 12px; background: rgba(255,255,255,0.9); border-right: 1px solid var(--wood-light); border-bottom: 1px solid var(--wood-light); }
+        .scrapbook-binder {
+            width: 95%; max-width: 900px; height: 85vh; max-height: 650px; background: #DCD7C9; border-radius: 12px; box-shadow: inset 0 0 20px rgba(0,0,0,0.1), 10px 20px 30px rgba(0,0,0,0.3); display: flex; position: relative; transform: scale(0.95); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); overflow: hidden; border: 2px solid #b8b1a0;
+        }
+        .scrapbook-overlay.active .scrapbook-binder { transform: scale(1); }
+
+        /* 바인더 링 (가운데 철) */
+        .binder-rings {
+            position: absolute; left: 280px; top: 0; height: 100%; width: 30px; background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1) 50%, transparent); z-index: 50; pointer-events: none; display: flex; flex-direction: column; justify-content: space-evenly; align-items: center;
+        }
+        @media (max-width: 768px) { .binder-rings { display: none; } }
+        .ring { width: 40px; height: 12px; background: linear-gradient(0deg, #888, #ccc, #888); border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+
+        /* 좌측 인덱스 (탐색기) */
+        .scrapbook-sidebar {
+            width: 280px; background: #EAE6D9; display: flex; flex-direction: column; overflow-y: auto; padding: 20px; border-right: 1px dashed #ccc;
+        }
+        @media (max-width: 768px) { .scrapbook-sidebar { width: 100%; height: 180px; border-right: none; border-bottom: 1px dashed #ccc; padding: 10px; } }
+        
+        .archive-title { font-family: 'Special Elite', monospace; font-size: 1.1rem; border-bottom: 2px solid var(--ink-black); padding-bottom: 10px; margin-bottom: 15px; font-weight: bold; }
+        .scrap-list { list-style: none; }
+        .scrap-item {
+            padding: 12px 10px; margin-bottom: 8px; border: 1px solid transparent; cursor: pointer; font-size: 0.95rem; font-weight: 600; color: #555; position: relative; transition: all 0.2s;
+        }
+        .scrap-item::before { content: '▪'; position: absolute; left: -5px; color: var(--ink-red); opacity: 0; transition: opacity 0.2s; }
+        .scrap-item:hover { color: var(--ink-black); transform: translateX(5px); }
+        .scrap-item.active { color: var(--ink-black); border-bottom: 1px solid var(--ink-black); font-weight: 900; }
+        .scrap-item.active::before { opacity: 1; }
+
+        /* 우측 본문 (미리보기) */
+        .scrapbook-content {
+            flex: 1; padding: 40px; display: flex; flex-direction: column; overflow-y: auto; background: #F5F2EB; position: relative; align-items: center;
+        }
+        .close-binder {
+            position: absolute; top: 15px; right: 20px; font-size: 1.5rem; color: var(--ink-black); cursor: pointer; transition: transform 0.2s; z-index: 100;
+        }
+        .close-binder:hover { transform: scale(1.2) rotate(90deg); color: var(--ink-red); }
+
+        /* 산만한 종이/사진 레이아웃 */
+        .photo-frame {
+            position: relative; width: fit-content; max-width: 100%; padding: 10px 10px 30px 10px; background: white; border: 1px solid #ddd; box-shadow: 3px 5px 15px rgba(0,0,0,0.1); margin-bottom: 30px; transform: rotate(-1deg); cursor: zoom-in;
+        }
+        .photo-frame::after {
+            content: ''; position: absolute; top: -12px; left: 50%; transform: translateX(-50%) rotate(-3deg); width: 80px; height: 25px; background: var(--tape-color); box-shadow: 1px 1px 2px rgba(0,0,0,0.05); z-index: 5;
+        }
+        .viewer-img { max-width: 100%; max-height: 350px; display: block; object-fit: contain; }
+        
+        .content-header { text-align: center; margin-bottom: 20px; position: relative; width: 100%; }
+        .content-tag { font-family: 'Special Elite', monospace; font-size: 0.7rem; color: var(--ink-red); border: 1px solid var(--ink-red); padding: 2px 6px; border-radius: 3px; display: inline-block; margin-bottom: 10px; transform: rotate(2deg); }
+        .content-title { font-size: 1.6rem; font-weight: 900; color: var(--ink-black); }
+        .content-desc { font-size: 0.95rem; line-height: 1.7; color: #444; max-width: 500px; text-align: center; margin: 0 auto; }
+
+        /* 📝 비하인드 스토리 메모장 (0번 항목 전용) */
+        .memo-pad {
+            position: relative; background: var(--memo-yellow); padding: 20px 25px; margin-top: 20px; width: 90%; max-width: 450px; box-shadow: 2px 4px 10px rgba(0,0,0,0.1); transform: rotate(1deg); font-family: 'Nanum Pen Script', cursive; font-size: 1.4rem; color: #222; line-height: 1.5; border-left: 3px solid #E0B050;
+        }
+        .memo-pad::before {
+            content: ''; position: absolute; top: -10px; left: 10px; width: 50px; height: 20px; background: var(--tape-color); transform: rotate(-5deg); box-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+        .memo-title { font-family: 'Noto Serif KR', serif; font-size: 0.8rem; font-weight: bold; color: var(--ink-red); margin-bottom: 5px; display: flex; align-items: center; gap: 5px; }
+
+        /* 🎬 비디오 재생 티켓 버튼 (스틸컷 하단) */
+        .video-ticket-btn {
+            display: inline-flex; align-items: center; gap: 10px; background: var(--ink-black); color: white; padding: 12px 25px; margin-top: 20px; font-family: 'Special Elite', monospace; font-size: 0.9rem; font-weight: bold; text-decoration: none; border-radius: 4px; border: 2px dashed #888; cursor: pointer; transition: all 0.2s; box-shadow: 3px 3px 0px rgba(0,0,0,0.2); transform: rotate(-1deg);
+        }
+        .video-ticket-btn:hover { background: var(--ink-red); transform: rotate(0deg) translateY(-2px); box-shadow: 5px 5px 0px rgba(0,0,0,0.2); }
+
+        /* 라이트박스 (원본 크기) */
+        #lightboxOverlay { z-index: 2000; display: flex; justify-content: center; align-items: center; padding: 20px; }
+        #lightboxBody { max-width: 900px; width: 100%; max-height: 90vh; overflow-y: auto; text-align: center; }
+        .lightbox-close { position: absolute; top: 20px; right: 30px; font-size: 2rem; color: white; cursor: pointer; z-index: 2010; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+
+        /* 프로필 카드 (바탕화면 좌측 상단 등) */
+        .profile-card {
+            position: absolute; top: 30px; left: 30px; background: white; padding: 15px; border: 1px solid #ccc; box-shadow: 2px 4px 10px rgba(0,0,0,0.1); width: 240px; transform: rotate(-2deg); z-index: 5;
+        }
+        .profile-card::before { content: ''; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 15px; height: 15px; background: #C85A5A; border-radius: 50%; box-shadow: inset -2px -2px 4px rgba(0,0,0,0.3), 1px 2px 3px rgba(0,0,0,0.2); /* 압정 */ }
+        .profile-img { width: 100%; height: 140px; background: #eee; margin-bottom: 10px; overflow: hidden; display: flex; justify-content: center; align-items: center; border: 1px solid #ddd; }
+        .profile-name { font-weight: 900; font-size: 1.2rem; margin-bottom: 5px; border-bottom: 1px solid #ddd; padding-bottom: 5px; }
+        .profile-role { font-family: 'Special Elite', monospace; font-size: 0.75rem; color: #666; }
 
     </style>
 </head>
 <body>
-    <div class="noise-overlay"></div>
 
-    <main class="desktop-area">
+    <!-- 작가 프로필 (책상에 꽂힌 압정 메모) -->
+    <div class="profile-card">
+        <div class="profile-img">
+            <i class="fa-solid fa-camera-retro" style="font-size: 3rem; color: #999;"></i>
+        </div>
+        <div class="profile-name">KIMGACKCHI (김각치)</div>
+        <div class="profile-role">Storyboard & Motion Designer</div>
+    </div>
+
+    <!-- 책상 영역 (폴더들) -->
+    <main class="desk-area">
         
-        <!-- 폴더 1: 그해 4월에는 봄눈이 온다 -->
-        <div class="desktop-icon" onclick="playSfx('open'); openPreviewExplorer('APRIL_SNOW')">
-            <svg class="pixel-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="2" y="4" width="20" height="16" fill="var(--bg-paper)" stroke="var(--wood-dark)" stroke-width="1.5" rx="1"/>
-                <path d="M2 8h20 M8 4v16" stroke="var(--wood-light)" stroke-width="1"/>
-                <circle cx="14" cy="12" r="3" fill="var(--faded-blue)"/>
-            </svg>
-            <div class="desktop-icon-label">그해 4월에는 봄눈이 온다</div>
-        </div>
-
-        <!-- 폴더 2: 복수의 태양은 저물지 않는다 -->
-        <div class="desktop-icon" onclick="playSfx('open'); openPreviewExplorer('REVENGE_SUN')">
-            <svg class="pixel-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="3" y="3" width="18" height="18" fill="var(--bg-paper)" stroke="var(--wood-dark)" stroke-width="1.5" rx="1"/>
-                <circle cx="12" cy="12" r="6" fill="var(--sunlight)" opacity="0.8"/>
-                <path d="M5 19l14-14" stroke="var(--wood-light)" stroke-width="1"/>
-            </svg>
-            <div class="desktop-icon-label">복수의 태양은 저물지 않는다</div>
-        </div>
-
-        <!-- 폴더 3: 개인 작업 -->
-        <div class="desktop-icon" onclick="playSfx('open'); openPreviewExplorer('PERSONAL_WORK')">
-            <svg class="pixel-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="4" y="6" width="16" height="14" fill="var(--bg-paper)" stroke="var(--wood-dark)" stroke-width="1.5" rx="1"/>
-                <path d="M8 6V4a1 1 0 011-1h6a1 1 0 011 1v2" stroke="var(--wood-dark)" stroke-width="1.5" fill="none"/>
-                <circle cx="12" cy="13" r="2" fill="var(--forest-green)"/>
-            </svg>
-            <div class="desktop-icon-label">개인 작업</div>
-        </div>
-
-        <!-- 프로필 창 -->
-        <div class="window profile-window" id="profileWindow" style="display: none;">
-            <div class="window-header">
-                <div class="window-title"><i class="fa-solid fa-leaf" style="color:var(--forest-green)"></i> 작가 소개</div>
-                <div class="window-controls"><div class="win-ctrl" onclick="playSfx('close'); toggleProfileWindow(false)"></div></div>
-            </div>
-            <div class="profile-content">
-                <div class="profile-top">
-                    <div class="avatar-box">
-                        <i class="fa-solid fa-seedling" style="font-size: 2.5rem; color: var(--forest-green);"></i>
-                    </div>
-                    <div>
-                        <h2 class="brand-name">김각치<span style="font-size:1rem; margin-left:8px; font-weight:500; font-family:'Outfit'">KIMGACKCHI</span></h2>
-                        <p class="brand-sub">Storyboard & Motion / 3D Art</p>
-                    </div>
+        <!-- 폴더 1: 봄눈 -->
+        <div class="file-folder" style="transform: rotate(-3deg);" onclick="openArchive('SPRING_SNOW')">
+            <div class="folder-tab">FILE 01</div>
+            <div class="folder-body">
+                <div class="polaroid-deco">
+                    <!-- 포스터 임시 썸네일 (실제 적용시 이미지 주소 변경) -->
+                    <img src="https://placehold.co/400x600/D1BFAe/2C2C2A?text=SPRING" alt="썸네일">
                 </div>
-                <p class="brand-desc">
-                    안녕하세요! 따뜻한 질감과 서정적인 이야기를 그리는 <strong>김각치</strong>입니다.<br><br>
-                    바탕화면의 액자(폴더)를 클릭하여 필름 카메라와 유화의 질감이 묻어나는 저의 다채로운 프로젝트들을 감상해 보세요.
-                </p>
-                <div class="contact-group">
-                    <a href="mailto:lstush0924@naver.com" class="contact-link"><i class="fa-regular fa-envelope"></i> lstush0924@naver.com</a>
-                    <a href="https://instagram.com/kimgackchi_design" target="_blank" class="contact-link"><i class="fa-brands fa-instagram"></i> @kimgackchi_design</a>
+                <h2 class="folder-title" style="margin-top:20px;">그해 4월에는<br>봄눈이 온다</h2>
+                <div class="folder-stamp">CONFIDENTIAL</div>
+            </div>
+        </div>
+
+        <!-- 폴더 2: 태양 -->
+        <div class="file-folder" style="transform: rotate(2deg);" onclick="openArchive('REVENGE_SUN')">
+            <div class="folder-tab">FILE 02</div>
+            <div class="folder-body">
+                <div class="polaroid-deco" style="transform: rotate(-4deg);">
+                    <img src="https://placehold.co/400x600/A89B8C/2C2C2A?text=SUN" alt="썸네일">
                 </div>
+                <h2 class="folder-title" style="margin-top:20px;">복수의 태양은<br>저물지 않는다</h2>
+                <div class="folder-stamp" style="color: #4A5D4E; border-color: #4A5D4E;">ARCHIVED</div>
             </div>
         </div>
 
-        <!-- 아날로그 테이프 플레이어 -->
-        <div class="music-widget" id="musicPlayer">
-            <div class="music-title">ANALOG_TAPE.WAV</div>
-            <div class="tape-deck">
-                <div class="tape-reel" id="reelLeft"></div>
-                <div class="tape-reel" id="reelRight"></div>
-            </div>
-            <div class="music-controls">
-                <button class="music-btn" onclick="playSfx('click'); handleMuteToggle()" id="muteBtn"><i class="fa-solid fa-play"></i> PLAY</button>
+        <!-- 폴더 3: 개인작 -->
+        <div class="file-folder" style="transform: rotate(-1deg);" onclick="openArchive('PERSONAL_ART')">
+            <div class="folder-tab">FILE 03</div>
+            <div class="folder-body">
+                <div class="polaroid-deco" style="transform: rotate(3deg);">
+                    <img src="https://placehold.co/400x600/E6E2D6/2C2C2A?text=MOTION" alt="썸네일">
+                </div>
+                <h2 class="folder-title" style="margin-top:20px;">개인 작업<br><span style="font-size:0.9rem; font-weight:normal;">Motion Graphics</span></h2>
+                <div class="folder-stamp" style="color: #A33A36; border-color: #A33A36;">PORTFOLIO</div>
             </div>
         </div>
 
-        <!-- 감성 마스코트 (작은 새) -->
-        <div style="position: absolute; right: 50px; bottom: 80px; display:flex; flex-direction:column; align-items:center;">
-            <div class="mascot-bubble" id="mascotBubble">평온한 하루 보내세요 🌿</div>
-            <i class="fa-solid fa-dove mascot-bird" onclick="clickMascot()"></i>
-        </div>
     </main>
 
-    <!-- 가상 파일 탐색기 및 팝업창 -->
-    <div class="viewer-overlay" id="viewerOverlay" onclick="closePreviewExplorer(event)">
-        <div class="viewer-window window" id="explorerWindow" onclick="event.stopPropagation()" style="display: none;">
-            <div class="viewer-header" id="viewerHeaderColor">
-                <div class="window-title"><i class="fa-regular fa-folder-open"></i> <span id="windowDisplayTitle">GALLERY</span></div>
-                <div class="window-controls"><div class="win-ctrl" onclick="closePreviewExplorer(null)"></div></div>
+    <!-- 스크랩북 (뷰어 모달) -->
+    <div class="scrapbook-overlay" id="viewerOverlay" onclick="closeArchive(event)">
+        <div class="scrapbook-binder" onclick="event.stopPropagation()">
+            <div class="binder-rings">
+                <div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div>
             </div>
-            <div class="viewer-body">
-                <nav class="explorer-sidebar">
-                    <div class="explorer-header">INDEX</div>
-                    <ul class="explorer-list" id="explorerList"></ul>
-                </nav>
-                <section class="preview-panel">
-                    <div class="viewer-img-container" id="viewerImgContainer" onclick="handleContainerClick(event)"></div>
-                    <h3 class="viewer-title" id="viewerTitle">작품 제목</h3>
-                    <span class="viewer-tag" id="viewerTag">CATEGORY</span>
-                    <p class="viewer-desc" id="viewerDesc">설명글</p>
-                    <button class="retro-btn" onclick="closePreviewExplorer(null)">닫기</button>
-                </section>
-            </div>
+            
+            <nav class="scrapbook-sidebar">
+                <div class="archive-title" id="windowDisplayTitle">PROJECT_NAME</div>
+                <ul class="scrap-list" id="explorerList"></ul>
+            </nav>
+            
+            <section class="scrapbook-content">
+                <i class="fa-solid fa-xmark close-binder" onclick="closeArchive(null)"></i>
+                
+                <div class="content-header">
+                    <span class="content-tag" id="viewerTag">CATEGORY</span>
+                    <h3 class="content-title" id="viewerTitle">작품 제목</h3>
+                </div>
+
+                <!-- 사진 액자 영역 -->
+                <div class="photo-frame" id="viewerImgContainer" onclick="handleContainerClick(event)"></div>
+                
+                <!-- 기본 설명 -->
+                <p class="content-desc" id="viewerDesc">설명글</p>
+
+                <!-- 비하인드 스토리 (0번 항목 전용) -->
+                <div class="memo-pad" id="viewerMemo" style="display: none;">
+                    <div class="memo-title"><i class="fa-solid fa-thumbtack"></i> BEHIND THE SCENE</div>
+                    <span id="memoText">메모 내용</span>
+                </div>
+
+                <!-- 비디오 재생 버튼 (영상 항목 전용) -->
+                <a href="#" target="_blank" class="video-ticket-btn" id="videoPlayBtn" style="display: none;">
+                    <i class="fa-solid fa-play"></i> 구글 드라이브에서 영상 보기
+                </a>
+            </section>
         </div>
     </div>
 
-    <!-- 대형 오리지널 뷰어 팝업 (4분할 지원) -->
-    <div class="viewer-overlay" id="lightboxOverlay" onclick="closeLightbox(event)">
-        <div class="window" id="lightboxWindow" onclick="event.stopPropagation()">
-            <div class="window-header" id="lightboxHeader">
-                <div class="window-title"><i class="fa-solid fa-magnifying-glass"></i> <span id="lightboxTitle">ORIGINAL_SIZE</span></div>
-                <div class="window-controls"><div class="win-ctrl" onclick="closeLightbox(null)"></div></div>
-            </div>
-            <div class="window-body" id="lightboxBody">
-                <!-- 원본 이미지 및 갤러리 영역 -->
-            </div>
-        </div>
+    <!-- 대형 원본 뷰어 (라이트박스) -->
+    <div class="scrapbook-overlay" id="lightboxOverlay" onclick="closeLightbox(event)" style="background: rgba(0,0,0,0.85);">
+        <i class="fa-solid fa-xmark lightbox-close" onclick="closeLightbox(null)"></i>
+        <div id="lightboxBody" onclick="event.stopPropagation()"></div>
     </div>
-
-    <!-- 하단 상태 바 -->
-    <footer class="taskbar">
-        <div class="taskbar-left">
-            <button class="start-btn" onclick="playSfx('open'); toggleProfileWindow(true)">
-                <i class="fa-solid fa-seedling"></i> 작가 소개
-            </button>
-        </div>
-        <div class="taskbar-right">
-            <div class="system-tray">
-                <i class="fa-regular fa-clock"></i><span id="systemClock">12:00 PM</span>
-            </div>
-        </div>
-    </footer>
 
     <script>
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        let videoPlaybackTimer = null;
-
-        function playSfx(type) {
-            if (audioCtx.state === 'suspended') audioCtx.resume();
-            const osc = audioCtx.createOscillator(); const gain = audioCtx.createGain();
-            osc.connect(gain); gain.connect(audioCtx.destination);
-            if (type === 'click') { osc.type = 'sine'; osc.frequency.setValueAtTime(600, audioCtx.currentTime); osc.frequency.exponentialRampToValueAtTime(300, audioCtx.currentTime + 0.1); gain.gain.setValueAtTime(0.03, audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1); osc.start(); osc.stop(audioCtx.currentTime + 0.1); }
-            else if (type === 'open') { osc.type = 'sine'; osc.frequency.setValueAtTime(400, audioCtx.currentTime); osc.frequency.setValueAtTime(500, audioCtx.currentTime + 0.1); osc.frequency.setValueAtTime(600, audioCtx.currentTime + 0.2); gain.gain.setValueAtTime(0.03, audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.3); osc.start(); osc.stop(audioCtx.currentTime + 0.3); }
-            else if (type === 'close') { osc.type = 'sine'; osc.frequency.setValueAtTime(600, audioCtx.currentTime); osc.frequency.setValueAtTime(500, audioCtx.currentTime + 0.1); osc.frequency.setValueAtTime(400, audioCtx.currentTime + 0.2); gain.gain.setValueAtTime(0.03, audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.3); osc.start(); osc.stop(audioCtx.currentTime + 0.3); }
-        }
-
-        function updateClock() {
-            const now = new Date(); let hours = now.getHours(); let minutes = now.getMinutes(); const ampm = hours >= 12 ? 'PM' : 'AM'; hours = hours % 12; hours = hours ? hours : 12; minutes = minutes < 10 ? '0' + minutes : minutes;
-            document.getElementById('systemClock').innerText = `${hours}:${minutes} ${ampm}`;
-        }
-        setInterval(updateClock, 1000); updateClock();
-
-        let highestZ = 100;
-        function focusWindow(win) { highestZ++; win.style.zIndex = highestZ; }
-
-        function toggleProfileWindow(show) {
-            const profile = document.getElementById('profileWindow');
-            if (show) { profile.style.display = 'flex'; profile.style.opacity = '1'; focusWindow(profile); } 
-            else { profile.style.display = 'none'; }
-        }
-
-        function makeDraggable(windowEl) {
-            const header = windowEl.querySelector('.window-header'); if (!header) return;
-            let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-            header.onmousedown = dragMouseDown;
-            function dragMouseDown(e) { e.preventDefault(); focusWindow(windowEl); pos3 = e.clientX; pos4 = e.clientY; document.onmouseup = closeDragElement; document.onmousemove = elementDrag; }
-            function elementDrag(e) { e.preventDefault(); pos1 = pos3 - e.clientX; pos2 = pos4 - e.clientY; pos3 = e.clientX; pos4 = e.clientY; windowEl.style.transform = "none"; windowEl.style.top = (windowEl.offsetTop - pos2) + "px"; windowEl.style.left = (windowEl.offsetLeft - pos1) + "px"; }
-            function closeDragElement() { document.onmouseup = null; document.onmousemove = null; }
-            windowEl.addEventListener('mousedown', () => focusWindow(windowEl));
-        }
-
-        window.onload = function() {
-            makeDraggable(document.getElementById('profileWindow')); makeDraggable(document.getElementById('explorerWindow')); makeDraggable(document.getElementById('musicPlayer')); makeDraggable(document.getElementById('lightboxWindow'));
-        }
-
-        let isMusicPlaying = false;
-        function handleMuteToggle() {
-            const btn = document.getElementById('muteBtn'); 
-            const r1 = document.getElementById('reelLeft'); const r2 = document.getElementById('reelRight');
-            isMusicPlaying = !isMusicPlaying;
-            if (isMusicPlaying) { 
-                btn.innerHTML = '<i class="fa-solid fa-pause"></i> PAUSE'; 
-                r1.classList.add('spin-anim'); r2.classList.add('spin-anim');
-            } else { 
-                btn.innerHTML = '<i class="fa-solid fa-play"></i> PLAY'; 
-                r1.classList.remove('spin-anim'); r2.classList.remove('spin-anim');
-            }
-        }
-
-        function clickMascot() {
-            playSfx('click'); const bubble = document.getElementById('mascotBubble');
-            const msgs = ["평온한 하루 보내세요 🌿", "포트폴리오에 오신 걸 환영해요!", "유화의 따뜻함을 좋아하시나요? 🎨"];
-            bubble.innerText = msgs[Math.floor(Math.random() * msgs.length)];
-            bubble.classList.add('active'); setTimeout(() => { bubble.classList.remove('active'); }, 3000);
-        }
-
         // =========================================================
-        // 7. PORTFOLIO DATASET SECTION (0번 키비주얼 4분할 반영)
+        // 데이터셋: 일본 빈티지 레이아웃 구조에 맞춘 완벽 개편
         // =========================================================
         const portfolioData = {
-            'APRIL_SNOW': [ 
+            'SPRING_SNOW': [
                 {
-                    id: 'april_00',
+                    id: 'spring_00',
                     title: '0. 키비주얼',
                     tag: 'KEY VISUAL',
-                    desc: '작품의 핵심적인 분위기와 다양한 시점을 담아낸 키비주얼 이미지 갤러리입니다. 돋보기를 클릭해 4분할 원본 크기로 감상하세요.',
+                    desc: '작품의 핵심 분위기를 담아낸 키비주얼 갤러리입니다. 사진을 클릭하면 4분할 원본으로 확인 가능합니다.',
                     imgUrls: [
-                        'image (12).jpg',
-                        'untitled5.jpg',
-                        '시연.jpg',
-                        'image (19).jpg'
-                    ]
+                        './image (12).jpg',
+                        './untitled5.jpg',
+                        './시연.jpg',
+                        './image (19).jpg'
+                    ],
+                    // 📌 0번 항목 비하인드 스토리 입력란
+                    behindText: '봄의 서늘함과 눈의 따뜻함을 대비시키기 위해 유화 질감 렌더링에 가장 많은 공을 들였습니다. 특히 두 주인공의 감정선이 돋보이도록 조명 세팅을 여러 번 수정했던 작업입니다.'
                 },
                 {
-                    id: 'april_01',
+                    id: 'spring_01',
                     title: '1. 작품소개',
                     tag: 'POSTER',
-                    desc: '그해 4월에는 봄눈이 온다 프로젝트의 공식 포스터 및 개요입니다.',
-                    realUrl: '그4봄웹용포스터_최종.jpg'
+                    desc: '그해 4월에는 봄눈이 온다 공식 웹 포스터입니다.',
+                    realUrl: 'https://i.ifh.cc/rhNGoC.jpg' // 확인용 직접 링크 적용 완료
                 },
                 {
-                    id: 'april_02',
-                    title: '2. 팝업 동영상',
-                    tag: 'VIDEO / GDRIVE',
-                    desc: '🎥 클릭하여 원본 크기 창을 열어주세요! (구글 드라이브 연동 영상입니다. 재생 시 약 1분간 감상하실 수 있습니다.)',
-                    iframeUrl: 'https://drive.google.com/file/d/1aYqmRsZ0EymwSAPFzTW7v5kw4m7C3QMr/preview',
-                    limitPlayTime: 60000
+                    id: 'spring_02',
+                    title: '2. 최종 애니메이션',
+                    tag: 'ANIMATION',
+                    desc: '그해 4월에는 봄눈이 온다 최종 완성본입니다.',
+                    // 📌 영상 썸네일 (스틸컷)
+                    realUrl: 'https://placehold.co/600x400/D1BFAe/2C2C2A?text=STILL+CUT', 
+                    // 📌 재생 버튼을 누르면 이동할 링크
+                    externalLink: 'https://drive.google.com/file/d/1aYqmRsZ0EymwSAPFzTW7v5kw4m7C3QMr/view?usp=drive_link'
                 },
                 {
-                    id: 'april_03',
+                    id: 'spring_03',
                     title: '3. 스토리보드',
                     tag: 'STORYBOARD',
-                    desc: '그해 4월에는 봄눈이 온다 프로젝트의 초기 기획 스토리보드 스케치본입니다.',
-                    realUrl: '', 
-                    svgId: 'svg-board' 
+                    desc: '스토리보드 파트입니다.',
+                    svgPlaceholder: '스토리보드 스케치'
                 },
                 {
-                    id: 'april_04',
-                    title: '4. 모델링',
-                    tag: '3D MODELING',
-                    desc: '프로젝트에 사용된 주요 에셋의 3D 모델링 렌더링 샷입니다.',
-                    realUrl: '',
-                    svgId: 'svg-3d'
+                    id: 'spring_04',
+                    title: '4. 3D 모델링',
+                    tag: 'MODELING',
+                    desc: '사용된 주요 에셋의 3D 모델링입니다.',
+                    svgPlaceholder: '3D 모델링 렌더샷'
                 }
             ],
-            'REVENGE_SUN': [ 
+            'REVENGE_SUN': [
                 {
                     id: 'revenge_00',
                     title: '0. 키비주얼',
                     tag: 'KEY VISUAL',
-                    desc: '복수의 태양은 저물지 않는다 키비주얼 4종입니다. 클릭하여 4분할 화면으로 확인하세요.',
+                    desc: '복수의 태양은 저물지 않는다 키비주얼 갤러리입니다. (클릭하여 4분할 감상)',
                     imgUrls: [
-                        'https://placehold.co/600x400/D4A373/FFFDF0?text=SUN+1',
-                        'https://placehold.co/600x400/6B705C/FFFDF0?text=SUN+2',
-                        'https://placehold.co/600x400/A5B4B6/FFFDF0?text=SUN+3',
-                        'https://placehold.co/600x400/4A3C31/FFFDF0?text=SUN+4'
-                    ]
+                        'https://placehold.co/600x400/A89B8C/FFF?text=IMG+1',
+                        'https://placehold.co/600x400/8A7B6C/FFF?text=IMG+2',
+                        'https://placehold.co/600x400/6C5F52/FFF?text=IMG+3',
+                        'https://placehold.co/600x400/4F4439/FFF?text=IMG+4'
+                    ],
+                    behindText: '디스토피아적 세계관을 표현하기 위해 전반적인 채도를 낮추고 거친 필름 노이즈를 입혔습니다.'
                 },
                 {
                     id: 'revenge_01',
                     title: '1. 작품소개',
-                    tag: 'INTRODUCTION',
-                    desc: '복수의 태양은 저물지 않는다 프로젝트의 시놉시스와 메인 컨셉 아트입니다.',
-                    realUrl: '', 
-                    svgId: 'svg-board'
+                    tag: 'INTRO',
+                    desc: '작품의 세계관과 무드보드입니다.',
+                    svgPlaceholder: '작품 소개 이미지'
                 },
                 {
                     id: 'revenge_02',
-                    title: '2. 프로젝트 타이틀 시퀀스',
-                    tag: 'MOTION GRAPHICS',
-                    desc: '복수의 태양은 저물지 않는다 프로젝트의 메인 모션그래픽입니다.',
-                    realUrl: '', 
-                    svgId: 'svg-anime'
-                },
-                {
-                    id: 'revenge_03',
-                    title: '3. 메인 캐릭터 모델링',
-                    tag: '3D MODELING',
-                    desc: '작품에 등장하는 주요 인물의 3D 캐릭터 모델링입니다.',
-                    realUrl: '', 
-                    svgId: 'svg-3d'
+                    title: '2. 타이틀 시퀀스',
+                    tag: 'MOTION',
+                    desc: '프로젝트 타이틀 모션그래픽 영상입니다.',
+                    realUrl: 'https://placehold.co/600x400/A89B8C/2C2C2A?text=STILL+CUT', 
+                    externalLink: '#' // 실제 링크로 교체
                 }
             ],
-            'PERSONAL_WORK': [ 
+            'PERSONAL_ART': [
                 {
                     id: 'personal_01',
                     title: '1. 시카고 모션그래픽',
-                    tag: 'VIDEO / GDRIVE',
-                    desc: '시카고 테마의 모션그래픽 영상입니다. 돋보기를 누르면 1분 데모가 재생됩니다.',
-                    iframeUrl: 'https://drive.google.com/file/d/1cZ9fVWJn0FHuTWTbsN822L2eRKuduDPW/preview',
-                    limitPlayTime: 60000
+                    tag: 'MOTION',
+                    desc: '시카고 테마의 모션그래픽 개인 작업물입니다.',
+                    realUrl: 'https://placehold.co/600x400/5A6B5D/FFF?text=CHICAGO+STILL', 
+                    externalLink: 'https://drive.google.com/file/d/1cZ9fVWJn0FHuTWTbsN822L2eRKuduDPW/view?usp=sharing'
                 },
                 {
                     id: 'personal_02',
                     title: '2. 컴퓨터 모션그래픽',
-                    tag: 'VIDEO / GDRIVE',
-                    desc: '컴퓨터 테마의 모션그래픽 영상입니다. 돋보기를 누르면 1분 데모가 재생됩니다.',
-                    iframeUrl: 'https://drive.google.com/file/d/10G8YbrfrAzfGK-eRW2MYtUJjKw1fnrZW/preview',
-                    limitPlayTime: 60000
-                },
-                {
-                    id: 'personal_03',
-                    title: '3. 콜라쥬 모션그래픽',
-                    tag: 'MOTION GRAPHICS',
-                    desc: '다양한 아날로그 질감과 스크랩 요소를 믹스매치하여 표현한 콜라주 모션입니다.',
-                    realUrl: '',
-                    svgId: 'svg-anime'
+                    tag: 'MOTION',
+                    desc: '컴퓨터 테마의 모션그래픽 개인 작업물입니다.',
+                    realUrl: 'https://placehold.co/600x400/5A6B5D/FFF?text=COMPUTER+STILL', 
+                    externalLink: 'https://drive.google.com/file/d/10G8YbrfrAzfGK-eRW2MYtUJjKw1fnrZW/view?usp=drive_link'
                 }
             ]
         };
 
         let currentCategory = ''; let currentItemIndex = 0;
 
-        function openPreviewExplorer(categoryName) {
+        function openArchive(categoryName) {
             currentCategory = categoryName; currentItemIndex = 0;
             const windowDisplayTitle = document.getElementById('windowDisplayTitle');
-            const explorerWin = document.getElementById('explorerWindow');
-            const headerColor = document.getElementById('viewerHeaderColor');
             
-            if(categoryName === 'APRIL_SNOW') {
-                windowDisplayTitle.innerText = "그해 4월에는 봄눈이 온다";
-                headerColor.style.background = 'var(--faded-blue)';
-            } else if (categoryName === 'REVENGE_SUN') {
-                windowDisplayTitle.innerText = "복수의 태양은 저물지 않는다";
-                headerColor.style.background = 'var(--sunlight)';
-            } else {
-                windowDisplayTitle.innerText = "개인 작업";
-                headerColor.style.background = 'var(--forest-green)';
-            }
-            headerColor.style.color = '#fff';
+            if(categoryName === 'SPRING_SNOW') windowDisplayTitle.innerText = "FILE: SPRING SNOW";
+            else if (categoryName === 'REVENGE_SUN') windowDisplayTitle.innerText = "FILE: REVENGE SUN";
+            else windowDisplayTitle.innerText = "ARCHIVE: PERSONAL";
 
             renderExplorerList(); selectExplorerItem(0);
             document.getElementById('viewerOverlay').classList.add('active');
-            explorerWin.style.display = 'flex'; focusWindow(explorerWin);
         }
 
         function renderExplorerList() {
@@ -537,23 +385,16 @@
             const items = portfolioData[currentCategory] || [];
             
             items.forEach((item, index) => {
-                const li = document.createElement('li'); li.className = `explorer-item ${index === currentItemIndex ? 'active' : ''}`;
-                li.onclick = () => { playSfx('click'); selectExplorerItem(index); };
-
-                let iconClass = 'fa-regular fa-file';
-                if(item.tag.includes('VISUAL') || item.tag.includes('POSTER')) iconClass = 'fa-solid fa-image';
-                else if(item.tag.includes('VIDEO') || item.tag.includes('MOTION')) iconClass = 'fa-solid fa-film';
-                else if(item.tag.includes('STORY')) iconClass = 'fa-solid fa-pen-nib';
-                else if(item.tag.includes('3D')) iconClass = 'fa-solid fa-cube';
-
-                li.innerHTML = `<i class="${iconClass}"></i> <span>${item.title.split('.')[1] ? item.title.split('.')[1].trim() : item.title}</span>`;
+                const li = document.createElement('li'); li.className = `scrap-item ${index === currentItemIndex ? 'active' : ''}`;
+                li.onclick = () => { selectExplorerItem(index); };
+                li.innerText = item.title;
                 listContainer.appendChild(li);
             });
         }
 
         function selectExplorerItem(index) {
             currentItemIndex = index;
-            const listItems = document.querySelectorAll('.explorer-item');
+            const listItems = document.querySelectorAll('.scrap-item');
             listItems.forEach((li, i) => { if (i === index) li.classList.add('active'); else li.classList.remove('active'); });
 
             const item = portfolioData[currentCategory][index]; if (!item) return;
@@ -561,112 +402,85 @@
             document.getElementById('viewerTitle').innerText = item.title;
             document.getElementById('viewerTag').innerText = item.tag;
             document.getElementById('viewerDesc').innerText = item.desc;
-
+            
             const imgContainer = document.getElementById('viewerImgContainer'); 
+            const memoPad = document.getElementById('viewerMemo');
+            const videoBtn = document.getElementById('videoPlayBtn');
+            
             imgContainer.innerHTML = '';
+            imgContainer.style.cursor = 'zoom-in';
 
-            // 📌 1. 구글 드라이브 비디오 연결 시 안내 UI
-            if (item.iframeUrl) {
-                imgContainer.innerHTML = `
-                    <div style="width:100%; height:100%; display:flex; flex-direction:column; justify-content:center; align-items:center; background:var(--wood-light); color:var(--wood-dark); padding:20px; text-align:center;">
-                        <i class="fa-brands fa-google-drive" style="font-size:2.5rem; margin-bottom:12px; color:white;"></i>
-                        <p style="font-family:'Gowun Dodum'; font-weight:bold;">클릭하여 뷰어를 열고 영상을 재생하세요.</p>
-                    </div>
-                `;
-            } 
-            // 📌 2. 4분할 그리드 미리보기 (이미지 4장일 때)
-            else if (item.imgUrls && item.imgUrls.length === 4) {
-                imgContainer.style.padding = '4px';
-                imgContainer.innerHTML = `
-                    <div class="grid-4-split">
-                        ${item.imgUrls.map(url => `<div class="grid-item" style="background-image: url('${url}');"></div>`).join('')}
-                    </div>
-                    <div style="position:absolute; bottom:12px; right:12px; background:rgba(255,255,255,0.9); color:var(--wood-dark); padding:6px 12px; font-family:'Outfit'; font-size:0.65rem; border-radius:20px; font-weight:bold; box-shadow: 0 2px 5px rgba(0,0,0,0.1); backdrop-filter: blur(4px);">🔍 4-SPLIT VIEW</div>
-                `;
-            } 
-            // 3. 단일 원본 이미지
-            else if (item.realUrl) {
-                imgContainer.style.padding = '8px';
-                if (item.realUrl.endsWith('.mp4')) {
-                    imgContainer.innerHTML = `<video src="${item.realUrl}" class="viewer-img" controls loop></video>`;
-                } else { 
-                    imgContainer.innerHTML = `<img src="${item.realUrl}" alt="${item.title}" class="viewer-img">`; 
-                }
-            } 
-            // 4. 그 외 가상 일러스트(SVG)
-            else {
-                imgContainer.style.padding = '8px';
-                imgContainer.innerHTML = renderVirtualSVG(item.svgId);
+            // 1. 비하인드 스토리 메모장 세팅
+            if (item.behindText) {
+                document.getElementById('memoText').innerText = item.behindText;
+                memoPad.style.display = 'block';
+            } else {
+                memoPad.style.display = 'none';
+            }
+
+            // 2. 비디오 링크 버튼 세팅
+            if (item.externalLink) {
+                videoBtn.href = item.externalLink;
+                videoBtn.style.display = 'inline-flex';
+                imgContainer.style.cursor = 'default'; // 영상 스틸컷은 돋보기 안함
+            } else {
+                videoBtn.style.display = 'none';
+            }
+
+            // 3. 이미지 프레임 렌더링
+            if (item.imgUrls && item.imgUrls.length > 0) {
+                imgContainer.innerHTML = `<img src="${item.imgUrls[0]}" class="viewer-img"><div style="position:absolute; bottom:10px; right:10px; background:var(--ink-black); color:white; padding:4px 8px; font-family:'Special Elite', monospace; font-size:0.7rem; font-weight:bold;">+${item.imgUrls.length} PICS</div>`;
+            } else if (item.realUrl) {
+                imgContainer.innerHTML = `<img src="${item.realUrl}" class="viewer-img">`;
+            } else {
+                imgContainer.innerHTML = `<div style="width: 300px; height: 200px; display:flex; align-items:center; justify-content:center; background:#eee; color:#999; font-weight:bold;">[ ${item.svgPlaceholder || '준비중'} ]</div>`;
             }
         }
 
-        // 공통 클릭 핸들러: 돋보기(확대) 팝업 오픈
-        function handleContainerClick(event) {
-            playSfx('open'); openLightbox();
+        // 이미지 액자 클릭 시 라이트박스 오픈
+        function handleContainerClick(event) { 
+            const item = portfolioData[currentCategory][currentItemIndex];
+            if (item && item.externalLink) return; // 외부 링크 영상일 경우 클릭 확대 방지
+            openLightbox(); 
         }
 
         function openLightbox() {
             const item = portfolioData[currentCategory][currentItemIndex]; if (!item) return;
-            const lightboxOverlay = document.getElementById('lightboxOverlay'); const lightboxBody = document.getElementById('lightboxBody'); const lightboxTitle = document.getElementById('lightboxTitle'); const lightboxWin = document.getElementById('lightboxWindow');
+            const lightboxOverlay = document.getElementById('lightboxOverlay'); const lightboxBody = document.getElementById('lightboxBody');
 
-            lightboxTitle.innerText = item.title;
             lightboxBody.innerHTML = '';
 
-            // 📌 1. 구글 드라이브 아이프레임 렌더링
-            if (item.iframeUrl) {
-                lightboxBody.innerHTML = `<iframe src="${item.iframeUrl}" style="width: 100%; height: 60vh; border: 1px solid var(--wood-dark); border-radius: 4px;" allow="autoplay" allowfullscreen></iframe>`;
-                if (item.limitPlayTime) {
-                    if(videoPlaybackTimer) clearTimeout(videoPlaybackTimer);
-                    clickMascot("🎬 1분 데모 재생을 시작합니다!");
-                    videoPlaybackTimer = setTimeout(() => { closeLightbox(null); clickMascot("⏰ 1분 재생 시간이 종료되었습니다!"); }, item.limitPlayTime);
-                }
-            } 
-            // 📌 2. 4분할 그리드 화면 (원본 크기)
-            else if (item.imgUrls && item.imgUrls.length === 4) {
-                lightboxBody.innerHTML = `
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 16px; width: 100%; max-width: 800px; aspect-ratio: 16/10;">
-                        ${item.imgUrls.map(url => `<img src="${url}" style="width: 100%; height: 100%; object-fit: cover; border: 2px solid var(--wood-light); border-radius: 4px; box-shadow: 2px 4px 12px rgba(0,0,0,0.1);" />`).join('')}
-                    </div>
-                `;
-            } 
-            // 3. 단일 원본 이미지
-            else if (item.realUrl) {
-                if (item.realUrl.endsWith('.mp4')) {
-                    lightboxBody.innerHTML = `<video src="${item.realUrl}" style="max-width: 100%; max-height: 65vh; border: 1px solid var(--wood-light); border-radius: 4px;" controls autoplay loop></video>`;
-                } else {
-                    lightboxBody.innerHTML = `<img src="${item.realUrl}" style="max-width: 100%; max-height: 65vh; border: 1px solid var(--wood-light); border-radius: 4px; box-shadow: 2px 4px 12px rgba(0,0,0,0.1);" />`;
-                }
-            } 
-            // 4. 가상 SVG 대체재
-            else {
-                let mediaHtml = renderVirtualSVG(item.svgId);
-                lightboxBody.innerHTML = `<div style="width: 100%; max-width: 600px; aspect-ratio: 4/3; background: #fff; border: 1px solid var(--wood-dark); border-radius: 4px; display: flex; align-items: center; justify-content: center; box-shadow: 4px 6px 15px rgba(0,0,0,0.05);">${mediaHtml}</div>`;
+            // 4분할 갤러리 로직
+            if (item.imgUrls && item.imgUrls.length > 0) {
+                let gridHtml = `<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; width: 100%; max-width: 800px; margin: 0 auto; background: white; padding: 15px; border: 1px solid #ccc; box-shadow: 5px 10px 20px rgba(0,0,0,0.3);">`;
+                item.imgUrls.forEach(url => {
+                    gridHtml += `<img src="${url}" style="width: 100%; height: 100%; object-fit: cover; border: 1px solid #eee;" />`;
+                });
+                gridHtml += `</div>`;
+                lightboxBody.innerHTML = gridHtml;
+            } else if (item.realUrl) {
+                lightboxBody.innerHTML = `<img src="${item.realUrl}" style="max-width: 100%; max-height: 90vh; border: 10px solid white; box-shadow: 0 10px 25px rgba(0,0,0,0.5);" />`;
             }
 
-            lightboxOverlay.classList.add('active'); lightboxWin.style.display = 'flex'; focusWindow(lightboxWin);
+            if (lightboxBody.innerHTML !== '') {
+                lightboxOverlay.style.opacity = '1';
+                lightboxOverlay.style.pointerEvents = 'auto';
+            }
         }
 
         function closeLightbox(event) {
-            if (event === null || event.target === document.getElementById('lightboxOverlay') || event.target.tagName === 'BUTTON' || event.target.classList.contains('win-ctrl')) {
-                playSfx('close'); document.getElementById('lightboxOverlay').classList.remove('active');
-                if (videoPlaybackTimer) { clearTimeout(videoPlaybackTimer); videoPlaybackTimer = null; }
-                document.getElementById('lightboxBody').innerHTML = '';
+            if (event === null || event.target.id === 'lightboxOverlay' || event.target.classList.contains('lightbox-close')) {
+                const lightboxOverlay = document.getElementById('lightboxOverlay');
+                lightboxOverlay.style.opacity = '0';
+                lightboxOverlay.style.pointerEvents = 'none';
+                setTimeout(() => { document.getElementById('lightboxBody').innerHTML = ''; }, 300);
             }
         }
 
-        function closePreviewExplorer(event) {
-            if (event === null || event.target === document.getElementById('viewerOverlay') || event.target.tagName === 'BUTTON' || event.target.classList.contains('win-ctrl')) {
-                playSfx('close'); document.getElementById('viewerOverlay').classList.remove('active');
-                if (videoPlaybackTimer) { clearTimeout(videoPlaybackTimer); videoPlaybackTimer = null; }
+        function closeArchive(event) {
+            if (event === null || event.target.id === 'viewerOverlay' || event.target.classList.contains('close-binder')) {
+                document.getElementById('viewerOverlay').classList.remove('active');
             }
-        }
-
-        // 아날로그 테마에 맞춘 가상 SVG
-        function renderVirtualSVG(svgId) {
-            if (svgId === 'svg-board') return `<svg viewBox="0 0 400 300" class="viewer-svg" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="var(--bg-paper)" /><path d="M 50 50 L 350 50 L 350 250 L 50 250 Z" stroke="var(--wood-dark)" stroke-width="2" fill="#fff" /><line x1="50" y1="120" x2="350" y2="120" stroke="var(--wood-dark)" stroke-width="2" /><rect x="80" y="70" width="100" height="30" fill="var(--wood-light)" opacity="0.5" /><circle cx="280" cy="180" r="40" fill="var(--forest-green)" opacity="0.6" /></svg>`;
-            if (svgId === 'svg-3d') return `<svg viewBox="0 0 400 300" class="viewer-svg" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="var(--bg-paper)" /><g transform="translate(145, 40)"><polygon points="10,10 100,10 90,180 20,180" fill="#fff" stroke="var(--wood-dark)" stroke-width="2" /><polygon points="20,25 90,25 80,110 30,110" fill="var(--faded-blue)" opacity="0.8" stroke="var(--wood-dark)" stroke-width="1.5" /><circle cx="55" cy="65" r="15" fill="var(--sunlight)" /><rect x="25" y="125" width="60" height="15" fill="var(--wood-light)" stroke="var(--wood-dark)" stroke-width="1.5" /></g></svg>`;
-            if (svgId === 'svg-anime') return `<svg viewBox="0 0 400 300" class="viewer-svg" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="var(--bg-paper)" /><rect x="0" y="100" width="400" height="80" fill="var(--wood-light)" opacity="0.3" /><rect x="0" y="130" width="400" height="50" fill="var(--sunlight)" opacity="0.6" /><g transform="translate(120, 110)"><path d="M 10,40 L 40,20 L 110,20 L 140,40 L 150,55 L 0,55 Z" fill="var(--forest-green)" opacity="0.8" stroke="var(--wood-dark)" stroke-width="2" /><circle cx="35" cy="55" r="14" fill="var(--wood-dark)" stroke="#fff" stroke-width="2" /><circle cx="115" cy="55" r="14" fill="var(--wood-dark)" stroke="#fff" stroke-width="2" /></g></svg>`;
-            return `<svg viewBox="0 0 400 300" class="viewer-svg" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="var(--bg-paper)" /><text x="200" y="150" font-family="'Gowun Dodum'" font-size="16" fill="var(--wood-dark)" text-anchor="middle">준비 중인 파일입니다.</text></svg>`;
         }
     </script>
 </body>
