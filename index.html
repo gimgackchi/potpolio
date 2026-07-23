@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KIMGACKCHI - 1980 Vintage Archive</title>
-    <!-- 일본 빈티지, 타이프라이터, 손글씨 감성을 위한 폰트 -->
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Serif+KR:wght@400;600;900&family=Special+Elite&display=swap" rel="stylesheet">
+    <!-- 일본 빈티지, 타이프라이터, 고운 바탕 폰트 연결 -->
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Serif+KR:wght@400;600;900&family=Special+Elite&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
@@ -30,7 +30,7 @@
                 radial-gradient(rgba(0,0,0,0.05) 1px, transparent 1px);
             background-size: 20px 20px;
             background-position: 0 0, 10px 10px;
-            font-family: 'Noto Serif KR', serif;
+            font-family: 'Gowun Batang', 'Noto Serif KR', serif;
             color: var(--ink-black);
             height: 100vh; width: 100vw; overflow: hidden; position: relative;
             display: flex; flex-direction: column;
@@ -69,7 +69,7 @@
         }
 
         .folder-title {
-            font-family: 'Noto Serif KR', serif; font-weight: 900; font-size: 1.4rem; text-align: center; line-height: 1.3; color: var(--ink-black); margin-bottom: 15px; word-break: keep-all; text-shadow: 1px 1px 0px rgba(255,255,255,0.5);
+            font-family: 'Gowun Batang', 'Noto Serif KR', serif; font-weight: 700; font-size: 1.4rem; text-align: center; line-height: 1.3; color: var(--ink-black); margin-bottom: 15px; word-break: keep-all; text-shadow: 1px 1px 0px rgba(255,255,255,0.5);
         }
 
         .polaroid-deco {
@@ -104,7 +104,7 @@
         .archive-title { font-family: 'Special Elite', monospace; font-size: 1.1rem; border-bottom: 2px solid var(--ink-black); padding-bottom: 10px; margin-bottom: 15px; font-weight: bold; }
         .scrap-list { list-style: none; }
         .scrap-item {
-            padding: 12px 10px; margin-bottom: 8px; border: 1px solid transparent; cursor: pointer; font-size: 0.95rem; font-weight: 600; color: #555; position: relative; transition: all 0.2s;
+            padding: 12px 10px; margin-bottom: 8px; border: 1px solid transparent; cursor: pointer; font-size: 0.95rem; font-weight: 700; color: #555; position: relative; transition: all 0.2s;
         }
         .scrap-item::before { content: '▪'; position: absolute; left: -5px; color: var(--ink-red); opacity: 0; transition: opacity 0.2s; }
         .scrap-item:hover { color: var(--ink-black); transform: translateX(5px); }
@@ -131,17 +131,17 @@
         
         .content-header { text-align: center; margin-bottom: 20px; position: relative; width: 100%; }
         .content-tag { font-family: 'Special Elite', monospace; font-size: 0.7rem; color: var(--ink-red); border: 1px solid var(--ink-red); padding: 2px 6px; border-radius: 3px; display: inline-block; margin-bottom: 10px; transform: rotate(2deg); }
-        .content-title { font-size: 1.6rem; font-weight: 900; color: var(--ink-black); }
+        .content-title { font-size: 1.6rem; font-weight: 700; color: var(--ink-black); }
         .content-desc { font-size: 0.95rem; line-height: 1.7; color: #444; max-width: 500px; text-align: center; margin: 0 auto; }
 
-        /* 📝 비하인드 스토리 메모장 (0번 항목 전용) */
+        /* 📝 비하인드 스토리 메모장 (0번 항목 전용 - 고운 바탕 폰트 적용) */
         .memo-pad {
-            position: relative; background: var(--memo-yellow); padding: 20px 25px; margin-top: 20px; width: 90%; max-width: 450px; box-shadow: 2px 4px 10px rgba(0,0,0,0.1); transform: rotate(1deg); font-family: 'Nanum Pen Script', cursive; font-size: 1.4rem; color: #222; line-height: 1.5; border-left: 3px solid #E0B050;
+            position: relative; background: var(--memo-yellow); padding: 22px 25px; margin-top: 20px; width: 90%; max-width: 460px; box-shadow: 2px 4px 10px rgba(0,0,0,0.12); transform: rotate(1deg); font-family: 'Gowun Batang', serif; font-size: 1.05rem; font-weight: 700; color: #222; line-height: 1.75; border-left: 3px solid #E0B050; word-break: keep-all;
         }
         .memo-pad::before {
             content: ''; position: absolute; top: -10px; left: 10px; width: 50px; height: 20px; background: var(--tape-color); transform: rotate(-5deg); box-shadow: 1px 1px 2px rgba(0,0,0,0.05);
         }
-        .memo-title { font-family: 'Noto Serif KR', serif; font-size: 0.8rem; font-weight: bold; color: var(--ink-red); margin-bottom: 5px; display: flex; align-items: center; gap: 5px; }
+        .memo-title { font-family: 'Special Elite', monospace; font-size: 0.75rem; font-weight: bold; color: var(--ink-red); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; letter-spacing: 0.5px; }
 
         /* 🎬 비디오 재생 티켓 버튼 (스틸컷 하단) */
         .video-ticket-btn {
@@ -160,7 +160,7 @@
         }
         .profile-card::before { content: ''; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 15px; height: 15px; background: #C85A5A; border-radius: 50%; box-shadow: inset -2px -2px 4px rgba(0,0,0,0.3), 1px 2px 3px rgba(0,0,0,0.2); /* 압정 */ }
         .profile-img { width: 100%; height: 140px; background: #eee; margin-bottom: 10px; overflow: hidden; display: flex; justify-content: center; align-items: center; border: 1px solid #ddd; }
-        .profile-name { font-weight: 900; font-size: 1.2rem; margin-bottom: 5px; border-bottom: 1px solid #ddd; padding-bottom: 5px; }
+        .profile-name { font-weight: 700; font-size: 1.2rem; margin-bottom: 5px; border-bottom: 1px solid #ddd; padding-bottom: 5px; }
         .profile-role { font-family: 'Special Elite', monospace; font-size: 0.75rem; color: #666; }
 
     </style>
@@ -287,7 +287,7 @@
                         '여기다가_4번째_이미지_기입.jpg'
                     ],
                     // 📌 0번 항목 비하인드 스토리 기입
-                    behindText: '여기다 비하인드 스토리 쓰면 돼요 (예: 봄의 서늘함과 눈의 따뜻함을 대비시키기 위해...)'
+                    behindText: '여기다 비하인드 스토리 쓰면 돼요 (예: 봄의 서늘함과 눈의 따뜻함을 대비시키기 위해 문학적 질감의 조명을 활용했습니다...)'
                 },
                 {
                     id: 'spring_01',
@@ -333,7 +333,7 @@
                         '여기다가_4번째_이미지_기입.jpg'
                     ],
                     // 📌 0번 항목 비하인드 스토리 기입
-                    behindText: '여기다 비하인드 스토리 쓰면 돼요 (예: 디스토피아적 세계관을 표현하기 위해...)'
+                    behindText: '여기다 비하인드 스토리 쓰면 돼요 (예: 디스토피아적 세계관을 표현하기 위해 노을빛 붉은 유화 감성을 적극 채용했습니다...)'
                 },
                 {
                     id: 'revenge_01',
